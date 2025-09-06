@@ -1,0 +1,169 @@
+2025-09-06 21:06:45,067 [INFO] __main__ [main.py:9]: Starting Tax Research Multi-Agent System
+2025-09-06 21:07:44,320 [INFO] __main__ [main.py:9]: Starting Tax Research Multi-Agent System
+2025-09-06 21:07:45,296 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:07:45,297 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:07:45,306 [ERROR] database.neo4j_client [neo4j_client.py:25]: Failed to connect to Neo4j: Couldn't connect to localhost:7687 (resolved to ('[::1]:7687', '127.0.0.1:7687')):
+Failed to establish connection to ResolvedIPv6Address(('::1', 7687, 0, 0)) (reason [Errno 61] Connect call failed ('::1', 7687, 0, 0))
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [Errno 61] Connect call failed ('127.0.0.1', 7687))
+2025-09-06 21:07:45,307 [ERROR] api.app [app.py:60]: Failed to initialize system: Couldn't connect to localhost:7687 (resolved to ('[::1]:7687', '127.0.0.1:7687')):
+Failed to establish connection to ResolvedIPv6Address(('::1', 7687, 0, 0)) (reason [Errno 61] Connect call failed ('::1', 7687, 0, 0))
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [Errno 61] Connect call failed ('127.0.0.1', 7687))
+2025-09-06 21:14:44,625 [INFO] __main__ [main.py:9]: Starting Tax Research Multi-Agent System
+2025-09-06 21:14:45,570 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:14:45,570 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:14:46,459 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:14:46,459 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:14:46,475 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:14:55,278 [INFO] api.app [app.py:130]: Request dfd9c28f-0dd2-4e3f-ab2e-f989f94edcb8: POST /query - Status: 404 - Time: 0.000s
+2025-09-06 21:15:40,622 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:15:40,725 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:15:42,628 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:15:42,628 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:15:43,426 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:15:43,427 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:15:43,439 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:15:44,954 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:15:45,057 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:15:46,172 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:15:46,172 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:15:48,392 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:15:48,392 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:15:48,399 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:15:51,130 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:15:51,227 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:15:52,491 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:15:52,491 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:15:53,333 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:15:53,333 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:15:53,341 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:15:59,613 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:15:59,767 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:16:01,730 [INFO] __main__ [main.py:9]: Starting Tax Research Multi-Agent System
+2025-09-06 21:16:02,750 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:16:02,751 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:16:03,544 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:16:03,544 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:16:03,560 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:16:06,737 [INFO] api.app [app.py:130]: Request eb47bf01-c16f-42a8-a8e0-386dd993b99f: POST /query - Status: 200 - Time: 0.005s
+2025-09-06 21:16:16,953 [INFO] api.app [app.py:130]: Request 1506b928-012d-4252-ad48-7a0bd76a0e57: POST /query - Status: 200 - Time: 0.001s
+2025-09-06 21:17:02,775 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:17:02,914 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:17:19,050 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:17:19,050 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:17:19,870 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:17:19,870 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:17:19,885 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:17:21,214 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:17:21,345 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:17:22,321 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:17:22,321 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:17:23,120 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:17:23,120 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:17:23,134 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:17:35,880 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:17:36,002 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:17:37,193 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:17:37,194 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:17:37,955 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:17:37,955 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:17:37,968 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:17:38,474 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:17:38,592 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:17:39,774 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:17:39,774 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:17:40,547 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:17:40,547 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:17:40,567 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:17:45,197 [ERROR] api.routes.query [query.py:21]: Query processing failed: name 'QueryComplexity' is not defined
+2025-09-06 21:17:45,198 [INFO] api.app [app.py:130]: Request e1092024-aa39-48cd-a4a1-812b7e03bd60: POST /query - Status: 500 - Time: 0.003s
+2025-09-06 21:18:10,719 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:18:10,853 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:18:12,560 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:18:12,561 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:18:13,363 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:18:13,363 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:18:13,388 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:18:14,496 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:18:14,496 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:18:15,196 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:18:15,196 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:18:15,222 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:18:20,074 [INFO] api.app [app.py:66]: Shutting down Tax Research RAG System
+2025-09-06 21:18:20,184 [INFO] api.app [app.py:71]: Neo4j connection closed
+2025-09-06 21:18:21,204 [INFO] api.app [app.py:35]: Starting Tax Research RAG System
+2025-09-06 21:18:21,204 [INFO] api.app [app.py:41]: Initializing database connections...
+2025-09-06 21:18:21,974 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:18:21,974 [INFO] api.app [app.py:48]: Initializing orchestrator...
+2025-09-06 21:18:21,989 [INFO] api.app [app.py:57]: System initialization complete
+2025-09-06 21:18:26,601 [INFO] orchestration.phases [phases.py:36]: Phase 1: Processing query - What are the requirements for a Section 338(h)(10) election?...
+2025-09-06 21:18:26,602 [INFO] agents.base.QueryPlanningAgent [base.py:24]: Agent QueryPlanningAgent completed in 0.00s with confidence 95.00%
+2025-09-06 21:18:26,602 [INFO] orchestration.phases [phases.py:55]: Phase 1 completed in 0.00s
+2025-09-06 21:18:26,603 [INFO] orchestration.phases [phases.py:73]: Phase 2: Coordinating agents
+2025-09-06 21:18:26,603 [INFO] orchestration.phases [phases.py:101]: Phase 2 completed in 0.00s with 4 agents
+2025-09-06 21:18:26,604 [INFO] orchestration.phases [phases.py:119]: Phase 3: Starting parallel retrieval
+2025-09-06 21:18:26,878 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-09-06 21:18:26,878 [INFO] agents.base.CaseLawAgent [base.py:24]: Agent CaseLawAgent completed in 0.27s with confidence 0.00%
+2025-09-06 21:18:26,879 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-09-06 21:18:26,879 [INFO] agents.base.RegulationAgent [base.py:24]: Agent RegulationAgent completed in 0.00s with confidence 0.00%
+2025-09-06 21:18:26,879 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-09-06 21:18:26,879 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-09-06 21:18:26,879 [INFO] agents.base.ExpertAgent [base.py:24]: Agent ExpertAgent completed in 0.00s with confidence 40.00%
+2025-09-06 21:18:27,797 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-06 21:18:28,108 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: INVOLVES)} {position: line: 1, column: 18, offset: 17} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,108 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: description)} {position: line: 1, column: 114, offset: 113} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,108 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: date)} {position: line: 1, column: 301, offset: 300} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,108 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: description)} {position: line: 1, column: 150, offset: 149} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: description)} {position: line: 1, column: 222, offset: 221} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownLabelWarning} {category: UNRECOGNIZED} {title: The provided label is not in the database.} {description: One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing label name is: Election)} {position: line: 1, column: 32, offset: 31} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownLabelWarning} {category: UNRECOGNIZED} {title: The provided label is not in the database.} {description: One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing label name is: Deal)} {position: line: 1, column: 10, offset: 9} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: section)} {position: line: 1, column: 50, offset: 49} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: description)} {position: line: 1, column: 186, offset: 185} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: date)} {position: line: 1, column: 260, offset: 259} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [WARNING] neo4j.notifications [result.py:337]: Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: description)} {position: line: 1, column: 78, offset: 77} for query: 'MATCH (d:Deal)-[:INVOLVES]->(e:Election) WHERE e.section IN $sections AND (d.description CONTAINS $keyword0 OR d.description CONTAINS $keyword1 OR d.description CONTAINS $keyword2 OR d.description CONTAINS $keyword3 OR d.description CONTAINS $keyword4) AND d.date >= $min_date RETURN d, e ORDER BY d.date DESC LIMIT 20'
+2025-09-06 21:18:28,109 [INFO] agents.base.PrecedentAgent [base.py:24]: Agent PrecedentAgent completed in 1.23s with confidence 30.00%
+2025-09-06 21:18:28,109 [INFO] orchestration.phases [phases.py:172]: Agent CaseLawAgent returned 0 documents
+2025-09-06 21:18:28,109 [INFO] orchestration.phases [phases.py:172]: Agent RegulationAgent returned 0 documents
+2025-09-06 21:18:28,109 [INFO] orchestration.phases [phases.py:172]: Agent PrecedentAgent returned 0 documents
+2025-09-06 21:18:28,109 [INFO] orchestration.phases [phases.py:172]: Agent ExpertAgent returned 0 documents
+2025-09-06 21:18:28,109 [WARNING] orchestration.phases [phases.py:308]: Low average confidence: 33.00%
+2025-09-06 21:18:28,109 [WARNING] orchestration.phases [phases.py:319]: Insufficient documents: 0
+2025-09-06 21:18:28,110 [INFO] orchestration.phases [phases.py:187]: Phase 3 completed in 1.51s - Retrieved 0 unique documents
+2025-09-06 21:18:28,110 [INFO] orchestration.phases [phases.py:206]: Phase 4: Synthesizing results
+2025-09-06 21:18:28,110 [WARNING] orchestration.phases [phases.py:211]: No documents to synthesize
+2025-09-06 21:18:28,111 [INFO] api.app [app.py:130]: Request 9f550dec-bd8e-44d4-ac8c-cd890a17d397: POST /query - Status: 200 - Time: 1.524s

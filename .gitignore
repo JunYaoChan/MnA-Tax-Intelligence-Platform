@@ -38,3 +38,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Backend sensitive files
+Backend/run.py
+Backend/.env
+Backend/logs/
+Backend/.venv/

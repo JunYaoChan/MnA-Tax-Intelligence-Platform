@@ -1,0 +1,47 @@
+2025-09-06 21:07:45,306 [ERROR] database.neo4j_client [neo4j_client.py:25]: Failed to connect to Neo4j: Couldn't connect to localhost:7687 (resolved to ('[::1]:7687', '127.0.0.1:7687')):
+Failed to establish connection to ResolvedIPv6Address(('::1', 7687, 0, 0)) (reason [Errno 61] Connect call failed ('::1', 7687, 0, 0))
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [Errno 61] Connect call failed ('127.0.0.1', 7687))
+2025-09-06 21:07:45,307 [ERROR] api.app [app.py:60]: Failed to initialize system: Couldn't connect to localhost:7687 (resolved to ('[::1]:7687', '127.0.0.1:7687')):
+Failed to establish connection to ResolvedIPv6Address(('::1', 7687, 0, 0)) (reason [Errno 61] Connect call failed ('::1', 7687, 0, 0))
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [Errno 61] Connect call failed ('127.0.0.1', 7687))
+2025-09-06 21:17:45,197 [ERROR] api.routes.query [query.py:21]: Query processing failed: name 'QueryComplexity' is not defined
+2025-09-06 21:18:26,878 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-09-06 21:18:26,879 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-09-06 21:18:26,879 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-09-06 21:18:26,879 [ERROR] database.supabase_client [supabase_client.py:60]: Error in vector search: 
+
+You tried to access openai.Embedding, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
