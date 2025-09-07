@@ -1,0 +1,46 @@
+Section 338(h)(10) Election Requirements
+
+Section 338(h)(10) Election Overview
+
+A Section 338(h)(10) election under Internal Revenue Code Section 338(h)(10) allows a parent corporation to treat the acquisition of a subsidiary's stock as a deemed asset purchase for federal income tax purposes while maintaining the legal structure as a stock purchase.
+
+Key Requirements for Section 338(h)(10) Election:
+
+1. Stock Purchase Structure
+The acquisition must be structured as a qualified stock purchase, meaning the purchasing corporation must acquire at least 80% of the subsidiary's stock within a 12-month period.
+
+2. Joint Election Requirement  
+Both the selling consolidated group (or selling affiliate) and the purchasing corporation must jointly file the Section 338(h)(10) election.
+
+3. Filing Deadline
+The election must be filed by the 15th day of the 9th month beginning after the month in which the acquisition date occurs.
+
+4. Tax Consequences
+- The selling group recognizes gain or loss as if the subsidiary sold its assets
+- The purchasing corporation receives a stepped-up basis in the subsidiary's assets
+- The subsidiary is deemed to have purchased its assets at fair market value
+
+Section 338(g) vs 338(h)(10) Election Comparison
+
+Section 338(g) elections result in double taxation, while Section 338(h)(10) elections avoid this issue when the target is a member of a consolidated group.
+
+Revenue Ruling 2001-46 provides guidance on the application of Section 338(h)(10) elections in the context of mergers and acquisitions.
+
+Regulation Section 1.338(h)(10)-1 provides detailed rules for making and implementing the election.
+
+Case Law Precedents:
+- Dover Corporation v. Commissioner established important principles regarding the timing of Section 338 elections
+- In Grecian Magnesite Mining Corp v. Commissioner, the Tax Court addressed allocation issues under Section 338
+
+Planning Considerations:
+1. Evaluate the step-up benefits versus the immediate tax cost
+2. Consider the impact on NOL carryforwards and other tax attributes
+3. Analyze the effect on depreciation and amortization deductions
+4. Review transfer pricing implications for cross-border transactions
+
+Implementation Steps:
+1. Conduct due diligence on target company's tax attributes
+2. Perform financial modeling to quantify benefits
+3. Prepare and file Form 8023 for the Section 338(h)(10) election
+4. Coordinate with tax advisors and legal counsel
+5. Ensure compliance with all procedural requirements

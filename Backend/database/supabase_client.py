@@ -229,10 +229,117 @@ class SupabaseVectorStore:
     async def batch_insert(self, documents: List[Dict]) -> int:
         """Batch insert multiple documents"""
         inserted = 0
-        
+
         for doc in documents:
             if await self.insert_document(doc):
                 inserted += 1
-        
-        logger.info(f"Inserted {inserted}/{len(documents)} documents")
+
         return inserted
+
+    async def insert_sample_documents(self):
+        """Insert some sample tax documents for testing"""
+        sample_docs = [
+            {
+                "title": "Section 338(h)(10) Election Requirements",
+                "content": """Section 338(h)(10) provides a mechanism for partners in a partnership to step up the basis of their partnership interest without triggering immediate tax recognition. The election allows partners to recognize gain on the excess of the FMV over their basis in the partnership interest...
+
+                Requirements for making the election include:
+                1. The partnership must have at least 10 partners
+                2. All partners must consent to the election
+                3. The election must be made on or before the 15th day of the 4th month after the end of the tax year
+                4. The partnership must file the election with Form 8023
+
+                The election is available for distributions made after October 21, 1996.""",
+                "document_type": "regulation",
+                "metadata": {
+                    "section": "338(h)(10)",
+                    "topic": "partnership basis step-up",
+                    "year": 2024,
+                    "authority": "irc_tax_code"
+                }
+            },
+            {
+                "title": "Case Law: Smith v. Commissioner - Basis Step Up",
+                "content": """In Smith v. Commissioner, the Tax Court held that the taxpayer could not step up the basis of partnership interests under Section 338(h)(10). The court reasoned that the partnership did not meet the qualified bankruptcy exception requirements...
+
+                The court determined that even though the partnership was in bankruptcy, the taxpayer was not a qualified purchaser because they were not buying substantially all the assets.""",
+                "document_type": "case_law",
+                "metadata": {
+                    "case": "Smith v. Commissioner",
+                    "year": "2018",
+                    "court": "tax_court",
+                    "section": "338(h)(10)"
+                }
+            }
+        ]
+
+        inserted = await self.batch_insert(sample_docs)
+        logger.info(f"Sample documents inserted: {inserted}")
+        return inserted
+
+    async def initialize_database(self):
+        """Initialize the database schema"""
+        try:
+            # SQL to create the tax_documents table with vector extension
+            init_sql = """
+            -- Enable the pgvector extension
+            CREATE EXTENSION IF NOT EXISTS vector;
+
+            -- Create the table for tax documents
+            CREATE TABLE IF NOT EXISTS tax_documents (
+                id BIGSERIAL PRIMARY KEY,
+                title TEXT,
+                content TEXT NOT NULL,
+                document_type TEXT,
+                metadata JSONB DEFAULT '{}',
+                embedding vector(1536),
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            );
+
+            -- Create indexes for better performance
+            CREATE INDEX IF NOT EXISTS tax_docs_content_idx ON tax_documents USING gin(to_tsvector('english', content));
+            CREATE INDEX IF NOT EXISTS tax_docs_type_idx ON tax_documents(document_type);
+            CREATE INDEX IF NOT EXISTS tax_docs_metadata_idx ON tax_documents USING gin(metadata);
+            CREATE INDEX IF NOT EXISTS tax_docs_created_at_idx ON tax_documents(created_at DESC);
+            CREATE INDEX IF NOT EXISTS tax_docs_embedding_idx ON tax_documents USING ivfflat(embedding vector_cosine_ops) WITH (lists = 100);
+
+            -- Alternative vector similarity search function
+            CREATE OR REPLACE FUNCTION match_documents(
+                query_embedding vector(1536),
+                match_threshold float DEFAULT 0.7,
+                match_count int DEFAULT 10
+            )
+            RETURNS TABLE(
+                id bigint,
+                title text,
+                content text,
+                document_type text,
+                metadata jsonb,
+                similarity float
+            )
+            LANGUAGE plpgsql
+            AS $$
+            BEGIN
+                RETURN QUERY
+                SELECT
+                    tax_documents.id,
+                    tax_documents.title,
+                    tax_documents.content,
+                    tax_documents.document_type,
+                    tax_documents.metadata,
+                    1 - (tax_documents.embedding <=> query_embedding) AS similarity
+                FROM tax_documents
+                WHERE 1 - (tax_documents.embedding <=> query_embedding) > match_threshold
+                ORDER BY tax_documents.embedding <=> query_embedding
+                LIMIT match_count;
+            END;
+            $$;
+            """
+
+            # This would need to be executed via Supabase dashboard or direct SQL connection
+            # Since we can't execute DDL via the client, we'll provide the SQL script
+            logger.info("Database initialization SQL generated. Execute this in your Supabase SQL editor:")
+            logger.info(f"\n{init_sql}")
+
+        except Exception as e:
+            logger.error(f"Failed to initialize database: {e}")

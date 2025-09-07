@@ -244,3 +244,4 @@
 2025-09-07 21:54:41,370 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-09-07 21:54:41,378 [INFO] orchestration.orchestrator [orchestrator.py:109]: RAG pipeline completed in 98.44s
 2025-09-07 21:54:41,379 [INFO] __main__ [main.py:110]: Query processed successfully in 98.44s
+2025-09-07 22:07:15,164 [INFO] __main__ [main.py:60]: Application shutdown complete

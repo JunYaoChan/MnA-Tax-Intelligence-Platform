@@ -8,6 +8,7 @@ from database.supabase_client import SupabaseVectorStore
 from database.neo4j_client import Neo4jClient
 from models.requests import QueryRequest
 from models.responses import QueryResponse
+from api.routes.upload import router as upload_router
 
 # Configure logging
 logging.basicConfig(
@@ -76,6 +77,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include upload router
+app.include_router(upload_router)
 
 @app.post("/query", response_model=QueryResponse)
 async def process_query(request: QueryRequest):
