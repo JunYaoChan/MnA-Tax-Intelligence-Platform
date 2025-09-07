@@ -21,6 +21,11 @@ class Settings(BaseSettings):
     max_query_time: int = 20
     agent_timeout: int = 8
     
+    google_search_api_key: str 
+    google_cse_id: str 
+    web_search_enabled: bool 
+    irs_api_enabled: bool 
+    
     # Vector Search
     embedding_dim: int = 1536
     top_k_results: int = 10

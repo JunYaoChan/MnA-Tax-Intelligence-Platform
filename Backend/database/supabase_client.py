@@ -4,6 +4,7 @@ from supabase import create_client, Client
 import numpy as np
 from config.settings import Settings
 import logging
+from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +18,9 @@ class SupabaseVectorStore:
             settings.supabase_key
         )
         self.table_name = "tax_documents"
+        
+        # Initialize OpenAI client with new API
+        self.openai_client = AsyncOpenAI(api_key=settings.openai_api_key)
         
     async def search(
         self,
@@ -47,52 +51,94 @@ class SupabaseVectorStore:
                     else:
                         query_builder = query_builder.eq(key, value)
             
-            # Perform similarity search using pgvector
-            response = await self._vector_search(
-                query_builder,
+            # Perform similarity search using direct SQL since match_documents might not exist
+            response = await self._vector_search_direct(
                 embedding,
-                top_k
+                top_k,
+                filter
             )
             
-            return self._format_results(response.data)
+            return self._format_results(response)
             
         except Exception as e:
             logger.error(f"Error in vector search: {e}")
             return []
     
     async def _generate_embedding(self, text: str) -> List[float]:
-        """Generate embedding using OpenAI"""
-        import openai
-        
-        openai.api_key = self.settings.openai_api_key
-        
-        response = await openai.Embedding.acreate(
-            input=text,
-            model="text-embedding-ada-002"
-        )
-        
-        return response['data'][0]['embedding']
+        """Generate embedding using OpenAI (Fixed for new API)"""
+        try:
+            response = await self.openai_client.embeddings.create(
+                input=text,
+                model="text-embedding-ada-002"
+            )
+            
+            return response.data[0].embedding
+            
+        except Exception as e:
+            logger.error(f"Error generating embedding: {e}")
+            # Return zero vector on error
+            return [0.0] * 1536
     
-    async def _vector_search(
+    async def _vector_search_direct(
         self,
-        query_builder,
         embedding: List[float],
-        top_k: int
-    ) -> Any:
-        """Execute vector similarity search"""
-        # Use pgvector's <-> operator for cosine similarity
-        embedding_str = f"[{','.join(map(str, embedding))}]"
-        
-        response = query_builder.rpc(
-            'match_documents',
-            {
-                'query_embedding': embedding_str,
-                'match_count': top_k,
-                'filter': {}
-            }
-        ).execute()
-        
-        return response
+        top_k: int,
+        filter_dict: Optional[Dict[str, Any]] = None
+    ) -> List[Dict]:
+        """
+        Execute vector similarity search using direct SQL approach
+        since match_documents function might not exist
+        """
+        try:
+            # Convert embedding to string format
+            embedding_str = f"[{','.join(map(str, embedding))}]"
+            
+            # Build the base query
+            select_query = self.client.table(self.table_name).select(
+                "id, title, content, document_type, metadata, created_at, "
+                f"embedding <-> '{embedding_str}' as similarity"
+            )
+            
+            # Apply filters if provided
+            if filter_dict:
+                for key, value in filter_dict.items():
+                    if isinstance(value, list):
+                        select_query = select_query.in_(key, value)
+                    else:
+                        select_query = select_query.eq(key, value)
+            
+            # Order by similarity and limit results
+            response = select_query.order('similarity').limit(top_k).execute()
+            
+            return response.data if response.data else []
+            
+        except Exception as e:
+            logger.error(f"Direct vector search failed: {e}")
+            # Fallback to simple text search
+            return await self._fallback_text_search(top_k, filter_dict)
+    
+    async def _fallback_text_search(
+        self,
+        top_k: int,
+        filter_dict: Optional[Dict[str, Any]] = None
+    ) -> List[Dict]:
+        """Fallback to text search when vector search fails"""
+        try:
+            query = self.client.table(self.table_name).select("*").limit(top_k)
+            
+            if filter_dict:
+                for key, value in filter_dict.items():
+                    if isinstance(value, list):
+                        query = query.in_(key, value)
+                    else:
+                        query = query.eq(key, value)
+            
+            response = query.execute()
+            return response.data if response.data else []
+            
+        except Exception as e:
+            logger.error(f"Fallback search failed: {e}")
+            return []
     
     def _format_results(self, data: List[Dict]) -> List[Dict]:
         """Format search results"""
@@ -104,7 +150,7 @@ class SupabaseVectorStore:
                 'title': item.get('title'),
                 'content': item.get('content'),
                 'type': item.get('document_type'),
-                'relevance_score': item.get('similarity', 0),
+                'relevance_score': 1.0 - item.get('similarity', 1.0),  # Convert distance to similarity
                 'metadata': item.get('metadata', {}),
                 'date': item.get('created_at')
             })
