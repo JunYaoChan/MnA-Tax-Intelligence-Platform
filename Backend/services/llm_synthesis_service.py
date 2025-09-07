@@ -111,7 +111,7 @@ Query: {state.query}
 Document Sources:
 {context}
 
-Agent Confidence Scores: {dict(state.confidence_scores)}
+        Agent Confidence Scores: {dict(getattr(state, 'confidence_scores', {}))}
 
 Please provide a comprehensive analysis with:
 1. Executive summary (2-3 paragraphs)
@@ -353,12 +353,12 @@ Relevance: {doc.get('relevance_score', 0):.2f}
         parts = [
             f"Original Query: {state.query}",
             f"Query Complexity: {state.complexity.value}",
-            f"Agent Confidence Scores: {dict(state.confidence_scores)}",
+            f"Agent Confidence Scores: {dict(getattr(state, 'confidence_scores', {}))}",
             "\n=== RETRIEVED DOCUMENTS ===",
             self._prepare_document_context(state.retrieved_documents, max_docs=15)
         ]
         
-        if state.errors:
+        if hasattr(state, 'errors') and state.errors:
             parts.append(f"\n=== PROCESSING NOTES ===\nErrors encountered: {'; '.join(state.errors)}")
         
         return "\n".join(parts)

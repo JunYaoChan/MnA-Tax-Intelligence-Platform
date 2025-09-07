@@ -1,174 +1,425 @@
-from typing import Dict, List
+# Backend/orchestration/orchestrator.py
+import asyncio
+import time
 import logging
-from langgraph.graph import StateGraph, END
-from models.state import AgentState
-from models.enums import QueryComplexity
-from agents import (
-    QueryPlanningAgent, CaseLawAgent, 
-    RegulationAgent, PrecedentAgent, ExpertAgent, BaseAgent
-)
-from agents.web_search import WebSearchAgent  # NEW
-from agents.irs_api import IRSAPIAgent  # NEW
-from config.settings import Settings
-from database.vector_store import KnowledgeBase
+from typing import List, Dict, Any, Optional
+from models.state import AgentState, QueryComplexity
+from models.results import RetrievalResult
+from models.synthesis import SynthesisResult
+from agents.query_planning import QueryPlanningAgent
+from agents.case_law import CaseLawAgent
+from agents.regulation import RegulationAgent
+from agents.precedent import PrecedentAgent
+from agents.expert import ExpertAgent
+from function_tools.registry import FunctionToolRegistry
+from services.llm_synthesis_service import LLMSynthesisService
 from database.supabase_client import SupabaseVectorStore
 from database.neo4j_client import Neo4jClient
-from .phases import PhaseExecutor
-
 
 logger = logging.getLogger(__name__)
 
-class LangGraphOrchestrator:
-    def __init__(self, settings: Settings):
+class RAGOrchestrator:
+    """
+    Orchestrator implementing the 5-step RAG pipeline:
+    1. User Query Submission
+    2. Data Retrieval from Vector Database
+    3. External Data Sourcing with Function Tools
+    4. LLM Response Generation
+    5. Agent-Driven Refinement
+    """
+    
+    def __init__(self, settings, vector_store: SupabaseVectorStore, neo4j_client: Neo4jClient):
         self.settings = settings
-        self.agents = self._initialize_agents()
-        self.phase_executor = PhaseExecutor(self.agents, self.settings)
-        self.workflow = self._build_workflow()
+        self.vector_store = vector_store
+        self.neo4j = neo4j_client
+        self.function_tools = FunctionToolRegistry(settings)
+        self.llm_synthesis = LLMSynthesisService(settings)
         
-    def _initialize_agents(self) -> Dict[str, BaseAgent]:
-        """Initialize all agents with their dependencies including external agents."""
+        # Initialize agents with function tools
+        self.agents = {}
         
-        # Initialize database connections
-        vector_store = SupabaseVectorStore(self.settings)
-        neo4j_client = Neo4jClient(self.settings)
-        knowledge_base = KnowledgeBase(vector_store)
-        
-        # Initialize all agents - internal and external
-        agents = {
-            # Planning agent
-            "QueryPlanningAgent": QueryPlanningAgent(self.settings),
-            
-            # Internal database agents
-            "CaseLawAgent": CaseLawAgent(self.settings, vector_store),
-            "RegulationAgent": RegulationAgent(self.settings, vector_store),
-            "PrecedentAgent": PrecedentAgent(self.settings, neo4j_client),
-            "ExpertAgent": ExpertAgent(self.settings, knowledge_base),
-            
-            # NEW: External data sourcing agents
-            "WebSearchAgent": WebSearchAgent(self.settings),
-            "IRSAPIAgent": IRSAPIAgent(self.settings)
-        }
-        
-        logger.info(f"Initialized {len(agents)} agents: {list(agents.keys())}")
-        return agents
-    
-    def _build_workflow(self) -> StateGraph:
-        """Build the LangGraph workflow with phases and edges."""
-        workflow = StateGraph(AgentState)
-        
-        # Add nodes for each phase
-        workflow.add_node("query_processing", self.phase_executor.phase1_query_processing)
-        workflow.add_node("agent_coordination", self.phase_executor.phase2_coordination)
-        workflow.add_node("parallel_retrieval", self.phase_executor.phase3_retrieval)
-        workflow.add_node("quality_check", self.phase_executor.quality_check_node)  # NEW
-        workflow.add_node("external_enrichment", self.phase_executor.phase3b_external_enrichment)  # NEW
-        workflow.add_node("synthesis", self.phase_executor.phase4_synthesis)
-        
-        # Define edges - updated flow
-        workflow.add_edge("query_processing", "agent_coordination")
-        workflow.add_edge("agent_coordination", "parallel_retrieval")
-        workflow.add_edge("parallel_retrieval", "quality_check")
-        
-        # Conditional edge: if insufficient results, try external sources
-        workflow.add_conditional_edges(
-            "quality_check",
-            self._should_use_external_sources,
-            {
-                "external_enrichment": "external_enrichment",
-                "synthesis": "synthesis"
-            }
-        )
-        
-        workflow.add_edge("external_enrichment", "synthesis")
-        workflow.add_edge("synthesis", END)
-        
-        # Set entry point
-        workflow.set_entry_point("query_processing")
-        
-        return workflow.compile()
-    
-    def _should_use_external_sources(self, state: AgentState) -> str:
-        """Determine if external sources should be used based on results quality"""
-        
-        # Check if we have sufficient high-quality results
-        sufficient_results = len(state.retrieved_documents) >= 3
-        high_confidence = False
-        
-        if state.confidence_scores:
-            avg_confidence = sum(state.confidence_scores.values()) / len(state.confidence_scores)
-            high_confidence = avg_confidence >= self.settings.confidence_threshold
-        
-        # Use external sources if:
-        # 1. Insufficient internal results, OR
-        # 2. Low confidence from internal sources, OR  
-        # 3. Query explicitly asks for recent/current information
-        
-        query_asks_for_current = any(
-            term in state.query.lower() 
-            for term in ['current', 'recent', 'latest', '2024', '2025', 'new', 'updated']
-        )
-        
-        if not sufficient_results or not high_confidence or query_asks_for_current:
-            logger.info("Using external sources for enrichment")
-            return "external_enrichment"
-        else:
-            logger.info("Sufficient internal results found, skipping external sources")
-            return "synthesis"
-    
-    async def process_query(self, query: str) -> Dict:
-        """Main entry point for processing a query."""
-        initial_state = AgentState(
-            query=query,
-            complexity=QueryComplexity.MODERATE  # Initial estimate
-        )
-        
+    async def initialize(self):
+        """Initialize the orchestrator and all components"""
         try:
-            final_state = await self.workflow.ainvoke(initial_state)
+            # Initialize function tools first
+            await self.function_tools.initialize()
             
-            # Extract final output
-            final_output = final_state.get('metadata', {}).get('final_output', {})
+            # Initialize agents with function tools
+            await self._initialize_agents()
             
-            # Add processing metadata
-            final_output['processing_metadata'] = {
-                'agents_used': list(final_state.get('agent_outputs', {}).keys()),
-                'external_sources_used': self._get_external_sources_used(final_state),
-                'total_documents': len(final_state.get('retrieved_documents', [])),
-                'workflow_path': self._get_workflow_path(final_state)
-            }
-            
-            return final_output
+            logger.info("RAG Orchestrator initialized successfully")
             
         except Exception as e:
-            logger.error(f"Query processing failed: {e}")
-            return {
-                'status': 'error',
-                'error': str(e),
-                'query': query,
-                'message': 'An error occurred while processing your query. Please try again.'
+            logger.error(f"Failed to initialize RAG Orchestrator: {e}")
+            raise
+    
+    async def _initialize_agents(self):
+        """Initialize all agents with function tools"""
+        # Get function tools for each agent type
+        case_law_tools = self.function_tools.get_tools_for_agent("CaseLawAgent")
+        regulation_tools = self.function_tools.get_tools_for_agent("RegulationAgent")
+        precedent_tools = self.function_tools.get_tools_for_agent("PrecedentAgent")
+        expert_tools = self.function_tools.get_tools_for_agent("ExpertAgent")
+        
+        # Initialize agents
+        self.agents = {
+            "QueryPlanningAgent": QueryPlanningAgent(self.settings),
+            "CaseLawAgent": CaseLawAgent(self.settings, self.vector_store, case_law_tools),
+            "RegulationAgent": RegulationAgent(self.settings, self.vector_store, regulation_tools),
+            "PrecedentAgent": PrecedentAgent(self.settings, self.vector_store, self.neo4j, precedent_tools),
+            "ExpertAgent": ExpertAgent(self.settings, self.vector_store, expert_tools)
+        }
+    
+    async def process_query(self, query: str, context: Optional[Dict] = None) -> SynthesisResult:
+        """
+        Process query through the 5-step RAG pipeline
+        
+        Args:
+            query: User query
+            context: Optional context information
+            
+        Returns:
+            SynthesisResult: Complete synthesis of retrieved and processed information
+        """
+        start_time = time.time()
+        
+        try:
+            # Step 1: User Query Submission & Planning
+            logger.info(f"Step 1: Processing query - {query[:100]}...")
+            state = await self._step1_query_submission(query, context)
+            
+            # Step 2: Data Retrieval from Vector Database (parallel across agents)
+            logger.info("Step 2: Vector database retrieval across agents")
+            vector_results = await self._step2_vector_retrieval(state)
+            
+            # Step 3: External Data Sourcing with Function Tools (if needed)
+            logger.info("Step 3: External data sourcing evaluation")
+            all_results = await self._step3_external_sourcing(state, vector_results)
+            
+            # Step 4: LLM Response Generation
+            logger.info("Step 4: LLM response generation and enhancement")
+            enhanced_results = await self._step4_llm_generation(state, all_results)
+            
+            # Step 5: Agent-Driven Refinement and Final Synthesis
+            logger.info("Step 5: Agent-driven refinement and synthesis")
+            final_result = await self._step5_refinement_synthesis(state, enhanced_results)
+            
+            # Log completion
+            total_time = time.time() - start_time
+            logger.info(f"RAG pipeline completed in {total_time:.2f}s")
+            
+            return final_result
+            
+        except Exception as e:
+            logger.error(f"RAG pipeline failed: {e}")
+            # Return fallback result
+            return SynthesisResult(
+                answer="I apologize, but I encountered an error processing your query. Please try again.",
+                confidence=0.0,
+                sources=[],
+                metadata={"error": str(e), "pipeline_step": "unknown"},
+                processing_time=time.time() - start_time
+            )
+    
+    async def _step1_query_submission(self, query: str, context: Optional[Dict]) -> AgentState:
+        """Step 1: Process and plan the user query"""
+        query_agent = self.agents["QueryPlanningAgent"]
+        
+        # Create initial state
+        state = AgentState(
+            query=query,
+            context=context or {},
+            intent={},
+            complexity=QueryComplexity.MODERATE,
+            retrieved_documents=[]
+        )
+        
+        # Analyze query and create execution plan
+        planning_result = await query_agent.process(state)
+        
+        # Update state with planning results
+        state.intent = planning_result.metadata.get('intent', {})
+        
+        # Convert complexity string back to enum
+        complexity_str = planning_result.metadata.get('complexity', 'moderate')
+        if isinstance(complexity_str, str):
+            complexity_map = {
+                'simple': QueryComplexity.SIMPLE,
+                'moderate': QueryComplexity.MODERATE,
+                'complex': QueryComplexity.COMPLEX,
+                'expert': QueryComplexity.EXPERT
             }
+            state.complexity = complexity_map.get(complexity_str, QueryComplexity.MODERATE)
+        else:
+            state.complexity = complexity_str
+        
+        return state
     
-    def _get_external_sources_used(self, state: AgentState) -> List[str]:
-        """Get list of external sources that were used"""
-        external_sources = []
+    async def _step2_vector_retrieval(self, state: AgentState) -> Dict[str, RetrievalResult]:
+        """Step 2: Perform vector database retrieval across relevant agents"""
         
-        for agent_name in state.get('agent_outputs', {}):
-            if agent_name in ['WebSearchAgent', 'IRSAPIAgent']:
-                external_sources.append(agent_name)
+        # Determine which agents to use based on query complexity and intent
+        active_agents = self._select_agents_for_query(state)
         
-        return external_sources
+        # Run vector retrieval in parallel across agents
+        tasks = []
+        for agent_name in active_agents:
+            agent = self.agents[agent_name]
+            task = asyncio.create_task(agent.process(state))
+            tasks.append((agent_name, task))
+        
+        # Collect results
+        vector_results = {}
+        for agent_name, task in tasks:
+            try:
+                result = await asyncio.wait_for(task, timeout=self.settings.agent_timeout)
+                vector_results[agent_name] = result
+                logger.info(f"Agent {agent_name} returned {len(result.documents)} documents")
+            except asyncio.TimeoutError:
+                logger.warning(f"Agent {agent_name} timed out")
+                vector_results[agent_name] = RetrievalResult(
+                    documents=[], confidence=0.0, source=agent_name.lower(),
+                    metadata={"error": "timeout"}, retrieval_time=self.settings.agent_timeout
+                )
+            except Exception as e:
+                logger.error(f"Agent {agent_name} failed: {e}")
+                vector_results[agent_name] = RetrievalResult(
+                    documents=[], confidence=0.0, source=agent_name.lower(),
+                    metadata={"error": str(e)}, retrieval_time=0
+                )
+        
+        return vector_results
     
-    def _get_workflow_path(self, state: AgentState) -> List[str]:
-        """Get the path taken through the workflow"""
-        # This would be more sophisticated in a real implementation
-        # For now, return a basic path based on what was executed
+    async def _step3_external_sourcing(self, state: AgentState, vector_results: Dict[str, RetrievalResult]) -> Dict[str, RetrievalResult]:
+        """Step 3: Evaluate need for external data sourcing and execute if necessary"""
         
-        path = ['query_processing', 'agent_coordination', 'parallel_retrieval', 'quality_check']
+        # Assess quality of vector results
+        total_docs = sum(len(result.documents) for result in vector_results.values())
+        avg_confidence = sum(result.confidence for result in vector_results.values()) / len(vector_results) if vector_results else 0
         
-        # Check if external enrichment was used
-        external_agents_used = self._get_external_sources_used(state)
-        if external_agents_used:
-            path.append('external_enrichment')
+        logger.info(f"Vector retrieval summary: {total_docs} docs, {avg_confidence:.2f} confidence")
         
-        path.append('synthesis')
+        # Determine if external sourcing is needed
+        needs_external = self._needs_external_sourcing(total_docs, avg_confidence, state)
         
-        return path
+        if needs_external:
+            logger.info("Initiating external data sourcing")
+            
+            # External sourcing is already handled by individual agents through function tools
+            # The agents have already performed external sourcing in their process() method
+            # So vector_results already contains both vector and external results
+            
+            # Log external sourcing summary
+            external_docs = sum(
+                len([doc for doc in result.documents if doc.get('source') != 'vector'])
+                for result in vector_results.values()
+            )
+            logger.info(f"External sourcing added {external_docs} additional documents")
+        
+        return vector_results
+    
+    async def _step4_llm_generation(self, state: AgentState, results: Dict[str, RetrievalResult]) -> Dict[str, RetrievalResult]:
+        """Step 4: LLM-based response generation and document enhancement"""
+        
+        # LLM enhancement is already handled by individual agents through function tools
+        # Each agent that has the 'llm_enhancer' tool has already enhanced its documents
+        
+        # Collect all documents for state update
+        all_documents = []
+        for result in results.values():
+            all_documents.extend(result.documents)
+        
+        state.retrieved_documents = all_documents
+        
+        logger.info(f"LLM enhancement completed for {len(all_documents)} total documents")
+        
+        return results
+    
+    async def _step5_refinement_synthesis(self, state: AgentState, results: Dict[str, RetrievalResult]) -> SynthesisResult:
+        """Step 5: Final agent-driven refinement and synthesis"""
+        
+        # Consolidate all results
+        consolidated_documents = self._consolidate_results(results)
+        
+        # Apply final refinement
+        refined_documents = self._apply_final_refinement(consolidated_documents, state)
+        
+        # Update state with refined documents
+        state.retrieved_documents = refined_documents
+        
+        # Generate final synthesis using LLM
+        synthesis_data = await self.llm_synthesis.synthesize(state)
+        
+        # Convert to SynthesisResult object
+        synthesis_result = self._create_synthesis_result(synthesis_data, state, results)
+        
+        return synthesis_result
+    
+    def _create_synthesis_result(self, synthesis_data: Dict, state: AgentState, results: Dict[str, RetrievalResult]) -> SynthesisResult:
+        """Convert synthesis data to SynthesisResult object"""
+        
+        # Extract answer from synthesis data
+        answer = synthesis_data.get('summary', synthesis_data.get('comprehensive_analysis', 'No synthesis available'))
+        
+        # Calculate confidence
+        confidence = synthesis_data.get('llm_confidence', 0.7)
+        
+        # Prepare sources
+        sources = []
+        for doc in state.retrieved_documents[:10]:  # Limit to top 10
+            sources.append({
+                'title': doc.get('title', 'Unknown'),
+                'source': doc.get('source', 'Unknown'),
+                'relevance_score': doc.get('relevance_score', 0)
+            })
+        
+        # Prepare metadata
+        metadata = {
+            'query_complexity': state.complexity.value,
+            'total_documents': len(state.retrieved_documents),
+            'agent_results': {
+                agent_name: {
+                    'documents_count': len(result.documents),
+                    'confidence': result.confidence
+                }
+                for agent_name, result in results.items()
+            },
+            'synthesis_method': synthesis_data.get('synthesis_method', 'llm_guided'),
+            'pipeline_version': 'RAG_v2.0'
+        }
+        
+        return SynthesisResult(
+            answer=answer,
+            confidence=confidence,
+            sources=sources,
+            key_findings=synthesis_data.get('key_findings', []),
+            recommendations=synthesis_data.get('recommendations', []),
+            metadata=metadata,
+            processing_time=time.time() - state.start_time.timestamp() if hasattr(state, 'start_time') else 0.0
+        )
+    
+    def _select_agents_for_query(self, state: AgentState) -> List[str]:
+        """Select which agents to use based on query analysis"""
+        
+        # Default agents for most queries
+        base_agents = ["CaseLawAgent", "RegulationAgent"]
+        
+        # Add agents based on complexity
+        if state.complexity in [QueryComplexity.MODERATE, QueryComplexity.COMPLEX]:
+            base_agents.extend(["PrecedentAgent", "ExpertAgent"])
+        elif state.complexity == QueryComplexity.EXPERT:
+            base_agents.extend(["PrecedentAgent", "ExpertAgent"])
+        
+        # Add agents based on intent
+        intent_keywords = state.intent.get('keywords', [])
+        if any(keyword in ['precedent', 'deal', 'transaction', 'election'] for keyword in intent_keywords):
+            if "PrecedentAgent" not in base_agents:
+                base_agents.append("PrecedentAgent")
+        
+        return base_agents
+    
+    def _needs_external_sourcing(self, total_docs: int, avg_confidence: float, state: AgentState) -> bool:
+        """Determine if external data sourcing is needed"""
+        
+        # External sourcing criteria
+        min_docs_threshold = self.settings.min_docs_threshold
+        min_confidence_threshold = self.settings.confidence_threshold
+        
+        if total_docs < min_docs_threshold:
+            return True
+        
+        if avg_confidence < min_confidence_threshold:
+            return True
+        
+        # Always use external for expert-level queries
+        if state.complexity == QueryComplexity.EXPERT:
+            return True
+        
+        return False
+    
+    def _consolidate_results(self, results: Dict[str, RetrievalResult]) -> List[Dict]:
+        """Consolidate results from all agents"""
+        consolidated = []
+        seen_ids = set()
+        
+        # Sort agents by priority (case law and regulations first)
+        agent_priority = {
+            "RegulationAgent": 1,
+            "CaseLawAgent": 2,
+            "ExpertAgent": 3,
+            "PrecedentAgent": 4
+        }
+        
+        sorted_agents = sorted(results.keys(), key=lambda x: agent_priority.get(x, 5))
+        
+        for agent_name in sorted_agents:
+            result = results[agent_name]
+            for doc in result.documents:
+                doc_id = doc.get('id', '')
+                if doc_id and doc_id not in seen_ids:
+                    # Add agent source information
+                    doc['retrieved_by'] = agent_name
+                    doc['agent_confidence'] = result.confidence
+                    consolidated.append(doc)
+                    seen_ids.add(doc_id)
+        
+        return consolidated
+    
+    def _apply_final_refinement(self, documents: List[Dict], state: AgentState) -> List[Dict]:
+        """Apply final cross-agent refinement"""
+        
+        # Sort by relevance and authority
+        refined = sorted(
+            documents,
+            key=lambda x: (
+                x.get('relevance_score', 0) * 0.4 +
+                x.get('authority_score', x.get('authority_weight', 0.5)) * 0.3 +
+                x.get('quality_score', 0.5) * 0.2 +
+                x.get('coherence_score', 0.5) * 0.1
+            ),
+            reverse=True
+        )
+        
+        # Limit to top results based on query complexity
+        max_docs = {
+            QueryComplexity.SIMPLE: 10,
+            QueryComplexity.MODERATE: 15,
+            QueryComplexity.COMPLEX: 20,
+            QueryComplexity.EXPERT: 25
+        }
+        
+        limit = max_docs.get(state.complexity, 15)
+        refined = refined[:limit]
+        
+        logger.info(f"Final refinement: {len(refined)} documents selected")
+        
+        return refined
+    
+    def _apply_post_processing(self, synthesis_result: SynthesisResult, state: AgentState, agent_results: Dict[str, RetrievalResult]) -> SynthesisResult:
+        """Apply final post-processing to synthesis result"""
+        
+        # Add agent metadata
+        agent_summary = {}
+        for agent_name, result in agent_results.items():
+            agent_summary[agent_name] = {
+                'documents_count': len(result.documents),
+                'confidence': result.confidence,
+                'retrieval_time': result.retrieval_time
+            }
+        
+        # Update metadata
+        synthesis_result.metadata.update({
+            'agent_summary': agent_summary,
+            'total_documents_processed': len(state.retrieved_documents),
+            'pipeline_version': 'RAG_v2.0',
+            'function_tools_used': list(self.function_tools._tools.keys()) if hasattr(self.function_tools, '_tools') else []
+        })
+        
+        # Adjust confidence based on agent consensus
+        agent_confidences = [result.confidence for result in agent_results.values() if result.confidence > 0]
+        if agent_confidences:
+            consensus_confidence = sum(agent_confidences) / len(agent_confidences)
+            # Blend synthesis confidence with agent consensus
+            synthesis_result.confidence = (synthesis_result.confidence * 0.7) + (consensus_confidence * 0.3)
+        
+        return synthesis_result

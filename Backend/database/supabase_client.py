@@ -1,10 +1,58 @@
 from typing import List, Dict, Any, Optional
 import asyncio
-from supabase import create_client, Client
 import numpy as np
 from config.settings import Settings
 import logging
 from openai import AsyncOpenAI
+
+# Import supabase with fallback for compatibility issues
+try:
+    from supabase import create_client, Client
+    SUPABASE_AVAILABLE = True
+except ImportError as e:
+    logging.error(f"Supabase import error: {e}")
+    SUPABASE_AVAILABLE = False
+    # Create mock classes for development
+    class Client:
+        def __init__(self, url, key):
+            self.url = url
+            self.key = key
+        
+        def table(self, table_name):
+            return MockTable(table_name)
+    
+    def create_client(url, key):
+        return Client(url, key)
+    
+    class MockTable:
+        def __init__(self, table_name):
+            self.table_name = table_name
+        
+        def select(self, columns="*"):
+            return MockQuery()
+        
+        def insert(self, data):
+            return MockQuery()
+    
+    class MockQuery:
+        def in_(self, key, values):
+            return self
+        
+        def eq(self, key, value):
+            return self
+        
+        def order(self, column):
+            return self
+        
+        def limit(self, count):
+            return self
+        
+        def execute(self):
+            return MockResponse()
+    
+    class MockResponse:
+        def __init__(self):
+            self.data = []
 
 logger = logging.getLogger(__name__)
 

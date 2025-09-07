@@ -9,9 +9,10 @@ import time
 class RegulationAgent(BaseAgent):
     """Specializes in retrieving tax code and regulations"""
     
-    def __init__(self, settings, vector_store):
+    def __init__(self, settings, vector_store, function_tools=None):
         super().__init__("RegulationAgent", settings)
         self.vector_store = vector_store
+        self.function_tools = function_tools or {}
         
     async def process(self, state: AgentState) -> RetrievalResult:
         start_time = time.time()

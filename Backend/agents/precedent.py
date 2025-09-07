@@ -9,9 +9,11 @@ import time
 class PrecedentAgent(BaseAgent):
     """Searches internal deal database for precedents"""
     
-    def __init__(self, settings, neo4j_client):
+    def __init__(self, settings, vector_store, neo4j_client, function_tools=None):
         super().__init__("PrecedentAgent", settings)
+        self.vector_store = vector_store
         self.neo4j = neo4j_client
+        self.function_tools = function_tools or {}
         
     async def process(self, state: AgentState) -> RetrievalResult:
         start_time = time.time()

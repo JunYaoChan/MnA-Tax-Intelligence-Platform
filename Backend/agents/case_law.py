@@ -8,9 +8,10 @@ import time
 class CaseLawAgent(BaseAgent):
     """Specializes in retrieving case law and rulings"""
     
-    def __init__(self, settings, vector_store):
+    def __init__(self, settings, vector_store, function_tools=None):
         super().__init__("CaseLawAgent", settings)
         self.vector_store = vector_store
+        self.function_tools = function_tools or {}
         
     async def process(self, state: AgentState) -> RetrievalResult:
         start_time = time.time()
@@ -64,7 +65,7 @@ class CaseLawAgent(BaseAgent):
     
     def _filter_by_relevance(self, documents: List[Dict], state: AgentState) -> List[Dict]:
         """Filter documents by relevance threshold"""
-        threshold = self.settings.similarity_threshold
+        threshold = getattr(self.settings, 'similarity_threshold', 0.7)
         filtered = [
             doc for doc in documents 
             if doc.get('relevance_score', 0) >= threshold
