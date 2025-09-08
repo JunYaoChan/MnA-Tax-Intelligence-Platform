@@ -1,1 +1,192 @@
 
+2025-09-08 17:17:14,149 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-08 17:17:14,154 [INFO] uvicorn.error [server.py:83]: Started server process [7732]
+2025-09-08 17:17:14,154 [INFO] uvicorn.error [on.py:48]: Waiting for application startup.
+2025-09-08 17:17:14,154 [INFO] root [main.py:39]: Initializing RAG Pipeline API...
+2025-09-08 17:17:14,154 [INFO] root [main.py:43]: Settings loaded and validated successfully
+2025-09-08 17:17:14,452 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-08 17:17:14,462 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-08 17:17:14,470 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-08 17:17:14,470 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-08 17:17:14,470 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-08 17:17:14,470 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-08 17:17:14,470 [INFO] root [main.py:55]: RAG Pipeline API initialized successfully
+2025-09-08 17:17:14,471 [INFO] uvicorn.error [on.py:62]: Application startup complete.
+2025-09-08 17:17:35,748 [INFO] root [main.py:103]: Processing query: Analyze the tax implications of a complex cross-border merger involving a US parent company acquirin...
+2025-09-08 17:17:35,748 [INFO] orchestration.orchestrator [orchestrator.py:88]: Step 1: Processing query - Analyze the tax implications of a complex cross-border merger involving a US parent company acquirin...
+2025-09-08 17:17:35,749 [INFO] orchestration.orchestrator [orchestrator.py:92]: Step 2: Vector database retrieval across agents
+2025-09-08 17:17:35,750 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent CaseLawAgent using query: 'Analyze the tax implications of a complex cross-border merger involving a US parent company acquiring a German subsidiary through a Section 338(h)(10) election, considering the impact on NOL carryforwards, international tax planning strategies, transfer pricing implications, and the interaction with the GILTI provisions under the Tax Cuts and Jobs Act. What are the optimal structuring alternatives and their respective risk profiles?' (len=436)
+2025-09-08 17:17:35,750 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent RegulationAgent using query: 'Analyze the tax implications of a complex cross-border merger involving a US parent company acquiring a German subsidiary through a Section 338(h)(10) election, considering the impact on NOL carryforwards, international tax planning strategies, transfer pricing implications, and the interaction with the GILTI provisions under the Tax Cuts and Jobs Act. What are the optimal structuring alternatives and their respective risk profiles?' (len=436)
+2025-09-08 17:17:35,750 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent PrecedentAgent using query: 'Analyze the tax implications of a complex cross-border merger involving a US parent company acquiring a German subsidiary through a Section 338(h)(10) election, considering the impact on NOL carryforwards, international tax planning strategies, transfer pricing implications, and the interaction with the GILTI provisions under the Tax Cuts and Jobs Act. What are the optimal structuring alternatives and their respective risk profiles?' (len=436)
+2025-09-08 17:17:35,750 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent ExpertAgent using query: 'Analyze the tax implications of a complex cross-border merger involving a US parent company acquiring a German subsidiary through a Section 338(h)(10) election, considering the impact on NOL carryforwards, international tax planning strategies, transfer pricing implications, and the interaction with the GILTI provisions under the Tax Cuts and Jobs Act. What are the optimal structuring alternatives and their respective risk profiles?' (len=436)
+2025-09-08 17:17:35,999 [INFO] agents.base.PrecedentAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:17:35,999 [INFO] agents.base.PrecedentAgent [precedent.py:33]: Using function tools to enhance precedent search
+2025-09-08 17:17:35,999 [INFO] agents.base.PrecedentAgent [base.py:107]: Calling function tool: brave_search
+2025-09-08 17:17:35,999 [WARNING] function_tools.brave_search [brave_search.py:58]: Query too long (524 chars), truncating to 400
+2025-09-08 17:17:36,526 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-08 17:17:36,540 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-08 17:17:36,541 [ERROR] function_tools.brave_search [brave_search.py:178]: Brave Search validation error (422): {"type":"ErrorResponse","error":{"id":"dd86d2a3-f9dc-48b5-86e9-247917eb1a62","status":422,"code":"VALIDATION","detail":"Unable to validate request parameter(s)","meta":{"errors":[{"type":"too_long","loc":["query","q"],"msg":"Value should have at most 50 words after validation, not 56","input":"tax precedent Analyze the tax implications of a complex cross-border merger involving a US parent company acquiring a German subsidiary through a Section 338(h)(10) election, considering the impact on NOL carryforwards, international tax planning strategies, transfer pricing implications, and the interaction with the GILTI provisions under the Tax Cuts and Jobs Act. What are the optimal","ctx":{"field_type":"Value","max_length":50,"actual_length":56}}]}},"time":1757348256}
+2025-09-08 17:17:36,542 [INFO] function_tools.brave_search [brave_search.py:227]: Splitting complex query into 1 sub-queries
+2025-09-08 17:17:36,542 [INFO] function_tools.brave_search [brave_search.py:233]: Searching sub-query 1: precedent Analyze implications complex involving company acquiring German subsidiary through
+2025-09-08 17:17:36,558 [INFO] agents.base.CaseLawAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:17:36,558 [INFO] agents.base.CaseLawAgent [case_law.py:32]: Using function tools to enhance case law search
+2025-09-08 17:17:36,558 [INFO] agents.base.CaseLawAgent [base.py:107]: Calling function tool: brave_search
+2025-09-08 17:17:36,558 [WARNING] function_tools.brave_search [brave_search.py:58]: Query too long (507 chars), truncating to 400
+2025-09-08 17:17:36,715 [WARNING] function_tools.brave_search [brave_search.py:193]: Rate limited, waiting 1 seconds...
+2025-09-08 17:17:36,983 [WARNING] function_tools.brave_search [brave_search.py:193]: Rate limited, waiting 1 seconds...
+2025-09-08 17:17:38,053 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-08 17:17:38,057 [INFO] agents.base.ExpertAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:17:38,057 [INFO] agents.base.ExpertAgent [expert.py:39]: Using function tools to enhance expert analysis
+2025-09-08 17:17:38,057 [INFO] agents.base.ExpertAgent [base.py:107]: Calling function tool: brave_search
+2025-09-08 17:17:38,058 [WARNING] function_tools.brave_search [brave_search.py:58]: Query too long (547 chars), truncating to 400
+2025-09-08 17:17:38,076 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-08 17:17:38,080 [INFO] agents.base.RegulationAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:17:38,080 [INFO] agents.base.RegulationAgent [regulation.py:33]: Using function tools to enhance regulation search
+2025-09-08 17:17:38,080 [INFO] agents.base.RegulationAgent [base.py:107]: Calling function tool: federal_register
+2025-09-08 17:17:38,081 [INFO] agents.base.RegulationAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:17:38,081 [INFO] agents.base.RegulationAgent [base.py:26]: Agent RegulationAgent completed in 2.18s with confidence 0.00%
+2025-09-08 17:17:38,132 [WARNING] function_tools.brave_search [brave_search.py:193]: Rate limited, waiting 2 seconds...
+2025-09-08 17:17:38,436 [INFO] function_tools.brave_search [brave_search.py:173]: Brave search successful: 10 results
+2025-09-08 17:17:38,437 [INFO] agents.base.PrecedentAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:17:38,437 [INFO] agents.base.PrecedentAgent [base.py:26]: Agent PrecedentAgent completed in 2.54s with confidence 30.00%
+2025-09-08 17:17:38,491 [WARNING] function_tools.brave_search [brave_search.py:193]: Rate limited, waiting 1 seconds...
+2025-09-08 17:17:39,663 [ERROR] function_tools.brave_search [brave_search.py:178]: Brave Search validation error (422): {"type":"ErrorResponse","error":{"id":"5b124262-990d-471d-9f09-f9a55277c423","status":422,"code":"VALIDATION","detail":"Unable to validate request parameter(s)","meta":{"errors":[{"type":"too_long","loc":["query","q"],"msg":"Value should have at most 50 words after validation, not 57","input":"tax expert Analyze the tax implications of a complex cross-border merger involving a US parent company acquiring a German subsidiary through a Section 338(h)(10) election, considering the impact on NOL carryforwards, international tax planning strategies, transfer pricing implications, and the interaction with the GILTI provisions under the Tax Cuts and Jobs Act. What are the optimal structuring","ctx":{"field_type":"Value","max_length":50,"actual_length":57}}]}},"time":1757348259}
+2025-09-08 17:17:39,664 [INFO] function_tools.brave_search [brave_search.py:227]: Splitting complex query into 1 sub-queries
+2025-09-08 17:17:39,664 [INFO] function_tools.brave_search [brave_search.py:233]: Searching sub-query 1: Analyze implications complex involving company acquiring German subsidiary through Section
+2025-09-08 17:17:39,837 [WARNING] function_tools.brave_search [brave_search.py:193]: Rate limited, waiting 1 seconds...
+2025-09-08 17:17:40,285 [WARNING] function_tools.brave_search [brave_search.py:193]: Rate limited, waiting 4 seconds...
+2025-09-08 17:17:41,573 [INFO] function_tools.brave_search [brave_search.py:173]: Brave search successful: 10 results
+2025-09-08 17:17:41,573 [INFO] agents.base.ExpertAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:17:41,573 [INFO] agents.base.ExpertAgent [base.py:26]: Agent ExpertAgent completed in 5.67s with confidence 0.00%
+2025-09-08 17:17:44,287 [INFO] agents.base.CaseLawAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:17:44,288 [INFO] agents.base.CaseLawAgent [base.py:26]: Agent CaseLawAgent completed in 8.54s with confidence 0.00%
+2025-09-08 17:17:44,288 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent CaseLawAgent completed with 0 documents
+2025-09-08 17:17:44,288 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent RegulationAgent completed with 0 documents
+2025-09-08 17:17:44,288 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent PrecedentAgent completed with 0 documents
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent ExpertAgent completed with 0 documents
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:96]: Step 3: External data sourcing evaluation
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:236]: Vector retrieval summary: 0 docs, 0.07 confidence
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:242]: Initiating external data sourcing
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:253]: External sourcing added 0 additional documents
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:100]: Step 4: LLM response generation and enhancement
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:270]: LLM enhancement completed for 0 total documents
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:104]: Step 5: Agent-driven refinement and synthesis
+2025-09-08 17:17:44,289 [INFO] orchestration.orchestrator [orchestrator.py:430]: Final refinement: 0 documents selected
+2025-09-08 17:18:09,349 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:18:29,868 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:18:43,072 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:19:04,186 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:19:43,804 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:19:43,811 [INFO] orchestration.orchestrator [orchestrator.py:109]: RAG pipeline completed in 128.06s
+2025-09-08 17:19:43,811 [INFO] root [main.py:117]: Query processed successfully in 128.06s
+2025-09-08 17:19:43,814 [INFO] uvicorn.access [httptools_impl.py:476]: 127.0.0.1:57967 - "POST /query HTTP/1.1" 200
+2025-09-08 17:21:16,698 [INFO] uvicorn.error [server.py:263]: Shutting down
+2025-09-08 17:21:16,803 [INFO] uvicorn.error [on.py:67]: Waiting for application shutdown.
+2025-09-08 17:21:16,807 [INFO] root [main.py:64]: Application shutdown complete
+2025-09-08 17:21:16,808 [INFO] uvicorn.error [on.py:76]: Application shutdown complete.
+2025-09-08 17:21:16,809 [INFO] uvicorn.error [server.py:93]: Finished server process [7732]
+2025-09-08 17:21:20,857 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-08 17:21:20,862 [INFO] uvicorn.error [server.py:83]: Started server process [8874]
+2025-09-08 17:21:20,862 [INFO] uvicorn.error [on.py:48]: Waiting for application startup.
+2025-09-08 17:21:20,863 [INFO] root [main.py:39]: Initializing RAG Pipeline API...
+2025-09-08 17:21:20,863 [INFO] root [main.py:43]: Settings loaded and validated successfully
+2025-09-08 17:21:21,872 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-08 17:21:21,889 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-08 17:21:21,901 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-08 17:21:21,905 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-08 17:21:21,905 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-08 17:21:21,906 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-08 17:21:21,906 [INFO] root [main.py:55]: RAG Pipeline API initialized successfully
+2025-09-08 17:21:21,906 [INFO] uvicorn.error [on.py:62]: Application startup complete.
+2025-09-08 17:21:36,272 [INFO] uvicorn.error [server.py:263]: Shutting down
+2025-09-08 17:21:36,386 [INFO] uvicorn.error [on.py:67]: Waiting for application shutdown.
+2025-09-08 17:21:36,391 [INFO] root [main.py:64]: Application shutdown complete
+2025-09-08 17:21:36,397 [INFO] uvicorn.error [on.py:76]: Application shutdown complete.
+2025-09-08 17:21:36,398 [INFO] uvicorn.error [server.py:93]: Finished server process [8874]
+2025-09-08 17:21:40,491 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-08 17:21:40,496 [INFO] uvicorn.error [server.py:83]: Started server process [8935]
+2025-09-08 17:21:40,496 [INFO] uvicorn.error [on.py:48]: Waiting for application startup.
+2025-09-08 17:21:40,497 [INFO] root [main.py:39]: Initializing RAG Pipeline API...
+2025-09-08 17:21:40,497 [INFO] root [main.py:43]: Settings loaded and validated successfully
+2025-09-08 17:21:41,288 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-08 17:21:41,298 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-08 17:21:41,305 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-08 17:21:41,306 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-08 17:21:41,306 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-08 17:21:41,306 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-08 17:21:41,306 [INFO] root [main.py:55]: RAG Pipeline API initialized successfully
+2025-09-08 17:21:41,306 [INFO] uvicorn.error [on.py:62]: Application startup complete.
+2025-09-08 17:21:51,778 [INFO] uvicorn.error [server.py:263]: Shutting down
+2025-09-08 17:21:51,880 [INFO] uvicorn.error [on.py:67]: Waiting for application shutdown.
+2025-09-08 17:21:51,881 [INFO] root [main.py:64]: Application shutdown complete
+2025-09-08 17:21:51,883 [INFO] uvicorn.error [on.py:76]: Application shutdown complete.
+2025-09-08 17:21:51,883 [INFO] uvicorn.error [server.py:93]: Finished server process [8935]
+2025-09-08 17:21:54,541 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-08 17:21:54,552 [INFO] uvicorn.error [server.py:83]: Started server process [9006]
+2025-09-08 17:21:54,552 [INFO] uvicorn.error [on.py:48]: Waiting for application startup.
+2025-09-08 17:21:54,552 [INFO] root [main.py:39]: Initializing RAG Pipeline API...
+2025-09-08 17:21:54,552 [INFO] root [main.py:43]: Settings loaded and validated successfully
+2025-09-08 17:21:55,821 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-08 17:21:55,838 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-08 17:21:55,853 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-08 17:21:55,853 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-08 17:21:55,853 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-08 17:21:55,855 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-08 17:21:55,855 [INFO] root [main.py:55]: RAG Pipeline API initialized successfully
+2025-09-08 17:21:55,856 [INFO] uvicorn.error [on.py:62]: Application startup complete.
+2025-09-08 17:22:02,991 [INFO] root [main.py:103]: Processing query: Recent IRS guidance on Section 357 transfer of liabilities and tax elections including impacts on NO...
+2025-09-08 17:22:02,996 [INFO] orchestration.orchestrator [orchestrator.py:88]: Step 1: Processing query - Recent IRS guidance on Section 357 transfer of liabilities and tax elections including impacts on NO...
+2025-09-08 17:22:02,998 [INFO] orchestration.orchestrator [orchestrator.py:92]: Step 2: Vector database retrieval across agents
+2025-09-08 17:22:02,998 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent CaseLawAgent using query: 'Recent IRS guidance on Section 357 transfer of liabilities and tax elections including impacts on NOL carryforwards international tax planning strategies transfer pricing implications and TCJA GILTI provisions' (len=209)
+2025-09-08 17:22:02,998 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent RegulationAgent using query: 'Recent IRS guidance on Section 357 transfer of liabilities and tax elections including impacts on NOL carryforwards international tax planning strategies transfer pricing implications and TCJA GILTI provisions' (len=209)
+2025-09-08 17:22:02,998 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent PrecedentAgent using query: 'Recent IRS guidance on Section 357 transfer of liabilities and tax elections including impacts on NOL carryforwards international tax planning strategies transfer pricing implications and TCJA GILTI provisions' (len=209)
+2025-09-08 17:22:02,998 [INFO] orchestration.orchestrator [orchestrator.py:208]: Agent ExpertAgent using query: 'Recent IRS guidance on Section 357 transfer of liabilities and tax elections including impacts on NOL carryforwards international tax planning strategies transfer pricing implications and TCJA GILTI provisions' (len=209)
+2025-09-08 17:22:03,524 [INFO] agents.base.PrecedentAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:22:03,525 [INFO] agents.base.PrecedentAgent [precedent.py:33]: Using function tools to enhance precedent search
+2025-09-08 17:22:03,526 [INFO] agents.base.PrecedentAgent [base.py:107]: Calling function tool: brave_search
+2025-09-08 17:22:03,882 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-08 17:22:03,940 [INFO] agents.base.ExpertAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:22:03,941 [INFO] agents.base.ExpertAgent [expert.py:39]: Using function tools to enhance expert analysis
+2025-09-08 17:22:03,942 [INFO] agents.base.ExpertAgent [base.py:107]: Calling function tool: brave_search
+2025-09-08 17:22:03,949 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-08 17:22:03,969 [INFO] agents.base.CaseLawAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:22:03,972 [INFO] agents.base.CaseLawAgent [case_law.py:32]: Using function tools to enhance case law search
+2025-09-08 17:22:03,974 [INFO] agents.base.CaseLawAgent [base.py:107]: Calling function tool: brave_search
+2025-09-08 17:22:04,332 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-08 17:22:04,347 [INFO] agents.base.RegulationAgent [base.py:49]: No internal results found, using function tools
+2025-09-08 17:22:04,347 [INFO] agents.base.RegulationAgent [regulation.py:33]: Using function tools to enhance regulation search
+2025-09-08 17:22:04,347 [INFO] agents.base.RegulationAgent [base.py:107]: Calling function tool: federal_register
+2025-09-08 17:22:04,355 [INFO] agents.base.RegulationAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:22:04,355 [INFO] agents.base.RegulationAgent [base.py:26]: Agent RegulationAgent completed in 1.06s with confidence 0.00%
+2025-09-08 17:22:04,555 [WARNING] function_tools.brave_search [brave_search.py:221]: Rate limited, waiting 1 seconds...
+2025-09-08 17:22:04,563 [WARNING] function_tools.brave_search [brave_search.py:221]: Rate limited, waiting 1 seconds...
+2025-09-08 17:22:05,152 [INFO] function_tools.brave_search [brave_search.py:201]: Brave search successful: 10 results
+2025-09-08 17:22:05,153 [INFO] agents.base.PrecedentAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:22:05,153 [INFO] agents.base.PrecedentAgent [base.py:26]: Agent PrecedentAgent completed in 1.85s with confidence 30.00%
+2025-09-08 17:22:05,787 [WARNING] function_tools.brave_search [brave_search.py:221]: Rate limited, waiting 2 seconds...
+2025-09-08 17:22:06,483 [INFO] function_tools.brave_search [brave_search.py:201]: Brave search successful: 10 results
+2025-09-08 17:22:06,484 [INFO] agents.base.ExpertAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:22:06,484 [INFO] agents.base.ExpertAgent [base.py:26]: Agent ExpertAgent completed in 3.17s with confidence 0.00%
+2025-09-08 17:22:08,883 [INFO] function_tools.brave_search [brave_search.py:201]: Brave search successful: 10 results
+2025-09-08 17:22:08,883 [INFO] agents.base.CaseLawAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-08 17:22:08,884 [INFO] agents.base.CaseLawAgent [base.py:26]: Agent CaseLawAgent completed in 5.89s with confidence 0.00%
+2025-09-08 17:22:08,884 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent CaseLawAgent completed with 0 documents
+2025-09-08 17:22:08,884 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent RegulationAgent completed with 0 documents
+2025-09-08 17:22:08,884 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent PrecedentAgent completed with 0 documents
+2025-09-08 17:22:08,885 [INFO] orchestration.orchestrator [orchestrator.py:185]: Agent ExpertAgent completed with 0 documents
+2025-09-08 17:22:08,885 [INFO] orchestration.orchestrator [orchestrator.py:96]: Step 3: External data sourcing evaluation
+2025-09-08 17:22:08,885 [INFO] orchestration.orchestrator [orchestrator.py:236]: Vector retrieval summary: 0 docs, 0.07 confidence
+2025-09-08 17:22:08,885 [INFO] orchestration.orchestrator [orchestrator.py:242]: Initiating external data sourcing
+2025-09-08 17:22:08,885 [INFO] orchestration.orchestrator [orchestrator.py:253]: External sourcing added 0 additional documents
+2025-09-08 17:22:08,885 [INFO] orchestration.orchestrator [orchestrator.py:100]: Step 4: LLM response generation and enhancement
+2025-09-08 17:22:08,886 [INFO] orchestration.orchestrator [orchestrator.py:270]: LLM enhancement completed for 0 total documents
+2025-09-08 17:22:08,886 [INFO] orchestration.orchestrator [orchestrator.py:104]: Step 5: Agent-driven refinement and synthesis
+2025-09-08 17:22:08,886 [INFO] orchestration.orchestrator [orchestrator.py:430]: Final refinement: 0 documents selected
+2025-09-08 17:22:31,648 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:22:53,519 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:23:06,149 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:23:24,587 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:23:51,366 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-08 17:23:51,387 [INFO] orchestration.orchestrator [orchestrator.py:109]: RAG pipeline completed in 108.39s
+2025-09-08 17:23:51,388 [INFO] root [main.py:117]: Query processed successfully in 108.39s
+2025-09-08 17:23:51,394 [INFO] uvicorn.access [httptools_impl.py:476]: 127.0.0.1:58126 - "POST /query HTTP/1.1" 200

@@ -51,12 +51,20 @@ class BraveSearchTool:
         """Validate and truncate query to fit API limits"""
         # Remove extra whitespace
         query = ' '.join(query.split())
-        
+
+        # Check character length first
         if len(query) <= self.max_query_length:
-            return query
-        
-        logger.warning(f"Query too long ({len(query)} chars), truncating to {self.max_query_length}")
-        
+            # Then check word count (Brave API word limit)
+            words = query.split()
+            if len(words) <= 50:  # Brave API word limit
+                return query
+            else:
+                # Truncate by words to stay under 50 words
+                truncated_words = words[:48]  # Keep under 50 words
+                return ' '.join(truncated_words) + "..."
+
+        logger.warning(f"Query too long ({len(query)} chars), truncating")
+
         # Try to truncate at word boundary
         truncated = query[:self.max_query_length]
         last_space = truncated.rfind(' ')
@@ -64,37 +72,51 @@ class BraveSearchTool:
             truncated = truncated[:last_space]
         else:
             truncated = query[:self.max_query_length - 3] + "..."
-        
+
+        # Final check: truncate by words if still over word limit
+        words = truncated.split()
+        if len(words) > 50:
+            return ' '.join(words[:48]) + "..."
+
         return truncated
     
     def _split_complex_query(self, query: str, max_splits: int = 3) -> List[str]:
         """Split a complex query into smaller, focused queries"""
-        if len(query) <= self.max_query_length:
+        words = query.split()
+        if len(words) <= 40:  # If already under 40 words, return as-is
             return [query]
-        
+
+        logger.info(f"Splitting complex query with {len(words)} words into focused sub-queries")
+
         # Extract key terms and concepts
         key_terms = self._extract_key_terms(query)
-        
-        # Create focused sub-queries
-        sub_queries = []
-        current_query = ""
-        
-        for term in key_terms:
-            test_query = f"{current_query} {term}".strip()
-            if len(test_query) <= self.max_query_length:
-                current_query = test_query
-            else:
-                if current_query:
-                    sub_queries.append(current_query)
-                current_query = term
-                
-                if len(sub_queries) >= max_splits:
+
+        if len(key_terms) >= 3:
+            # Create focused search phrases using key combinations
+            sub_queries = []
+            base_terms = key_terms[:6]  # Use top 6 terms
+
+            # Create different combinations
+            sub_queries.append(f"{base_terms[0]} {base_terms[1]}")                    # First pair
+            if len(base_terms) > 2:
+                sub_queries.append(f"{base_terms[2]} {' '.join(base_terms[:2])}")     # Third with first two
+            if len(base_terms) > 3:
+                sub_queries.append(f"{' '.join(base_terms[3:6])} tax")                # Remaining terms + tax
+
+            return [self._validate_and_truncate_query(sq) for sq in sub_queries]
+        else:
+            # Fallback: create smart word-based chunks
+            chunks = []
+            words_per_chunk = min(35, len(words) // max_splits)  # Distribute words evenly
+
+            for i in range(0, len(words), words_per_chunk):
+                chunk = ' '.join(words[i:i + words_per_chunk])
+                chunks.append(self._validate_and_truncate_query(chunk))
+
+                if len(chunks) >= max_splits:
                     break
-        
-        if current_query and len(sub_queries) < max_splits:
-            sub_queries.append(current_query)
-        
-        return sub_queries or [self._validate_and_truncate_query(query)]
+
+            return chunks or [self._validate_and_truncate_query(query)]
     
     def _extract_key_terms(self, query: str) -> List[str]:
         """Extract key terms from a complex query"""
@@ -126,12 +148,18 @@ class BraveSearchTool:
     async def search(self, query: str, count: int = 10, **kwargs) -> Dict[str, Any]:
         """
         Perform search using Brave Search API with enhanced error handling
-        
+
         Args:
             query: Search query
             count: Number of results to return
             **kwargs: Additional search parameters
         """
+        # Immediate word count check - critical for Brave API compliance
+        words = query.split()
+        if len(words) > 50:
+            logger.warning(f"Query has {len(words)} words, exceeds Brave API limit of 50. Attempting query splitting/summarization.")
+            return await self.search_with_split_query(query, count, **kwargs)
+
         # Validate query length
         validated_query = self._validate_and_truncate_query(query)
         
