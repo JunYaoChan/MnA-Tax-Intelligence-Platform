@@ -185,38 +185,125 @@ class QueryPlanningAgent(BaseAgent):
             return QueryComplexity.SIMPLE
     
     def _create_strategy(self, intent: Dict, complexity: QueryComplexity) -> Dict:
-        """Create execution strategy"""
+        """Create execution strategy with refined queries"""
         strategy = {
             "recommended_agents": [],
             "search_approach": "parallel",
-            "external_search_priority": "medium"
+            "external_search_priority": "medium",
+            "refined_queries": {}  # NEW: Agent-specific queries
         }
         
-        # Agent selection based on intent
+        # Base query components
+        entities = intent.get('entities', [])
+        keywords = intent.get('keywords', [])
         intent_type = intent.get('intent_type', 'general_guidance')
         
+        # Agent selection and query refinement
         if intent_type == 'regulatory_guidance':
             strategy["recommended_agents"] = ["RegulationAgent", "CaseLawAgent"]
+            strategy["refined_queries"] = {
+                "RegulationAgent": self._create_regulation_query(entities, keywords),
+                "CaseLawAgent": self._create_caselaw_query(entities, keywords)
+            }
         elif intent_type == 'precedent_analysis':
             strategy["recommended_agents"] = ["PrecedentAgent", "CaseLawAgent"]
+            strategy["refined_queries"] = {
+                "PrecedentAgent": self._create_precedent_query(entities, keywords),
+                "CaseLawAgent": self._create_caselaw_query(entities, keywords)
+            }
         elif intent_type == 'transaction_analysis':
             strategy["recommended_agents"] = ["PrecedentAgent", "ExpertAgent", "CaseLawAgent"]
+            strategy["refined_queries"] = {
+                "PrecedentAgent": self._create_transaction_precedent_query(entities, keywords),
+                "ExpertAgent": self._create_expert_query(entities, keywords),
+                "CaseLawAgent": self._create_transaction_caselaw_query(entities, keywords)
+            }
         else:
             strategy["recommended_agents"] = ["RegulationAgent", "CaseLawAgent"]
+            strategy["refined_queries"] = {
+                "RegulationAgent": self._create_general_regulation_query(keywords),
+                "CaseLawAgent": self._create_general_caselaw_query(keywords)
+            }
         
         # Add expert agent for complex queries
         if complexity in [QueryComplexity.COMPLEX, QueryComplexity.EXPERT]:
             if "ExpertAgent" not in strategy["recommended_agents"]:
                 strategy["recommended_agents"].append("ExpertAgent")
-        
-        # External search priority
-        if complexity == QueryComplexity.EXPERT:
-            strategy["external_search_priority"] = "high"
-        elif complexity == QueryComplexity.SIMPLE:
-            strategy["external_search_priority"] = "low"
+                strategy["refined_queries"]["ExpertAgent"] = self._create_expert_query(entities, keywords)
         
         return strategy
-    
+
+    def _create_regulation_query(self, entities: List[str], keywords: List[str]) -> str:
+        """Create focused regulation query (under 400 chars)"""
+        # Take most important entities and keywords
+        key_entities = entities[:2]  # Limit entities
+        key_keywords = [kw for kw in keywords if len(kw) > 3][:4]  # Filter short words, limit count
+        
+        query_parts = []
+        if key_entities:
+            query_parts.extend(key_entities)
+        if key_keywords:
+            query_parts.extend(key_keywords[:3])  # Further limit for length
+        
+        query = " ".join(query_parts[:6])  # Max 6 terms
+        return query[:390]  # Ensure under 400 chars
+
+    def _create_precedent_query(self, entities: List[str], keywords: List[str]) -> str:
+        """Create precedent-focused query"""
+        precedent_terms = ["precedent", "similar", "transaction"]
+        key_entities = entities[:2]
+        
+        query_parts = precedent_terms + key_entities
+        query = " ".join(query_parts)
+        return query[:390]
+
+    def _create_transaction_precedent_query(self, entities: List[str], keywords: List[str]) -> str:
+        """Create transaction precedent query"""
+        transaction_terms = ["merger", "acquisition", "deal", "transaction"]
+        key_entities = [e for e in entities if "338" in e or "election" in e][:2]
+        
+        query_parts = transaction_terms[:2] + key_entities
+        query = " ".join(query_parts)
+        return query[:390]
+
+    def _create_expert_query(self, entities: List[str], keywords: List[str]) -> str:
+        """Create expert analysis query"""
+        expert_terms = ["analysis", "strategy", "planning"]
+        key_entities = entities[:2]
+        key_keywords = [kw for kw in keywords if kw in ["tax", "international", "GILTI", "NOL"]][:3]
+        
+        query_parts = expert_terms[:1] + key_entities + key_keywords
+        query = " ".join(query_parts)
+        return query[:390]
+
+    def _create_caselaw_query(self, entities: List[str], keywords: List[str]) -> str:
+        """Create case law query"""
+        case_terms = ["case", "ruling", "court"]
+        key_entities = entities[:2]
+        
+        query_parts = case_terms[:1] + key_entities
+        query = " ".join(query_parts)
+        return query[:390]
+
+    def _create_transaction_caselaw_query(self, entities: List[str], keywords: List[str]) -> str:
+        """Create transaction case law query"""
+        key_entities = [e for e in entities if "338" in e][:1]
+        transaction_terms = ["merger", "case", "ruling"]
+        
+        query_parts = transaction_terms[:2] + key_entities
+        query = " ".join(query_parts)
+        return query[:390]
+
+    def _create_general_regulation_query(self, keywords: List[str]) -> str:
+        """Create general regulation query"""
+        reg_keywords = [kw for kw in keywords if kw not in ["the", "and", "or", "of", "to"]][:5]
+        return " ".join(reg_keywords)[:390]
+
+    def _create_general_caselaw_query(self, keywords: List[str]) -> str:
+        """Create general case law query"""
+        case_keywords = [kw for kw in keywords if kw not in ["the", "and", "or", "of", "to"]][:4]
+        case_keywords.append("case")
+        return " ".join(case_keywords)[:390]
     # Required abstract methods from BaseAgent
     def _build_initial_query(self, state: AgentState) -> str:
         return state.query

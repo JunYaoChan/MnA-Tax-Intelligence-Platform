@@ -156,39 +156,75 @@ class RAGOrchestrator:
         return state
     
     async def _step2_vector_retrieval(self, state: AgentState) -> Dict[str, RetrievalResult]:
-        """Step 2: Perform vector database retrieval across relevant agents"""
+        """Step 2: Perform vector database retrieval with REFINED queries"""
         
-        # Determine which agents to use based on query complexity and intent
-        active_agents = self._select_agents_for_query(state)
+        # Get strategy from query planning
+        strategy = state.pipeline_metadata.get('strategy', {})
+        refined_queries = strategy.get('refined_queries', {})
         
-        # Run vector retrieval in parallel across agents
+        # Determine which agents to use
+        active_agents = strategy.get('recommended_agents', self._select_agents_for_query(state))
+        
+        # Run vector retrieval in parallel with REFINED queries
         tasks = []
         for agent_name in active_agents:
             agent = self.agents[agent_name]
-            task = asyncio.create_task(agent.process(state))
+            
+            # Create agent-specific state with refined query
+            agent_state = self._create_state_for_agent(state, agent_name, refined_queries)
+            
+            task = asyncio.create_task(agent.process(agent_state))
             tasks.append((agent_name, task))
         
         # Collect results
         vector_results = {}
         for agent_name, task in tasks:
             try:
-                result = await asyncio.wait_for(task, timeout=self.settings.agent_timeout)
+                result = await asyncio.wait_for(task, timeout=30.0)
                 vector_results[agent_name] = result
-                logger.info(f"Agent {agent_name} returned {len(result.documents)} documents")
+                logger.info(f"Agent {agent_name} completed with {len(result.documents)} documents")
             except asyncio.TimeoutError:
                 logger.warning(f"Agent {agent_name} timed out")
                 vector_results[agent_name] = RetrievalResult(
-                    documents=[], confidence=0.0, source=agent_name.lower(),
-                    metadata={"error": "timeout"}, retrieval_time=self.settings.agent_timeout
+                    documents=[], confidence=0.0, source=agent_name,
+                    metadata={"error": "timeout"}, retrieval_time=30.0
                 )
             except Exception as e:
                 logger.error(f"Agent {agent_name} failed: {e}")
                 vector_results[agent_name] = RetrievalResult(
-                    documents=[], confidence=0.0, source=agent_name.lower(),
-                    metadata={"error": str(e)}, retrieval_time=0
+                    documents=[], confidence=0.0, source=agent_name,
+                    metadata={"error": str(e)}, retrieval_time=0.0
                 )
         
         return vector_results
+
+    def _create_state_for_agent(self, original_state: AgentState, agent_name: str, refined_queries: Dict) -> AgentState:
+        """Create agent-specific state with refined query"""
+        
+        # Get refined query for this agent, fallback to original if not found
+        refined_query = refined_queries.get(agent_name, original_state.query)
+        
+        # Log the query being used
+        logger.info(f"Agent {agent_name} using query: '{refined_query}' (len={len(refined_query)})")
+        
+        # Create new state with refined query
+        agent_state = AgentState(
+            query=refined_query,  # USE REFINED QUERY HERE
+            context=original_state.context.copy(),
+            intent=original_state.intent.copy(),
+            complexity=original_state.complexity,
+            retrieved_documents=[],  # Fresh start for each agent
+            confidence_scores={},
+            agent_outputs={},
+            pipeline_metadata=original_state.pipeline_metadata.copy(),
+            errors=[]
+        )
+
+        # Add original query to metadata for reference
+        agent_state.pipeline_metadata['original_query'] = original_state.query
+        agent_state.pipeline_metadata['agent_name'] = agent_name
+        
+        return agent_state
     
     async def _step3_external_sourcing(self, state: AgentState, vector_results: Dict[str, RetrievalResult]) -> Dict[str, RetrievalResult]:
         """Step 3: Evaluate need for external data sourcing and execute if necessary"""

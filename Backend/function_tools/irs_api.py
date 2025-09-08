@@ -78,3 +78,72 @@ class IRSAPITool:
         
         return mock_results
 
+    async def search(self, query: str) -> Dict[str, Any]:
+        """
+        Search IRS documents and rulings - main entry point for agents
+
+        Args:
+            query: Search query
+        """
+        try:
+            logger.info(f"IRS API searching for: {query}")
+            # Extract search intent from query content
+            query_lower = query.lower()
+
+            if any(word in query_lower for word in ['court', 'case', 'litigation']):
+                return await self._search_court_cases(query)
+            elif any(word in query_lower for word in ['check', 'verify', 'fact']):
+                return await self._search_fact_check(query)
+            else:
+                # Default to revenue rulings and procedures
+                document_types = ['revenue_ruling', 'private_letter_ruling']
+                return await self.search_rulings(query, document_types)
+
+        except Exception as e:
+            logger.error(f"IRS API search failed: {e}")
+            return {"rulings": []}
+
+    async def _search_court_cases(self, query: str) -> Dict[str, Any]:
+        """Search for tax court cases and precedents (mock implementation)"""
+        # Mock court case results since IRS doesn't have direct court case API
+        mock_court_cases = [
+            {
+                "case_number": "T.C. Memo 2024-01",
+                "title": f"Tax Court memorandum relating to {query}",
+                "decision_date": "2024-01-15",
+                "parties": f"Petitioner v Commissioner of Internal Revenue",
+                "issue": f"Issues relating to {query}",
+                "outcome": "Decision for petitioner in part and for respondent in part",
+                "citation": "T.C. Memo 2024-01, 127 T.C. 0",
+                "url": "https://www.ustaxcourt.gov/tcm-memo-2024-01.htm"
+            },
+            {
+                "case_number": "T.C. Memo 2023-156",
+                "title": f"Another Tax Court case involving {query}",
+                "decision_date": "2023-08-20",
+                "parties": f"XYZ Corporation v Commissioner of Internal Revenue",
+                "issue": f"Federal income tax and {query}",
+                "outcome": "Decision for the respondent",
+                "citation": "T.C. Memo 2023-156, 126 T.C. 0",
+                "url": "https://www.ustaxcourt.gov/tcm-memo-2023-156.htm"
+            }
+        ]
+
+        return {
+            "court_cases": mock_court_cases,
+            "total_results": len(mock_court_cases),
+            "source": "ustaxcourt_mock"
+        }
+
+    async def _search_fact_check(self, query: str) -> Dict[str, Any]:
+        """Search IRS fact checking services"""
+        # Mock fact checking result
+        return {
+            "fact_check": {
+                "query": query,
+                "verification": f"Based on IRS guidelines, {query} appears to be accurate",
+                "disclaimer": "This is not official tax advice. Please consult a tax professional.",
+                "reference": "IRC Section 338 and related provisions"
+            },
+            "source": "irs_fact_check_mock"
+        }
