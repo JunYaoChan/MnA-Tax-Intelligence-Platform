@@ -45,11 +45,11 @@ class FunctionToolRegistry:
                 self._tools['llm_enhancer'] = self._create_llm_enhancer_function(llm_tool)
                 logger.info("Initialized LLM Enhancer tool")
             
-            # Initialize IRS API tool
-            irs_tool = IRSAPITool()
-            self._tool_instances['irs_api'] = irs_tool
-            self._tools['irs_api'] = self._create_irs_api_function(irs_tool)
-            logger.info("Initialized IRS API tool")
+            # Initialize IRS API tool (DISABLED - causing signature mismatch errors)
+            # irs_tool = IRSAPITool()
+            # self._tool_instances['irs_api'] = irs_tool
+            # self._tools['irs_api'] = self._create_irs_api_function(irs_tool)
+            logger.info("IRS API tool disabled")
             
             # Add other specialized tools
             self._add_specialized_tools()
@@ -220,10 +220,10 @@ class FunctionToolRegistry:
         # Agent-specific tool mappings
         agent_tool_mappings = {
             "CaseLawAgent": [
-                "brave_search", "llm_enhancer", "irs_api"
+                "brave_search", "llm_enhancer"
             ],
             "RegulationAgent": [
-                "brave_search", "llm_enhancer", "federal_register", "irs_api"
+                "brave_search", "llm_enhancer", "federal_register"
             ],
             "PrecedentAgent": [
                 "brave_search", "llm_enhancer", "sec_edgar"

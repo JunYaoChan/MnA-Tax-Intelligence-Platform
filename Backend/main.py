@@ -3,6 +3,7 @@ import logging
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from config.settings import Settings
+from config.logging_config import setup_logging  # Import the setup function
 from orchestration.orchestrator import RAGOrchestrator
 from database.supabase_client import SupabaseVectorStore
 from database.neo4j_client import Neo4jClient
@@ -19,8 +20,10 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+settings = Settings()
 
-logger = logging.getLogger(__name__)
+# logger: logging.Logger = logging.getLogger(__name__)
+logger = setup_logging(settings.log_level, settings.log_file)
 
 # Global variables
 settings = Settings()

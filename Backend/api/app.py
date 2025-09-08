@@ -8,22 +8,13 @@ import uuid
 import logging
 import asyncio
 from contextlib import asynccontextmanager
-
+from config.logging_config import setup_logging  # Use centralized logging
 from config.settings import settings
 from function_tools.registry import get_function_tool_registry, cleanup_function_tools
 from api.routes import query, health, metrics
 
-# Configure logging
-logging.basicConfig(
-    level=getattr(logging, settings.log_level),
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(settings.log_file),
-        logging.StreamHandler()
-    ]
-)
+logger = setup_logging(settings.log_level, settings.log_file)
 
-logger = logging.getLogger(__name__)
 
 # Global variables for application state
 function_registry = None
