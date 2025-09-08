@@ -42,10 +42,10 @@ class BraveSearchTool:
             "q": query,
             "count": count,
             "search_lang": "en",
-            "country": "US",
+            "country": "us",
             "safesearch": "moderate",
             "freshness": kwargs.get('freshness', 'all'),  # all, day, week, month, year
-            "text_decorations": False,
+            "text_decorations": "false",
             "result_filter": kwargs.get('result_filter', 'web'),  # web, news, images
         }
         
@@ -70,4 +70,3 @@ class BraveSearchTool:
         except Exception as e:
             logger.error(f"Brave search failed: {e}")
             return {"web": {"results": []}}
-

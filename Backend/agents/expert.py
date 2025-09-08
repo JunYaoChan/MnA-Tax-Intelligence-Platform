@@ -16,51 +16,96 @@ class ExpertAgent(BaseAgent):
         self.function_tools = function_tools or {}
     
     async def process(self, state: AgentState) -> RetrievalResult:
-        """Process query through expert analysis"""
+        """Process query through expert analysis using function tools when needed"""
         start_time = time.time()
-        
+
         try:
-            # Build expert-specific query
+            # Build expert-specific search query
             search_query = self._build_initial_query(state)
-            
-            # Perform vector search with expert filters
-            documents = await self.vector_store.search(
-                query=search_query,
-                top_k=self.settings.top_k_results,
-                filter=self._get_vector_filter()
-            )
-            
+
+            # First, try internal vector search
+            internal_docs = await self._vector_search(search_query)
+
             # Apply domain-specific filtering
-            filtered_docs = self._apply_domain_specific_filtering(documents, state)
-            
-            # Calculate confidence
-            confidence = self._calculate_confidence(filtered_docs)
-            
+            filtered_docs = self._apply_domain_specific_filtering(internal_docs, state)
+
+            # Determine if we need function tools
+            use_function_tools = await self.should_use_function_tools(search_query, filtered_docs)
+
+            enhanced_docs = []
+            all_sources = ["internal expert analysis"]
+
+            if use_function_tools:
+                self.logger.info("Using function tools to enhance expert analysis")
+
+                # Use specialized expert function tools
+                specialized_results = await self._use_specialized_function_tools(state, filtered_docs)
+                enhanced_docs.extend(specialized_results)
+
+                # Call universal function tools
+                function_results = await self.call_function_tools(
+                    search_query,
+                    {"internal_documents": filtered_docs, "agent_type": "expert"}
+                )
+
+                # Process function tool results
+                for result in function_results:
+                    enhanced_docs.extend(self._process_function_results(result))
+
+                all_sources.extend([f"specialized expert tool: {len(specialized_results)} docs"])
+                all_sources.extend([f"{result['source']} function tool" for result in function_results])
+
+            # Combine internal and external results
+            all_documents = filtered_docs + enhanced_docs
+            final_docs = self._merge_and_rank_expert_results(all_documents, state)
+            confidence = self._calculate_confidence(final_docs)
+
             result = RetrievalResult(
-                documents=filtered_docs,
+                documents=final_docs,
                 confidence=confidence,
-                source="expert",
+                source="expert_agent",
                 metadata={
-                    "query": search_query,
-                    "total_found": len(documents),
-                    "filtered_count": len(filtered_docs),
-                    "expert_sources": len([d for d in filtered_docs if d.get('source_credibility', 0) > 0.8])
+                    "search_query": search_query,
+                    "internal_docs": len(filtered_docs),
+                    "enhanced_docs": len(enhanced_docs),
+                    "total_found": len(all_documents),
+                    "used_function_tools": use_function_tools,
+                    "expert_sources": len([d for d in final_docs if d.get('source_credibility', 0) > 0.8]),
+                    "specialized_tools_used": bool(specialized_results),
+                    "sources": all_sources
                 },
-                retrieval_time=time.time() - start_time
+                retrieval_time=time.time() - start_time,
+                pipeline_step="agent_expert"
             )
-            
+
             self.log_performance(start_time, result)
             return result
-            
+
         except Exception as e:
             self.logger.error(f"Error in ExpertAgent: {e}")
             return RetrievalResult(
                 documents=[],
                 confidence=0.0,
-                source="expert",
+                source="expert_agent",
                 metadata={"error": str(e)},
                 retrieval_time=time.time() - start_time
             )
+
+    async def _vector_search(self, query: str) -> List[Dict]:
+        """Perform vector search for expert analysis"""
+        if not self.vector_store:
+            return []
+
+        try:
+            results = await self.vector_store.search(
+                query=query,
+                top_k=self.settings.top_k_results,
+                filter=self._get_vector_filter()
+            )
+            return results
+        except Exception as e:
+            self.logger.error(f"Vector search failed: {e}")
+            return []
     
     def _calculate_confidence(self, documents: List[Dict]) -> float:
         """Calculate confidence score for expert documents"""
@@ -342,15 +387,15 @@ class ExpertAgent(BaseAgent):
         if example_count > 0:
             applicability_score += 0.1
         
-        return min(applicability_score, 1.0)
-    
+            return min(applicability_score, 1.0)
+
     def _calculate_expert_authority(self, doc: Dict) -> float:
         """Calculate overall expert authority score"""
         source_credibility = doc.get('source_credibility', 0.5)
         expertise_level = doc.get('expertise_level', 0.5)
         analysis_depth = doc.get('analysis_depth', 0.5)
         practical_applicability = doc.get('practical_applicability', 0.5)
-        
+
         # Weighted combination
         authority_score = (
             source_credibility * 0.3 +
@@ -358,8 +403,96 @@ class ExpertAgent(BaseAgent):
             analysis_depth * 0.25 +
             practical_applicability * 0.2
         )
-        
+
         return authority_score
+
+    def _process_function_results(self, function_result: Dict) -> List[Dict]:
+        """Process results from function tools into expert format"""
+        processed_docs = []
+        data = function_result.get('data', [])
+        source = function_result.get('source', 'unknown')
+
+        if source == 'brave_search':
+            # Convert web search results to expert format
+            for item in data:
+                if isinstance(item, dict):
+                    content = item.get('description', '').strip()
+                    title = item.get('title', '')
+
+                    # Check if this looks like expert content
+                    is_expert_content = any(term in (content + title).lower() for term in [
+                        'expert', 'professional', 'guidance', 'analysis', 'best practices'
+                    ])
+
+                    if is_expert_content:
+                        processed_docs.append({
+                            'id': item.get('url', f"url_{len(processed_docs)}"),
+                            'title': title,
+                            'content': content,
+                            'document_type': 'web_expert_analysis',
+                            'relevance_score': item.get('score', 0.75),
+                            'source': 'function_tool_brave_search',
+                            'source_credibility': 0.7,
+                            'expertise_level': 0.6,
+                            'metadata': {
+                                'source': 'brave_search',
+                                'url': item.get('url', ''),
+                                'search_type': 'expert_analysis'
+                            }
+                        })
+
+        elif source == 'llm_enhancer':
+            # LLM enhanced documents
+            for doc in data:
+                if isinstance(doc, dict):
+                    doc['metadata'] = doc.get('metadata', {})
+                    doc['metadata']['enhanced_by'] = 'llm_enhancer'
+                    doc['source'] = 'function_tool_llm_enhanced'
+                    processed_docs.append(doc)
+
+        return processed_docs
+
+    def _merge_and_rank_expert_results(self, documents: List[Dict], state: AgentState) -> List[Dict]:
+        """Merge and rank expert results from multiple sources"""
+        seen_ids = set()
+        merged = []
+
+        # Apply domain-specific filtering to all documents
+        all_filtered = []
+        for doc in documents:
+            if self._is_credible_expert_source(doc):
+                doc['expertise_level'] = self._assess_expertise_level(doc)
+                doc['analysis_depth'] = self._assess_analysis_depth(doc)
+                doc['practical_applicability'] = self._assess_practical_applicability(doc, state)
+                doc['expert_authority_score'] = self._calculate_expert_authority(doc)
+
+                if doc.get('expertise_level', 0) >= 0.4:  # Lower threshold for external sources
+                    all_filtered.append(doc)
+
+        # Rank by expert authority, credibility, and relevance
+        ranked_docs = sorted(
+            all_filtered,
+            key=lambda x: (
+                x.get('expert_authority_score', 0),  # Primary: expert authority
+                x.get('source_credibility', 0),        # Secondary: source credibility
+                x.get('relevance_score', 0),          # Tertiary: relevance score
+                x.get('analysis_depth', 0)            # Quaternary: depth of analysis
+            ),
+            reverse=True
+        )
+
+        # Remove duplicates and limit results
+        for doc in ranked_docs:
+            doc_id = doc.get('id', f"expert_{len(merged)}")
+
+            if doc_id not in seen_ids:
+                merged.append(doc)
+                seen_ids.add(doc_id)
+
+            if len(merged) >= self.settings.top_k_results:
+                break
+
+        return merged
     
     def _format_professional_results(self, prof_results: List[Dict]) -> List[Dict]:
         """Format professional database results to standard document format"""
