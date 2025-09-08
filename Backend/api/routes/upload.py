@@ -11,6 +11,7 @@ from docx import Document as DocxDocument
 from services.document_processor import DocumentProcessor
 from database.supabase_client import SupabaseVectorStore
 from database.neo4j_client import Neo4jClient
+from database.chat_repository import ChatRepository
 from config.settings import Settings
 
 logger = logging.getLogger(__name__)
@@ -21,12 +22,15 @@ settings = Settings()
 vector_store = SupabaseVectorStore(settings)
 neo4j_client = Neo4jClient(settings)
 document_processor = DocumentProcessor(settings, vector_store, neo4j_client)
+chat_repo = ChatRepository(settings)
 
 @router.post("/document")
 async def upload_document(
     file: UploadFile = File(...),
     document_type: str = Form(...),
-    metadata: Optional[str] = Form(None)
+    metadata: Optional[str] = Form(None),
+    conversation_id: Optional[str] = Form(None),
+    user_id: Optional[str] = Form(None)
 ):
     """
     Upload a single document to be processed and stored in vector and graph databases
@@ -68,17 +72,43 @@ async def upload_document(
         )
         
         if result["success"]:
-            return JSONResponse(
-                status_code=200,
-                content={
-                    "message": "Document processed successfully",
-                    "document_id": result["document_id"],
-                    "chunks_processed": result["chunks_processed"],
-                    "vector_chunks_stored": result["vector_success"],
-                    "graph_entities_created": result["graph_success"],
-                    "metadata": result["metadata"]
-                }
-            )
+            response_content: Dict[str, Any] = {
+                "message": "Document processed successfully",
+                "document_id": result["document_id"],
+                "chunks_processed": result["chunks_processed"],
+                "vector_chunks_stored": result["vector_success"],
+                "graph_entities_created": result["graph_success"],
+                "metadata": result["metadata"]
+            }
+
+            # Optionally create a high-level document record and link to conversation
+            try:
+                if user_id:
+                    import uuid as _uuid
+                    doc_record_id = str(_uuid.uuid4())
+                    # Persist to a 'documents' table for metadata/browsing
+                    doc_meta = result.get("metadata") or {}
+                    if not isinstance(doc_meta, dict):
+                        doc_meta = {}
+                    doc_meta = {**doc_meta, "processor_document_id": result.get("document_id")}
+                    chat_repo.client.table("documents").insert({
+                        "id": doc_record_id,
+                        "user_id": user_id,
+                        "filename": file.filename,
+                        "document_type": document_type,
+                        "metadata": doc_meta
+                    }).execute()
+                    response_content["document_record_id"] = doc_record_id
+
+                    if conversation_id:
+                        linked = chat_repo.link_document(conversation_id, doc_record_id)
+                        response_content["linked_to_conversation"] = bool(linked)
+                        response_content["conversation_id"] = conversation_id
+            except Exception as link_err:
+                logger.warning(f"Document record/linking failed: {link_err}")
+                response_content["link_warning"] = str(link_err)
+
+            return JSONResponse(status_code=200, content=response_content)
         else:
             raise HTTPException(
                 status_code=500,
@@ -167,7 +197,9 @@ async def upload_text_content(
     title: str = Form(...),
     content: str = Form(...),
     document_type: str = Form(...),
-    metadata: Optional[str] = Form(None)
+    metadata: Optional[str] = Form(None),
+    conversation_id: Optional[str] = Form(None),
+    user_id: Optional[str] = Form(None)
 ):
     """
     Upload text content directly without file upload
@@ -207,17 +239,42 @@ async def upload_text_content(
         )
         
         if result["success"]:
-            return JSONResponse(
-                status_code=200,
-                content={
-                    "message": "Text content processed successfully",
-                    "document_id": result["document_id"],
-                    "chunks_processed": result["chunks_processed"],
-                    "vector_chunks_stored": result["vector_success"],
-                    "graph_entities_created": result["graph_success"],
-                    "metadata": result["metadata"]
-                }
-            )
+            response_content: Dict[str, Any] = {
+                "message": "Text content processed successfully",
+                "document_id": result["document_id"],
+                "chunks_processed": result["chunks_processed"],
+                "vector_chunks_stored": result["vector_success"],
+                "graph_entities_created": result["graph_success"],
+                "metadata": result["metadata"]
+            }
+
+            # Optionally create a high-level document record and link
+            try:
+                if user_id:
+                    import uuid as _uuid
+                    doc_record_id = str(_uuid.uuid4())
+                    doc_meta = result.get("metadata") or {}
+                    if not isinstance(doc_meta, dict):
+                        doc_meta = {}
+                    doc_meta = {**doc_meta, "processor_document_id": result.get("document_id")}
+                    chat_repo.client.table("documents").insert({
+                        "id": doc_record_id,
+                        "user_id": user_id,
+                        "filename": title,
+                        "document_type": document_type,
+                        "metadata": doc_meta
+                    }).execute()
+                    response_content["document_record_id"] = doc_record_id
+
+                    if conversation_id:
+                        linked = chat_repo.link_document(conversation_id, doc_record_id)
+                        response_content["linked_to_conversation"] = bool(linked)
+                        response_content["conversation_id"] = conversation_id
+            except Exception as link_err:
+                logger.warning(f"Text document record/linking failed: {link_err}")
+                response_content["link_warning"] = str(link_err)
+
+            return JSONResponse(status_code=200, content=response_content)
         else:
             raise HTTPException(
                 status_code=500,

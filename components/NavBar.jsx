@@ -14,14 +14,14 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-import { useUser } from '@auth0/nextjs-auth0';
+import useAuthUser from '../lib/useAuthUser';
 
 import PageLink from './PageLink';
 import AnchorLink from './AnchorLink';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, isLoading } = useUser();
+  const { user, isLoading } = useAuthUser();
   const toggle = () => setIsOpen(!isOpen);
 
   return (

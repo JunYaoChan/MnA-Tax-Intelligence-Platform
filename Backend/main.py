@@ -10,6 +10,8 @@ from database.neo4j_client import Neo4jClient
 from models.requests import QueryRequest
 from models.responses import QueryResponse
 from api.routes.upload import router as upload_router
+from api.routes.chat import router as chat_router
+import api.app_state as app_state
 
 # Configure logging
 logging.basicConfig(
@@ -51,6 +53,10 @@ async def lifespan(app: FastAPI):
         # Initialize RAG orchestrator
         orchestrator = RAGOrchestrator(settings, vector_store, neo4j_client)
         await orchestrator.initialize()
+        # Expose initialized singletons for route handlers
+        app_state.orchestrator = orchestrator
+        app_state.vector_store = vector_store
+        app_state.neo4j_client = neo4j_client
         
         logger.info("RAG Pipeline API initialized successfully")
         
@@ -81,8 +87,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include upload router
+# Include upload and chat routers
 app.include_router(upload_router)
+app.include_router(chat_router)
 
 @app.post("/query", response_model=QueryResponse)
 async def process_query(request: QueryRequest):
