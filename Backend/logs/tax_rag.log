@@ -190,3 +190,19 @@
 2025-09-08 17:23:51,387 [INFO] orchestration.orchestrator [orchestrator.py:109]: RAG pipeline completed in 108.39s
 2025-09-08 17:23:51,388 [INFO] root [main.py:117]: Query processed successfully in 108.39s
 2025-09-08 17:23:51,394 [INFO] uvicorn.access [httptools_impl.py:476]: 127.0.0.1:58126 - "POST /query HTTP/1.1" 200
+2025-09-08 17:40:32,763 [INFO] uvicorn.error [server.py:263]: Shutting down
+2025-09-08 17:40:32,878 [INFO] uvicorn.error [on.py:67]: Waiting for application shutdown.
+2025-09-08 17:40:32,885 [INFO] root [main.py:64]: Application shutdown complete
+2025-09-08 17:40:32,889 [INFO] uvicorn.error [on.py:76]: Application shutdown complete.
+2025-09-08 17:40:32,891 [INFO] uvicorn.error [server.py:93]: Finished server process [9006]
+2025-09-08 17:48:23,233 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-08 17:48:23,265 [INFO] root [main.py:39]: Initializing RAG Pipeline API...
+2025-09-08 17:48:23,265 [INFO] root [main.py:43]: Settings loaded and validated successfully
+2025-09-08 17:48:25,238 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-08 17:48:25,369 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-08 17:48:25,393 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-08 17:48:25,394 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-08 17:48:25,394 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-08 17:48:25,395 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-08 17:48:25,395 [INFO] root [main.py:55]: RAG Pipeline API initialized successfully
+2025-09-08 17:48:29,344 [INFO] root [main.py:64]: Application shutdown complete
