@@ -37,3 +37,57 @@ p code {
 .result-block-container .result-block {
   opacity: 1;
 }
+
+/* Tax Assistant Interface styles */
+.tax-ui {
+  min-height: 70vh;
+}
+
+.tax-sidebar {
+  background: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  min-height: 70vh;
+  padding-top: 0.5rem;
+}
+
+.tax-recent-chats .list-group-item {
+  border: 0;
+  border-radius: 8px;
+  margin-bottom: 0.25rem;
+}
+
+.tax-recent-chats .list-group-item.active {
+  background: #e9ecef;
+  color: #000;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.tax-header {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tax-dropzone {
+  border: 2px dashed #dee2e6;
+  background: #fff;
+}
+
+.tax-input {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 0.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.tax-input .form-control {
+  height: 44px;
+}

@@ -5,7 +5,10 @@ import NavBar from '../components/NavBar';
 import { Container } from 'reactstrap';
 import Footer from '../components/Footer';
 import React from 'react';
+import initFontAwesome from '../utils/initFontAwesome';
 import { Auth0Provider } from '@auth0/nextjs-auth0';
+
+initFontAwesome();
 
 export default function RootLayout({ children }) {
   return (
