@@ -19,8 +19,16 @@ const TaxAssistantInterface = () => {
   const [streaming, setStreaming] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadedDocs, setUploadedDocs] = useState([]);
+  const [debugInfo, setDebugInfo] = useState('');
+
   const fileInputRef = useRef(null);
   const chatEndRef = useRef(null);
+
+  // Debug helper
+  const addDebugInfo = message => {
+    console.log(message);
+    setDebugInfo(prev => prev + '\n' + new Date().toLocaleTimeString() + ': ' + message);
+  };
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -32,14 +40,19 @@ const TaxAssistantInterface = () => {
     if (!userId || isLoading) return;
     (async () => {
       try {
+        addDebugInfo('🔵 Loading conversations...');
         // Fetch list
         const res = await getJSON(`/api/chat/list?user_id=${encodeURIComponent(userId)}`);
         const convs = res?.conversations || [];
         setConversations(convs);
+        addDebugInfo(`🔵 Found ${convs.length} conversations`);
+
         if (convs.length > 0) {
           setActiveConversationId(convs[0].id);
+          addDebugInfo(`🔵 Set active conversation: ${convs[0].id}`);
         } else {
           // Create if none
+          addDebugInfo('🔵 No conversations found, creating new one...');
           const created = await postJSON('/api/chat/new', {
             user_id: userId,
             title: 'New Conversation'
@@ -48,10 +61,12 @@ const TaxAssistantInterface = () => {
           if (convId) {
             setConversations([{ id: convId, title: created?.title || 'New Conversation' }]);
             setActiveConversationId(convId);
+            addDebugInfo(`🔵 Created new conversation: ${convId}`);
           }
         }
       } catch (e) {
         console.error('Failed to load conversations', e);
+        addDebugInfo(`❌ Failed to load conversations: ${e.message}`);
       }
     })();
   }, [userId, isLoading]);
@@ -61,10 +76,13 @@ const TaxAssistantInterface = () => {
     if (!activeConversationId) return;
     (async () => {
       try {
+        addDebugInfo(`🔵 Loading history for conversation: ${activeConversationId}`);
         const hist = await getJSON(`/api/chat/history/${activeConversationId}`);
         setMessages(hist?.messages || []);
+        addDebugInfo(`🔵 Loaded ${hist?.messages?.length || 0} messages`);
       } catch (e) {
         console.error('Failed to load history', e);
+        addDebugInfo(`❌ Failed to load history: ${e.message}`);
         setMessages([]);
       }
     })();
@@ -72,6 +90,7 @@ const TaxAssistantInterface = () => {
 
   async function handleNewConversation() {
     try {
+      addDebugInfo('🔵 Creating new conversation...');
       const created = await postJSON('/api/chat/new', {
         user_id: userId,
         title: 'New Conversation'
@@ -83,14 +102,17 @@ const TaxAssistantInterface = () => {
         setActiveConversationId(convId);
         setMessages([]);
         setUploadedDocs([]);
+        addDebugInfo(`✅ Created conversation: ${convId}`);
       }
     } catch (e) {
       console.error('Failed to create conversation', e);
+      addDebugInfo(`❌ Failed to create conversation: ${e.message}`);
     }
   }
 
   async function handleDeleteConversation(convId) {
     try {
+      addDebugInfo(`🔵 Deleting conversation: ${convId}`);
       await fetch(`${BACKEND_URL}/api/chat/${convId}`, { method: 'DELETE' });
       const next = conversations.filter(c => c.id !== convId);
       setConversations(next);
@@ -98,14 +120,18 @@ const TaxAssistantInterface = () => {
         setActiveConversationId(next[0]?.id || null);
         setMessages([]);
       }
+      addDebugInfo(`✅ Deleted conversation: ${convId}`);
     } catch (e) {
       console.error('Failed to delete conversation', e);
+      addDebugInfo(`❌ Failed to delete conversation: ${e.message}`);
     }
   }
 
   async function handleSend() {
     const text = input.trim();
     if (!text || !activeConversationId || sending || streaming) return;
+
+    addDebugInfo(`🔵 Sending message: "${text.substring(0, 50)}..."`);
     setSending(true);
     setStreaming(true);
 
@@ -155,7 +181,7 @@ const TaxAssistantInterface = () => {
 
       for await (const evt of postStream('/api/chat/send', body)) {
         if (evt?.type === 'delta') {
-          currentText += (currentText ? ' ' : '') + (evt.text || '');
+          currentText += (currentText ? '' : '') + (evt.text || '');
           const idx = ensureAssistantIndex();
           setMessages(prev => {
             const copy = [...prev];
@@ -177,10 +203,13 @@ const TaxAssistantInterface = () => {
           });
         } else if (evt?.type === 'error') {
           console.error('Stream error:', evt.message);
+          addDebugInfo(`❌ Stream error: ${evt.message}`);
         }
       }
+      addDebugInfo('✅ Message sent successfully');
     } catch (e) {
       console.error('Send failed', e);
+      addDebugInfo(`❌ Send failed: ${e.message}`);
     } finally {
       setSending(false);
       setStreaming(false);
@@ -188,8 +217,33 @@ const TaxAssistantInterface = () => {
   }
 
   async function handleUpload(file, docType = 'expert_analysis') {
-    if (!file || !activeConversationId) return;
+    addDebugInfo('🔵 handleUpload called');
+    addDebugInfo(`File: ${file?.name} (${file?.size} bytes)`);
+    addDebugInfo(`User ID: ${userId}`);
+    addDebugInfo(`Active Conversation: ${activeConversationId}`);
+    addDebugInfo(`Backend URL: ${BACKEND_URL}`);
+
+    if (!file) {
+      addDebugInfo('❌ No file provided');
+      alert('No file selected!');
+      return;
+    }
+
+    if (!activeConversationId) {
+      addDebugInfo('❌ No active conversation ID');
+      alert('No active conversation! Please create a new conversation first by clicking the + button.');
+      return;
+    }
+
+    if (!BACKEND_URL) {
+      addDebugInfo('❌ No BACKEND_URL defined');
+      alert('Backend URL not configured!');
+      return;
+    }
+
     setUploading(true);
+    addDebugInfo('🔵 Starting upload...');
+
     try {
       const form = new FormData();
       form.append('file', file);
@@ -198,12 +252,23 @@ const TaxAssistantInterface = () => {
       form.append('conversation_id', activeConversationId);
       form.append('user_id', userId);
 
+      addDebugInfo('🔵 FormData created, sending request...');
+
       const res = await fetch(`${BACKEND_URL}/upload/document`, {
         method: 'POST',
         body: form
       });
+
+      addDebugInfo(`🔵 Response status: ${res.status}`);
+
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.detail || 'Upload failed');
+      addDebugInfo(`🔵 Response data: ${JSON.stringify(data)}`);
+
+      if (!res.ok) {
+        throw new Error(data?.detail || `HTTP ${res.status}: ${data?.message || 'Unknown error'}`);
+      }
+
+      addDebugInfo('✅ Upload successful!');
 
       // Track uploaded doc locally
       setUploadedDocs(prev => [
@@ -216,50 +281,97 @@ const TaxAssistantInterface = () => {
         ...prev
       ]);
 
-      // Provide assistant acknowledgement in chat
+      // Add success message to chat
       const ack = {
         id: `sys-${Date.now()}`,
         conversation_id: activeConversationId,
         role: 'assistant',
-        content: `Received document "${file.name}". Processing complete. You can now ask questions about it.`,
+        content: `✅ Document "${file.name}" uploaded successfully! Processing complete. You can now ask questions about it.`,
         created_at: new Date().toISOString()
       };
       setMessages(prev => [...prev, ack]);
     } catch (e) {
-      console.error('Upload failed', e);
+      addDebugInfo(`❌ Upload failed: ${e.message}`);
+      console.error('Upload error:', e);
+
+      // Add error message to chat
       const err = {
         id: `err-${Date.now()}`,
         conversation_id: activeConversationId,
         role: 'assistant',
-        content: `Upload failed: ${e.message || e.toString()}`,
+        content: `❌ Upload failed: ${e.message}`,
         created_at: new Date().toISOString()
       };
       setMessages(prev => [...prev, err]);
     } finally {
       setUploading(false);
+      addDebugInfo('🔵 Upload process finished');
     }
   }
 
   function onDropZoneClick(e) {
     e.preventDefault();
-    fileInputRef.current?.click();
+    e.stopPropagation();
+    addDebugInfo('🔵 Dropzone clicked');
+    addDebugInfo(`🔵 fileInputRef.current: ${fileInputRef.current}`);
+
+    if (!fileInputRef.current) {
+      addDebugInfo('❌ File input ref is null!');
+      alert('File input not found! Please refresh the page.');
+      return;
+    }
+
+    try {
+      fileInputRef.current.click();
+      addDebugInfo('🔵 File dialog triggered');
+    } catch (error) {
+      addDebugInfo(`❌ Error clicking file input: ${error.message}`);
+    }
   }
 
   function onFileChange(e) {
-    const f = e.target.files?.[0];
-    if (f) handleUpload(f);
-    // reset input
+    addDebugInfo('🔵 onFileChange called');
+    addDebugInfo(`Files selected: ${e.target.files?.length || 0}`);
+
+    const file = e.target.files?.[0];
+    if (file) {
+      addDebugInfo(`Selected file: ${file.name} (${file.type}, ${file.size} bytes)`);
+
+      // Validate file type
+      const allowedTypes = ['.pdf', '.doc', '.docx', '.txt'];
+      const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+
+      if (!allowedTypes.includes(fileExtension)) {
+        addDebugInfo(`❌ Invalid file type: ${fileExtension}`);
+        alert(`File type not supported. Please upload: ${allowedTypes.join(', ')}`);
+        e.target.value = ''; // Reset
+        return;
+      }
+
+      handleUpload(file);
+    } else {
+      addDebugInfo('❌ No file in selection');
+    }
+
+    // Reset input so same file can be selected again
     e.target.value = '';
   }
 
   function onDrop(e) {
     e.preventDefault();
-    const f = e.dataTransfer?.files?.[0];
-    if (f) handleUpload(f);
+    e.stopPropagation();
+    addDebugInfo('🔵 File dropped');
+
+    const file = e.dataTransfer?.files?.[0];
+    if (file) {
+      addDebugInfo(`Dropped file: ${file.name}`);
+      handleUpload(file);
+    }
   }
 
   function onDragOver(e) {
     e.preventDefault();
+    e.stopPropagation();
   }
 
   const isDisabled = sending || streaming || isLoading;
@@ -291,54 +403,37 @@ const TaxAssistantInterface = () => {
                 : conversations.map(c => (
                     <ListGroupItem
                       key={c.id}
-                      className={
-                        c.id === activeConversationId
-                          ? 'active d-flex justify-content-between align-items-center'
-                          : 'd-flex justify-content-between align-items-center'
-                      }
+                      className={c.id === activeConversationId ? 'active cursor-pointer' : 'cursor-pointer'}
                       onClick={() => setActiveConversationId(c.id)}
                       style={{ cursor: 'pointer' }}>
-                      <span>{c.title || 'Conversation'}</span>
-                      <Button
-                        size="sm"
-                        color="link"
-                        className="text-danger p-0"
-                        title="Delete"
-                        onClick={e => {
-                          e.stopPropagation();
-                          handleDeleteConversation(c.id);
-                        }}>
-                        ×
-                      </Button>
+                      {c.title}
+                      {conversations.length > 1 && (
+                        <Button
+                          size="sm"
+                          color="link"
+                          className="float-right p-0"
+                          onClick={e => {
+                            e.stopPropagation();
+                            handleDeleteConversation(c.id);
+                          }}>
+                          ×
+                        </Button>
+                      )}
                     </ListGroupItem>
                   ))}
             </ListGroup>
           </div>
 
-          <div className="sidebar-section mt-4">
-            <h6 className="mb-2">System Status</h6>
-            <ul className="list-unstyled mb-0" data-testid="system-status">
-              <li className="d-flex align-items-center mb-2">
-                <span className="status-dot bg-success" /> Multi-Agent System Online
-              </li>
-              <li className="d-flex align-items-center mb-2">
-                <span className="status-dot bg-success" /> Knowledge Base Connected
-              </li>
-              <li className="d-flex align-items-center">
-                <span className="status-dot bg-success" /> Document Processing Ready
-              </li>
-            </ul>
-          </div>
-
-          <div className="sidebar-section mt-4">
-            <h6 className="mb-2">Uploaded Documents</h6>
-            <ul className="list-unstyled mb-0 small">
+          {/* Uploaded Documents */}
+          <div className="sidebar-section mt-3">
+            <h6 className="mb-2">Documents ({uploadedDocs.length})</h6>
+            <ul className="list-unstyled small">
               {uploadedDocs.length === 0 ? (
                 <li className="text-muted">No documents uploaded in this session.</li>
               ) : (
                 uploadedDocs.map(d => (
                   <li key={d.id} className="mb-1">
-                    {d.filename} <span className="text-muted">({d.document_type})</span>
+                    📄 {d.filename} <span className="text-muted">({d.document_type})</span>
                   </li>
                 ))
               )}
@@ -372,6 +467,62 @@ const TaxAssistantInterface = () => {
             </div>
           </div>
 
+          {/* Debug Panel */}
+          {process.env.NODE_ENV === 'development' && (
+            <Card className="mb-3 bg-light">
+              <CardBody>
+                <h6>🐛 Debug Panel</h6>
+                <div style={{ fontSize: '12px', fontFamily: 'monospace' }}>
+                  <div>
+                    User ID: <strong>{userId || 'undefined'}</strong>
+                  </div>
+                  <div>
+                    Active Conversation: <strong>{activeConversationId || 'undefined'}</strong>
+                  </div>
+                  <div>
+                    Backend URL: <strong>{BACKEND_URL || 'undefined'}</strong>
+                  </div>
+                  <div>
+                    Uploading: <strong>{uploading ? 'Yes' : 'No'}</strong>
+                  </div>
+                  <div>
+                    File Input Ref: <strong>{fileInputRef.current ? 'Connected' : 'NULL'}</strong>
+                  </div>
+                  <div>
+                    Loading: <strong>{isLoading ? 'Yes' : 'No'}</strong>
+                  </div>
+                </div>
+
+                {/* Test Buttons */}
+                <div className="mt-2">
+                  <Button size="sm" color="info" onClick={() => addDebugInfo('Manual test message')}>
+                    Test Debug Log
+                  </Button>
+                  <Button size="sm" color="warning" className="ml-2" onClick={() => setDebugInfo('')}>
+                    Clear Log
+                  </Button>
+                  <Button size="sm" color="primary" className="ml-2" onClick={onDropZoneClick}>
+                    Test File Click
+                  </Button>
+                </div>
+
+                {/* Debug Log */}
+                <pre
+                  style={{
+                    height: '150px',
+                    overflow: 'auto',
+                    backgroundColor: '#f8f9fa',
+                    padding: '10px',
+                    marginTop: '10px',
+                    fontSize: '11px',
+                    border: '1px solid #dee2e6'
+                  }}>
+                  {debugInfo || 'No debug messages yet...'}
+                </pre>
+              </CardBody>
+            </Card>
+          )}
+
           {/* Welcome */}
           {messages.length === 0 && (
             <Card className="mb-3" data-testid="welcome-card">
@@ -387,29 +538,50 @@ const TaxAssistantInterface = () => {
           )}
 
           {/* Dropzone */}
-          <Card
-            className="mb-3 tax-dropzone"
-            data-testid="dropzone"
-            onClick={onDropZoneClick}
-            onDrop={onDrop}
-            onDragOver={onDragOver}
-            style={{ cursor: 'pointer' }}>
+          <Card className="mb-3 tax-dropzone" data-testid="dropzone">
             <CardBody className="text-center">
-              <div className="display-6 mb-2">☁️</div>
-              <div>
-                Drop documents here or{' '}
-                <a
-                  href="#"
-                  onClick={e => {
-                    e.preventDefault();
-                    onDropZoneClick(e);
-                  }}>
-                  click to upload
-                </a>
+              <div
+                onClick={onDropZoneClick}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
+                style={{
+                  cursor: 'pointer',
+                  padding: '20px',
+                  border: uploading ? '2px dashed #007bff' : '2px dashed #dee2e6',
+                  borderRadius: '8px',
+                  backgroundColor: uploading ? '#f8f9fa' : 'transparent'
+                }}>
+                <div className="display-6 mb-2">{uploading ? '⏳' : '☁️'}</div>
+                <div>
+                  {uploading ? (
+                    <span className="text-primary">Uploading...</span>
+                  ) : (
+                    <>
+                      Drop documents here or{' '}
+                      <strong style={{ color: '#007bff', textDecoration: 'underline' }} onClick={onDropZoneClick}>
+                        click to upload
+                      </strong>
+                    </>
+                  )}
+                </div>
+                <small className="text-muted d-block mt-2">
+                  PDF, DOC, DOCX, TXT • Tax codes, contracts, regulations, case law
+                </small>
               </div>
-              <small className="text-muted">PDF, DOC, DOCX, TXT • Tax codes, contracts, regulations, case law</small>
-              {uploading && <div className="mt-2 small text-primary">Uploading...</div>}
-              <input ref={fileInputRef} type="file" hidden onChange={onFileChange} />
+
+              {/* Backup upload button */}
+              <Button color="outline-primary" size="sm" className="mt-3" onClick={onDropZoneClick} disabled={uploading}>
+                📎 {uploading ? 'Uploading...' : 'Choose File'}
+              </Button>
+
+              {/* Hidden file input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.doc,.docx,.txt"
+                onChange={onFileChange}
+                style={{ display: 'none' }}
+              />
             </CardBody>
           </Card>
 
@@ -419,7 +591,7 @@ const TaxAssistantInterface = () => {
               <div
                 key={m.id}
                 className={`mb-2 p-2 rounded ${m.role === 'user' ? 'bg-primary text-white' : 'bg-light'}`}
-                style={{ maxWidth: '85%' }}>
+                style={{ maxWidth: '85%', marginLeft: m.role === 'user' ? 'auto' : '0' }}>
                 <div className="small text-muted mb-1">{m.role === 'user' ? 'You' : 'Assistant'}</div>
                 <div style={{ whiteSpace: 'pre-wrap' }}>{m.content}</div>
               </div>
