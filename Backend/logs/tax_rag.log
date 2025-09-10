@@ -237,3 +237,1109 @@ client_session: <aiohttp.client.ClientSession object at 0x10a4f1890>
 2025-09-10 20:58:31,925 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents "HTTP/2 201 Created"
 2025-09-10 20:58:32,299 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
 2025-09-10 20:58:32,415 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%2862b0ba89-65b6-45c3-9c48-73dc3fc59227%2C8c8e4636-f379-4700-93e4-1c5ae2cedb54%29 "HTTP/2 200 OK"
+2025-09-10 21:34:55,823 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:34:56,042 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:34:56,289 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:34:56,518 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%2862b0ba89-65b6-45c3-9c48-73dc3fc59227%2C8c8e4636-f379-4700-93e4-1c5ae2cedb54%29 "HTTP/2 200 OK"
+2025-09-10 21:34:59,484 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:34:59,665 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:34:59,884 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:35:00,039 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%2862b0ba89-65b6-45c3-9c48-73dc3fc59227%2C8c8e4636-f379-4700-93e4-1c5ae2cedb54%29 "HTTP/2 200 OK"
+2025-09-10 21:35:08,264 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:35:08,394 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:35:08,535 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:35:08,688 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%2862b0ba89-65b6-45c3-9c48-73dc3fc59227%2C8c8e4636-f379-4700-93e4-1c5ae2cedb54%29 "HTTP/2 200 OK"
+2025-09-10 21:36:02,037 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:36:02,208 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:36:02,374 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:36:02,524 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%2862b0ba89-65b6-45c3-9c48-73dc3fc59227%2C8c8e4636-f379-4700-93e4-1c5ae2cedb54%29 "HTTP/2 200 OK"
+2025-09-10 21:36:31,959 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:36:32,126 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:36:32,292 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:36:32,519 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%2862b0ba89-65b6-45c3-9c48-73dc3fc59227%2C8c8e4636-f379-4700-93e4-1c5ae2cedb54%29 "HTTP/2 200 OK"
+2025-09-10 21:37:35,876 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:37:36,033 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:37:36,225 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:37:39,480 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations "HTTP/2 201 Created"
+2025-09-10 21:37:39,644 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:37:39,799 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:37:48,375 [INFO] services.document_processor [document_processor.py:26]: Processing document: Feature Tax protections with copy.pdf
+2025-09-10 21:37:50,123 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:50,842 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:50,949 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 1
+2025-09-10 21:37:51,333 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:51,804 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:52,064 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 2
+2025-09-10 21:37:52,528 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:52,759 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:52,804 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 3
+2025-09-10 21:37:53,119 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:53,397 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:53,412 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 4
+2025-09-10 21:37:54,215 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:54,920 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:55,028 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 5
+2025-09-10 21:37:55,561 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:55,959 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:56,136 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 6
+2025-09-10 21:37:56,398 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:56,765 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:56,855 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 7
+2025-09-10 21:37:57,494 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:57,793 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:57,969 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 8
+2025-09-10 21:37:58,438 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:58,838 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:37:59,078 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 9
+2025-09-10 21:37:59,427 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:37:59,873 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:00,011 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 10
+2025-09-10 21:38:00,562 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:01,400 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:01,553 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 11
+2025-09-10 21:38:02,119 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:02,652 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:02,654 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 12
+2025-09-10 21:38:03,083 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:03,411 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:03,447 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 13
+2025-09-10 21:38:03,729 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:04,142 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:04,146 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 14
+2025-09-10 21:38:04,424 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:04,616 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:04,622 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 15
+2025-09-10 21:38:05,708 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:05,912 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:05,913 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 16
+2025-09-10 21:38:07,087 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:07,450 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:07,458 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 17
+2025-09-10 21:38:07,738 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:08,353 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:08,471 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 18
+2025-09-10 21:38:08,770 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:09,078 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:09,078 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 19
+2025-09-10 21:38:09,527 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:10,529 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:10,550 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 20
+2025-09-10 21:38:11,015 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:11,558 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:11,583 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 21
+2025-09-10 21:38:12,052 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:12,902 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:12,903 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 22
+2025-09-10 21:38:13,218 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:13,612 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:13,614 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 23
+2025-09-10 21:38:13,890 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:14,505 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:14,506 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 24
+2025-09-10 21:38:14,997 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:15,475 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:15,600 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 25
+2025-09-10 21:38:15,885 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:16,555 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:16,567 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 26
+2025-09-10 21:38:16,865 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:17,425 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:17,440 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 27
+2025-09-10 21:38:18,016 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:18,441 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:18,448 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 28
+2025-09-10 21:38:18,932 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:19,203 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:19,221 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 29
+2025-09-10 21:38:19,580 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:20,003 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:20,045 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 30
+2025-09-10 21:38:20,389 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:20,894 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:20,915 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 31
+2025-09-10 21:38:21,262 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:21,669 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:21,673 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 32
+2025-09-10 21:38:22,062 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:23,034 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:23,057 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 33
+2025-09-10 21:38:23,405 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:23,998 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:23,999 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 34
+2025-09-10 21:38:24,362 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:24,761 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:24,871 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 35
+2025-09-10 21:38:25,177 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:25,827 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:25,844 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 36
+2025-09-10 21:38:26,149 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:26,512 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:26,555 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 37
+2025-09-10 21:38:26,850 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:27,164 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:27,171 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 38
+2025-09-10 21:38:27,500 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:27,967 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:27,996 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 39
+2025-09-10 21:38:28,299 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:28,836 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:28,939 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 40
+2025-09-10 21:38:29,260 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:29,495 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:29,529 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 41
+2025-09-10 21:38:29,869 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:30,194 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:30,231 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 42
+2025-09-10 21:38:30,540 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:31,233 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:31,324 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 43
+2025-09-10 21:38:31,668 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:32,353 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:32,391 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 44
+2025-09-10 21:38:32,711 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:33,480 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:33,633 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 45
+2025-09-10 21:38:33,895 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:34,598 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:34,639 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 46
+2025-09-10 21:38:34,976 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:35,557 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:35,658 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 47
+2025-09-10 21:38:36,177 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:38:36,600 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:38:36,649 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 48
+2025-09-10 21:38:37,075 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents "HTTP/2 201 Created"
+2025-09-10 21:38:37,250 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents "HTTP/2 201 Created"
+2025-09-10 21:38:37,712 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:38:37,873 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28cb5426c9-ee20-46b6-9230-706957c940d7%29 "HTTP/2 200 OK"
+2025-09-10 21:40:07,659 [INFO] services.document_processor [document_processor.py:26]: Processing document: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf
+2025-09-10 21:40:08,281 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:08,790 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:08,840 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 1
+2025-09-10 21:40:09,169 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:09,550 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:09,577 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 2
+2025-09-10 21:40:09,996 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:10,548 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:10,558 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 3
+2025-09-10 21:40:10,919 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:11,312 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:11,359 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 4
+2025-09-10 21:40:11,729 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:12,288 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:12,290 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 5
+2025-09-10 21:40:12,607 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:13,077 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:13,169 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 6
+2025-09-10 21:40:13,570 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:14,026 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:14,083 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 7
+2025-09-10 21:40:14,548 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:15,527 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:15,528 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 8
+2025-09-10 21:40:15,902 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:16,352 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:16,524 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 9
+2025-09-10 21:40:17,228 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:17,806 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:17,822 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 10
+2025-09-10 21:40:18,135 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:18,682 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:18,687 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 11
+2025-09-10 21:40:19,106 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:19,724 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:19,763 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 12
+2025-09-10 21:40:20,050 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:20,661 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:20,676 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 13
+2025-09-10 21:40:21,083 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:21,479 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:21,647 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 14
+2025-09-10 21:40:21,910 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:22,278 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:22,320 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 15
+2025-09-10 21:40:23,817 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:24,111 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:24,144 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 16
+2025-09-10 21:40:24,742 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:25,154 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:25,336 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 17
+2025-09-10 21:40:25,663 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:26,247 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:26,446 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 18
+2025-09-10 21:40:26,741 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:27,246 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:27,265 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 19
+2025-09-10 21:40:27,713 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:28,393 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:28,458 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 20
+2025-09-10 21:40:28,911 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:29,550 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:29,663 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 21
+2025-09-10 21:40:29,959 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:30,355 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:30,398 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 22
+2025-09-10 21:40:30,949 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:31,393 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:31,479 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 23
+2025-09-10 21:40:31,811 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:32,416 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:32,469 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 24
+2025-09-10 21:40:32,991 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:33,535 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:33,655 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 25
+2025-09-10 21:40:33,941 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:34,349 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:34,601 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 26
+2025-09-10 21:40:34,979 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:35,528 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:35,562 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 27
+2025-09-10 21:40:35,851 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:36,220 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:36,367 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 28
+2025-09-10 21:40:36,655 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:37,077 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:37,090 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 29
+2025-09-10 21:40:37,646 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:38,678 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:38,680 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 30
+2025-09-10 21:40:38,953 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:39,694 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:39,719 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 31
+2025-09-10 21:40:40,358 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:40,961 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:41,031 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 32
+2025-09-10 21:40:41,633 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:42,269 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:42,364 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 33
+2025-09-10 21:40:42,994 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:43,553 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:43,584 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 34
+2025-09-10 21:40:44,116 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:45,150 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:45,252 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 35
+2025-09-10 21:40:45,592 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:46,192 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:46,315 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 36
+2025-09-10 21:40:46,607 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:47,320 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:47,417 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 37
+2025-09-10 21:40:47,777 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:48,299 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:48,308 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 38
+2025-09-10 21:40:48,607 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:49,318 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:49,604 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 39
+2025-09-10 21:40:50,133 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:50,749 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:50,805 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 40
+2025-09-10 21:40:51,168 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:51,956 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:51,982 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 41
+2025-09-10 21:40:52,350 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:52,990 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:53,082 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 42
+2025-09-10 21:40:53,514 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:53,956 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:53,973 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 43
+2025-09-10 21:40:54,300 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:54,761 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:54,787 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 44
+2025-09-10 21:40:55,353 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:56,037 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:56,090 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 45
+2025-09-10 21:40:56,382 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:56,989 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:57,069 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 46
+2025-09-10 21:40:57,507 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:58,230 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:58,371 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 47
+2025-09-10 21:40:58,703 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:40:59,358 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:40:59,418 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 48
+2025-09-10 21:40:59,779 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:41:00,355 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:41:00,446 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 49
+2025-09-10 21:41:01,313 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:41:01,875 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:41:01,893 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 50
+2025-09-10 21:41:02,438 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:41:02,998 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:41:03,046 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 51
+2025-09-10 21:41:03,400 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents "HTTP/2 400 Bad Request"
+2025-09-10 21:41:03,405 [WARNING] api.routes.upload [upload.py:108]: Document record/linking failed: {'message': "Could not find the 'document_type' column of 'documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:41:03,800 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:41:03,949 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28cb5426c9-ee20-46b6-9230-706957c940d7%29 "HTTP/2 200 OK"
+2025-09-10 21:45:02,926 [INFO] root [main.py:70]: Application shutdown complete
+2025-09-10 21:45:06,142 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-10 21:45:06,175 [INFO] root [main.py:41]: Initializing RAG Pipeline API...
+2025-09-10 21:45:06,175 [INFO] root [main.py:45]: Settings loaded and validated successfully
+2025-09-10 21:45:07,733 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-10 21:45:07,741 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-10 21:45:07,749 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-10 21:45:07,749 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-10 21:45:07,749 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-10 21:45:07,749 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-10 21:45:07,749 [INFO] root [main.py:61]: RAG Pipeline API initialized successfully
+2025-09-10 21:45:20,053 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:45:20,307 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:45:20,525 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:45:20,686 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28cb5426c9-ee20-46b6-9230-706957c940d7%29 "HTTP/2 200 OK"
+2025-09-10 21:45:23,088 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:45:23,248 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:45:24,784 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:45:24,927 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:45:25,043 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28cb5426c9-ee20-46b6-9230-706957c940d7%29 "HTTP/2 200 OK"
+2025-09-10 21:45:36,728 [INFO] services.document_processor [document_processor.py:26]: Processing document: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf
+2025-09-10 21:45:37,689 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:38,536 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:38,698 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 1
+2025-09-10 21:45:38,966 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:39,325 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:39,347 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 2
+2025-09-10 21:45:39,732 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:39,888 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:40,064 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 3
+2025-09-10 21:45:40,453 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:40,853 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:41,014 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 4
+2025-09-10 21:45:41,341 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:41,852 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:41,906 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 5
+2025-09-10 21:45:42,210 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:42,655 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:42,663 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 6
+2025-09-10 21:45:43,023 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:43,452 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:43,462 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 7
+2025-09-10 21:45:43,755 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:44,046 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:44,099 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 8
+2025-09-10 21:45:44,375 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:44,853 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:44,880 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 9
+2025-09-10 21:45:45,190 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:45,830 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:45,844 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 10
+2025-09-10 21:45:46,219 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:46,693 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:46,741 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 11
+2025-09-10 21:45:47,176 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:47,812 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:47,814 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 12
+2025-09-10 21:45:48,154 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:48,614 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:48,703 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 13
+2025-09-10 21:45:49,023 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:49,556 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:49,633 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 14
+2025-09-10 21:45:50,004 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:50,292 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:50,309 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 15
+2025-09-10 21:45:51,050 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:51,438 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:51,488 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 16
+2025-09-10 21:45:51,906 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:52,216 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:52,358 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 17
+2025-09-10 21:45:52,749 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:53,174 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:53,279 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 18
+2025-09-10 21:45:53,575 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:53,791 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:53,821 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 19
+2025-09-10 21:45:54,381 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:54,857 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:54,930 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 20
+2025-09-10 21:45:55,435 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:56,395 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:56,613 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 21
+2025-09-10 21:45:57,326 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:58,126 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:58,156 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 22
+2025-09-10 21:45:58,622 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:45:59,249 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:45:59,675 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 23
+2025-09-10 21:46:00,050 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:00,450 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:00,503 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 24
+2025-09-10 21:46:01,103 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:01,821 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:01,863 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 25
+2025-09-10 21:46:02,316 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:02,923 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:02,961 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 26
+2025-09-10 21:46:03,297 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:03,663 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:03,666 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 27
+2025-09-10 21:46:04,066 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:04,620 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:04,622 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 28
+2025-09-10 21:46:04,893 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:06,114 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:06,121 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 29
+2025-09-10 21:46:06,620 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:07,234 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:07,247 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 30
+2025-09-10 21:46:07,543 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:08,031 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:08,033 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 31
+2025-09-10 21:46:08,653 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:09,158 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:09,159 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 32
+2025-09-10 21:46:09,901 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:10,205 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:10,234 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 33
+2025-09-10 21:46:10,605 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:11,027 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:11,037 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 34
+2025-09-10 21:46:11,583 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:12,065 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:12,067 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 35
+2025-09-10 21:46:12,386 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:12,851 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:12,857 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 36
+2025-09-10 21:46:13,283 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:13,727 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:13,748 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 37
+2025-09-10 21:46:14,244 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:14,699 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:14,767 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 38
+2025-09-10 21:46:15,268 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:15,651 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:15,671 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 39
+2025-09-10 21:46:15,984 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:16,366 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:16,404 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 40
+2025-09-10 21:46:17,008 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:17,406 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:17,445 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 41
+2025-09-10 21:46:17,756 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:18,136 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:18,185 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 42
+2025-09-10 21:46:19,414 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:19,972 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:20,014 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 43
+2025-09-10 21:46:20,331 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:20,933 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:21,037 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 44
+2025-09-10 21:46:21,386 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:22,048 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:22,128 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 45
+2025-09-10 21:46:22,541 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:23,101 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:23,167 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 46
+2025-09-10 21:46:23,811 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:24,207 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:24,283 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 47
+2025-09-10 21:46:24,690 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:25,329 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:25,414 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 48
+2025-09-10 21:46:26,049 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:27,615 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:27,620 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 49
+2025-09-10 21:46:28,125 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:29,331 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:29,386 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 50
+2025-09-10 21:46:29,910 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:46:30,374 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 21:46:30,413 [INFO] database.supabase_client [supabase_client.py:283]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 51
+2025-09-10 21:46:30,846 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents "HTTP/2 400 Bad Request"
+2025-09-10 21:46:30,850 [WARNING] api.routes.upload [upload.py:111]: Document record/linking failed: {'message': "Could not find the 'document_type' column of 'documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:46:31,164 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:46:31,289 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28cb5426c9-ee20-46b6-9230-706957c940d7%29 "HTTP/2 200 OK"
+2025-09-10 21:48:18,144 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:48:18,290 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:48:18,451 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:48:18,611 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:48:18,762 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28cb5426c9-ee20-46b6-9230-706957c940d7%29 "HTTP/2 200 OK"
+2025-09-10 21:48:29,374 [INFO] services.document_processor [document_processor.py:26]: Processing document: document1.pdf
+2025-09-10 21:48:30,024 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:30,797 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:30,800 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:31,524 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:32,292 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:32,304 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:32,685 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:33,174 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:33,211 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:33,500 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:34,228 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:34,229 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:34,548 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:34,931 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:34,933 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:35,251 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:35,681 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:35,683 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:36,388 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:37,097 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:37,102 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:37,440 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:37,925 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:37,930 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:38,287 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:38,770 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:38,771 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:39,057 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:39,950 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:39,967 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:40,366 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:41,684 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:41,686 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:42,052 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:42,845 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:42,846 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:43,180 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:43,727 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:43,739 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:44,066 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:44,686 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:44,688 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:45,076 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:45,569 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:45,569 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:45,968 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:46,443 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:46,445 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:46,711 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:47,163 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:47,164 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:47,492 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:48,043 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:48,045 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:48,455 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:49,002 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:49,004 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:49,432 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:49,891 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:49,893 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:50,231 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:50,842 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:50,843 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:51,115 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:51,583 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:51,584 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:51,868 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:52,300 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:52,302 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:52,771 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:48:53,251 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:53,252 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:53,561 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents "HTTP/2 400 Bad Request"
+2025-09-10 21:48:53,564 [WARNING] api.routes.upload [upload.py:111]: Document record/linking failed: {'message': "Could not find the 'document_type' column of 'documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:48:53,972 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:48:54,106 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28cb5426c9-ee20-46b6-9230-706957c940d7%29 "HTTP/2 200 OK"
+2025-09-10 21:50:59,724 [INFO] httpx [_client.py:1025]: HTTP Request: DELETE https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab&document_id=eq.cb5426c9-ee20-46b6-9230-706957c940d7 "HTTP/2 200 OK"
+2025-09-10 21:51:14,451 [INFO] root [main.py:70]: Application shutdown complete
+2025-09-10 21:51:16,888 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-10 21:51:16,920 [INFO] root [main.py:41]: Initializing RAG Pipeline API...
+2025-09-10 21:51:16,920 [INFO] root [main.py:45]: Settings loaded and validated successfully
+2025-09-10 21:51:18,718 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-10 21:51:18,735 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-10 21:51:18,747 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-10 21:51:18,747 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-10 21:51:18,747 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-10 21:51:18,747 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-10 21:51:18,747 [INFO] root [main.py:61]: RAG Pipeline API initialized successfully
+2025-09-10 21:51:28,126 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 21:51:28,290 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:51:28,439 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:51:29,561 [INFO] httpx [_client.py:1025]: HTTP Request: DELETE https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:51:29,718 [INFO] httpx [_client.py:1025]: HTTP Request: DELETE https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?conversation_id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:51:29,889 [INFO] httpx [_client.py:1025]: HTTP Request: DELETE https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?id=eq.bcf7ac99-0826-4168-9bd6-0c94fb5f1eab "HTTP/2 200 OK"
+2025-09-10 21:51:30,045 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:51:30,202 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.59c9de30-b773-453a-b26b-1aa64b1a127d "HTTP/2 200 OK"
+2025-09-10 21:51:33,160 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations "HTTP/2 201 Created"
+2025-09-10 21:51:33,321 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.7e9d447b-9889-4df3-bc4b-b1d1a5633098&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 21:51:33,494 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.7e9d447b-9889-4df3-bc4b-b1d1a5633098 "HTTP/2 200 OK"
+2025-09-10 21:51:40,262 [INFO] services.document_processor [document_processor.py:26]: Processing document: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf
+2025-09-10 21:51:41,639 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:42,214 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:42,217 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:42,541 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:42,934 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:42,943 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:43,357 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:44,305 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:44,310 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:44,849 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:45,642 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:45,644 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:45,967 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:46,239 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:46,241 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:46,608 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:47,164 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:47,179 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:47,501 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:48,295 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:48,296 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:48,612 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:49,028 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:49,029 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:49,338 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:50,626 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:50,628 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:50,909 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:51,562 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:51,564 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:52,058 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:52,758 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:52,759 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:53,176 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:53,589 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:53,637 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:53,905 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:54,279 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:54,280 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:54,783 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:55,182 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:55,184 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:55,505 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:55,938 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:55,939 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:56,363 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:56,984 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:56,986 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:57,411 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:57,887 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:57,889 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:51:58,315 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:51:59,094 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:51:59,096 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:00,787 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:01,428 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:01,450 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:01,961 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:02,758 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:02,760 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:03,112 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:03,805 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:03,807 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:04,243 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:04,918 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:04,921 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:05,271 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:06,212 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:06,224 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:06,681 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:07,489 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:07,491 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:07,821 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:08,619 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:08,620 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:09,117 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:10,011 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:10,023 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:10,343 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:11,158 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:11,160 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:11,532 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:12,116 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:12,119 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:12,841 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:13,578 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:13,593 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:14,042 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:14,695 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:14,696 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:15,208 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:15,650 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:15,652 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:16,085 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:16,602 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:16,604 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:17,084 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:17,426 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:17,427 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:17,817 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:18,449 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:18,451 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:18,869 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:19,497 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:19,522 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:19,921 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:20,529 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:20,531 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:21,009 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:21,637 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:21,639 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:22,263 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:22,853 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:22,854 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:23,183 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:23,816 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:23,825 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:24,122 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:24,617 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:24,619 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:24,951 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:25,338 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:25,339 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:25,745 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:26,183 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:26,197 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:26,537 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:27,123 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:27,124 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:27,419 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:27,889 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:27,892 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:28,310 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:28,889 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:28,928 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:29,283 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:30,039 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:30,041 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:30,456 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:31,160 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:31,161 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:31,465 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:31,887 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:31,888 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:32,269 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:32,679 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:32,681 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:33,000 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:33,349 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:33,358 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:33,670 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 21:52:34,054 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:34,055 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:34,419 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents "HTTP/2 400 Bad Request"
+2025-09-10 21:52:34,421 [WARNING] api.routes.upload [upload.py:111]: Document record/linking failed: {'message': "Could not find the 'document_type' column of 'documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-10 21:52:35,016 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.7e9d447b-9889-4df3-bc4b-b1d1a5633098 "HTTP/2 200 OK"
+2025-09-10 22:02:20,771 [INFO] root [main.py:70]: Application shutdown complete
+2025-09-10 22:02:28,425 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-10 22:02:28,458 [INFO] root [main.py:41]: Initializing RAG Pipeline API...
+2025-09-10 22:02:28,458 [INFO] root [main.py:45]: Settings loaded and validated successfully
+2025-09-10 22:02:29,975 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-10 22:02:29,988 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-10 22:02:30,000 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-10 22:02:30,000 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-10 22:02:30,000 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-10 22:02:30,001 [INFO] orchestration.orchestrator [orchestrator.py:50]: RAG Orchestrator initialized successfully
+2025-09-10 22:02:30,001 [INFO] root [main.py:61]: RAG Pipeline API initialized successfully
+2025-09-10 22:02:34,504 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-10 22:02:34,769 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.7e9d447b-9889-4df3-bc4b-b1d1a5633098&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-10 22:02:34,947 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.7e9d447b-9889-4df3-bc4b-b1d1a5633098 "HTTP/2 200 OK"
+2025-09-10 22:02:39,412 [INFO] services.document_processor [document_processor.py:26]: Processing document: Feature Tax protections with copy.pdf
+2025-09-10 22:02:40,648 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:41,772 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:41,776 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 1
+2025-09-10 22:02:42,288 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:42,689 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:42,779 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 2
+2025-09-10 22:02:43,108 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:43,578 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:43,647 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 3
+2025-09-10 22:02:44,023 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:44,765 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:44,812 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 4
+2025-09-10 22:02:45,363 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:45,886 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:45,942 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 5
+2025-09-10 22:02:46,389 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:46,844 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:46,881 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 6
+2025-09-10 22:02:47,195 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:47,565 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:47,657 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 7
+2025-09-10 22:02:48,016 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:48,533 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:48,627 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 8
+2025-09-10 22:02:49,143 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:49,594 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:49,743 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 9
+2025-09-10 22:02:50,166 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:50,540 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:50,559 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 10
+2025-09-10 22:02:50,856 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:51,177 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:51,189 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 11
+2025-09-10 22:02:51,498 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:52,223 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:52,257 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 12
+2025-09-10 22:02:52,634 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:53,015 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:53,056 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 13
+2025-09-10 22:02:53,445 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:53,795 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:53,848 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 14
+2025-09-10 22:02:54,174 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:54,960 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:54,991 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 15
+2025-09-10 22:02:55,494 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:55,892 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:55,917 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 16
+2025-09-10 22:02:56,236 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:56,543 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:56,583 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 17
+2025-09-10 22:02:56,873 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:57,419 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:57,456 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 18
+2025-09-10 22:02:57,756 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:58,448 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:58,471 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 19
+2025-09-10 22:02:58,973 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:02:59,382 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:02:59,407 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 20
+2025-09-10 22:02:59,792 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:00,285 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:00,348 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 21
+2025-09-10 22:03:00,851 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:01,574 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:01,652 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 22
+2025-09-10 22:03:01,990 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:02,479 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:02,487 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 23
+2025-09-10 22:03:02,796 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:03,325 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:03,360 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 24
+2025-09-10 22:03:03,669 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:04,217 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:04,230 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 25
+2025-09-10 22:03:04,551 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:05,154 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:05,180 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 26
+2025-09-10 22:03:05,569 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:05,966 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:05,984 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 27
+2025-09-10 22:03:06,344 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:06,633 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:06,634 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 28
+2025-09-10 22:03:08,314 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:08,551 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:08,588 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 29
+2025-09-10 22:03:08,859 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:09,263 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:09,281 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 30
+2025-09-10 22:03:09,593 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:09,897 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:09,912 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 31
+2025-09-10 22:03:10,226 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:10,699 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:10,729 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 32
+2025-09-10 22:03:11,370 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:11,653 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:11,815 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 33
+2025-09-10 22:03:13,006 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:13,408 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:13,510 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 34
+2025-09-10 22:03:14,058 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:14,533 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:14,552 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 35
+2025-09-10 22:03:16,380 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:17,005 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:17,033 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 36
+2025-09-10 22:03:17,415 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:18,062 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:18,104 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 37
+2025-09-10 22:03:18,497 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:19,495 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:19,654 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 38
+2025-09-10 22:03:20,068 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:20,530 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:20,532 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 39
+2025-09-10 22:03:20,818 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:21,162 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:21,247 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 40
+2025-09-10 22:03:21,534 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:22,155 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:22,160 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 41
+2025-09-10 22:03:22,609 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:23,030 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:23,035 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 42
+2025-09-10 22:03:23,448 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:23,888 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:23,890 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 43
+2025-09-10 22:03:24,358 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:24,773 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:24,794 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 44
+2025-09-10 22:03:25,111 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:25,683 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:25,691 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 45
+2025-09-10 22:03:25,973 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:26,605 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:26,612 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 46
+2025-09-10 22:03:26,950 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:27,378 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:27,403 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 47
+2025-09-10 22:03:27,678 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:03:28,064 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:03:28,077 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: Feature Tax protections with copy.pdf - Chunk 48
+2025-09-10 22:03:28,447 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents "HTTP/2 201 Created"
+2025-09-10 22:03:28,579 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents "HTTP/2 201 Created"
+2025-09-10 22:03:29,040 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.7e9d447b-9889-4df3-bc4b-b1d1a5633098 "HTTP/2 200 OK"
+2025-09-10 22:03:29,169 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28f2fc4e53-571f-4cde-8eb8-8f649b4f42fa%29 "HTTP/2 200 OK"
+2025-09-10 22:12:51,682 [INFO] services.document_processor [document_processor.py:26]: Processing document: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf
+2025-09-10 22:12:52,484 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:12:53,807 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:12:53,826 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 1
+2025-09-10 22:12:54,393 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:12:55,044 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:12:55,064 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 2
+2025-09-10 22:12:55,319 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:12:55,953 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:12:55,957 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 3
+2025-09-10 22:12:56,335 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:12:57,054 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:12:57,058 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 4
+2025-09-10 22:12:57,461 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:12:58,417 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:12:58,425 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 5
+2025-09-10 22:12:58,723 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:12:59,260 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:12:59,261 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 6
+2025-09-10 22:12:59,722 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:00,278 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:00,358 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 7
+2025-09-10 22:13:01,250 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:01,833 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:01,845 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 8
+2025-09-10 22:13:02,124 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:02,713 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:02,717 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 9
+2025-09-10 22:13:03,161 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:03,527 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:03,584 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 10
+2025-09-10 22:13:03,909 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:04,256 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:04,268 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 11
+2025-09-10 22:13:04,792 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:06,621 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:06,624 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 12
+2025-09-10 22:13:07,141 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:07,476 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:07,500 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 13
+2025-09-10 22:13:07,801 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:08,051 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:08,053 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 14
+2025-09-10 22:13:08,334 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:08,676 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:08,781 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 15
+2025-09-10 22:13:09,035 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:09,315 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:09,332 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 16
+2025-09-10 22:13:09,651 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:09,962 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:10,121 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 17
+2025-09-10 22:13:10,442 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:10,689 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:10,692 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 18
+2025-09-10 22:13:11,100 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:11,729 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:11,738 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 19
+2025-09-10 22:13:12,038 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:12,199 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:12,202 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 20
+2025-09-10 22:13:12,472 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:12,818 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:12,822 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 21
+2025-09-10 22:13:13,167 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:13,732 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:13,806 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 22
+2025-09-10 22:13:14,105 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:14,600 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:14,604 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 23
+2025-09-10 22:13:14,871 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:15,322 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:15,326 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 24
+2025-09-10 22:13:15,611 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:16,213 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:16,251 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 25
+2025-09-10 22:13:16,533 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:16,914 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:16,925 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 26
+2025-09-10 22:13:17,327 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:17,874 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:17,879 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 27
+2025-09-10 22:13:18,164 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:19,086 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:19,118 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 28
+2025-09-10 22:13:19,567 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:20,049 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:20,065 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 29
+2025-09-10 22:13:20,371 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:20,998 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:21,019 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 30
+2025-09-10 22:13:21,320 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:21,802 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:21,805 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 31
+2025-09-10 22:13:22,129 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:22,675 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:22,762 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 32
+2025-09-10 22:13:23,247 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:23,801 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:23,803 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 33
+2025-09-10 22:13:24,117 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:24,674 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:24,719 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 34
+2025-09-10 22:13:25,089 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:25,482 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:25,662 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 35
+2025-09-10 22:13:25,959 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:26,276 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:26,308 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 36
+2025-09-10 22:13:26,687 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:27,245 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:27,269 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 37
+2025-09-10 22:13:27,719 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:28,062 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:28,081 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 38
+2025-09-10 22:13:28,382 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:28,743 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:28,876 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 39
+2025-09-10 22:13:29,182 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:29,886 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:29,891 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 40
+2025-09-10 22:13:31,303 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:31,954 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:31,973 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 41
+2025-09-10 22:13:32,304 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:32,866 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:32,870 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 42
+2025-09-10 22:13:33,184 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:33,830 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:33,881 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 43
+2025-09-10 22:13:34,215 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:34,721 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:34,780 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 44
+2025-09-10 22:13:35,085 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:35,861 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:35,884 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 45
+2025-09-10 22:13:36,252 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:37,335 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:37,351 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 46
+2025-09-10 22:13:37,722 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:38,382 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:38,394 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 47
+2025-09-10 22:13:38,693 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:39,073 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:39,080 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 48
+2025-09-10 22:13:39,472 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:40,043 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:40,047 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 49
+2025-09-10 22:13:40,366 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:40,678 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:40,694 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 50
+2025-09-10 22:13:41,110 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 22:13:41,409 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents "HTTP/2 201 Created"
+2025-09-10 22:13:41,435 [INFO] database.supabase_client [supabase_client.py:292]: Document inserted successfully: LW-NFPP-C19-CORP-Merger-detailed-guide.pdf - Chunk 51
+2025-09-10 22:13:41,875 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents "HTTP/2 201 Created"
+2025-09-10 22:13:41,987 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents "HTTP/2 201 Created"
+2025-09-10 22:13:42,364 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.7e9d447b-9889-4df3-bc4b-b1d1a5633098 "HTTP/2 200 OK"
+2025-09-10 22:13:42,457 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28f2fc4e53-571f-4cde-8eb8-8f649b4f42fa%2Cca205c3f-50ff-457f-b32b-b82ceeba1084%29 "HTTP/2 200 OK"
+2025-09-10 22:29:53,715 [INFO] root [main.py:70]: Application shutdown complete
+2025-09-10 22:29:56,959 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-10 22:29:56,994 [INFO] root [main.py:41]: Initializing RAG Pipeline API...
+2025-09-10 22:29:56,994 [INFO] root [main.py:45]: Settings loaded and validated successfully
+2025-09-10 22:29:58,666 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-10 22:29:58,691 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-10 22:29:58,701 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-10 22:29:58,701 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-10 22:29:58,701 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-10 22:29:58,701 [INFO] orchestration.orchestrator [orchestrator.py:52]: RAG Orchestrator initialized successfully
+2025-09-10 22:29:58,701 [INFO] root [main.py:61]: RAG Pipeline API initialized successfully
+2025-09-10 22:41:54,348 [INFO] root [main.py:70]: Application shutdown complete

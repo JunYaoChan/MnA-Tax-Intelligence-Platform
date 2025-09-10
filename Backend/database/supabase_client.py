@@ -4,6 +4,7 @@ import asyncio
 import numpy as np
 from config.settings import Settings
 import logging
+import re
 from openai import AsyncOpenAI
 
 # Import supabase with fallback for compatibility issues
@@ -97,14 +98,14 @@ class SupabaseVectorStore:
             similarity_threshold: Minimum similarity score
         """
         try:
-            # Generate embedding for query
+            # Hybrid search (vector + lexical) if enabled
+            if getattr(self.settings, "enable_hybrid_search", False):
+                return await self.hybrid_search(query, top_k=top_k, filter=filter, similarity_threshold=similarity_threshold)
+
+            # Generate embedding for vector-only search
             embedding = await self.generate_embedding(query)
-            
-            # Decide threshold (project setting by default)
             threshold = similarity_threshold if similarity_threshold is not None else self.settings.vector_similarity_threshold
-            # Use RPC function to avoid URI length issues
             return await self.search_with_rpc(embedding, top_k, threshold, filter)
-            
         except Exception as e:
             logger.error(f"Error in vector search: {e}")
             # Fallback to text search
@@ -132,18 +133,28 @@ class SupabaseVectorStore:
             
             results = response.data if response.data else []
             
-            # Apply additional filters if needed
+            # Apply additional filters if needed (supports dotted keys for nested dicts e.g. "metadata.processor_document_id")
             if filter_dict and results:
+                def get_nested(obj: Dict[str, Any], path: str):
+                    cur = obj
+                    for part in path.split("."):
+                        if isinstance(cur, dict) and part in cur:
+                            cur = cur[part]
+                        else:
+                            return None
+                    return cur
+
                 filtered_results = []
                 for result in results:
                     match = True
                     for key, value in filter_dict.items():
-                        if key in result:
-                            if isinstance(value, list):
-                                if result[key] not in value:
-                                    match = False
-                                    break
-                            elif result[key] != value:
+                        rv = get_nested(result, key)
+                        if isinstance(value, list):
+                            if rv not in value:
+                                match = False
+                                break
+                        else:
+                            if rv != value:
                                 match = False
                                 break
                     if match:
@@ -157,6 +168,95 @@ class SupabaseVectorStore:
             # Fallback to direct vector search (smaller embeddings)
             return await self.vector_search_direct_safe(query_embedding, top_k, filter_dict)
     
+    async def hybrid_search(self, query: str, top_k: int = 10, filter: Optional[Dict[str, Any]] = None, similarity_threshold: Optional[float] = None) -> List[Dict]:
+        """
+        Hybrid retrieval that blends vector similarity with a simple lexical score.
+        Final score = alpha * vector_score + (1 - alpha) * lexical_score.
+        """
+        try:
+            # Vector part
+            embedding = await self.generate_embedding(query)
+            threshold = similarity_threshold if similarity_threshold is not None else self.settings.vector_similarity_threshold
+            vector_results = await self.search_with_rpc(
+                embedding, top_k=self.settings.top_k_results, similarity_threshold=threshold, filter_dict=filter
+            )
+
+            # Lexical part (fetch candidates and score locally)
+            lexical_candidates = await self.fallback_text_search(
+                query=query, top_k=getattr(self.settings, "hybrid_lexical_top_k", 20), filter_dict=filter
+            )
+
+            # Combine
+            alpha = getattr(self.settings, "hybrid_alpha", 0.5)
+
+            def clip01(x: float) -> float:
+                try:
+                    return max(0.0, min(1.0, float(x)))
+                except Exception:
+                    return 0.0
+
+            merged: Dict[Any, Dict] = {}
+
+            # Add vector results
+            for doc in vector_results:
+                vid = doc.get("id")
+                vscore = clip01(doc.get("relevance_score", 0.0))
+                merged[vid] = {**doc}
+                merged[vid]["vector_score"] = vscore
+                merged[vid]["lexical_score"] = 0.0
+
+            # Compute lexical scores and merge
+            terms = [t for t in re.findall(r"\w+", (query or "").lower()) if len(t) > 2]
+            for doc in lexical_candidates:
+                lid = doc.get("id")
+                lscore = self._lexical_score(doc, terms)
+                if lid in merged:
+                    merged[lid]["lexical_score"] = max(merged[lid].get("lexical_score", 0.0), lscore)
+                else:
+                    nd = {**doc}
+                    nd["vector_score"] = 0.0
+                    nd["lexical_score"] = lscore
+                    merged[lid] = nd
+
+            # Compute hybrid score
+            combined = []
+            for d in merged.values():
+                v = clip01(d.get("vector_score", 0.0))
+                l = clip01(d.get("lexical_score", 0.0))
+                h = alpha * v + (1.0 - alpha) * l
+                d["relevance_score"] = h
+                d["source"] = d.get("source", "hybrid")
+                combined.append(d)
+
+            combined.sort(key=lambda x: x.get("relevance_score", 0.0), reverse=True)
+            return combined[:top_k]
+        except Exception as e:
+            logger.error(f"Hybrid search failed, falling back to vector-only: {e}")
+            # Fallback to vector-only
+            embedding = await self.generate_embedding(query)
+            threshold = similarity_threshold if similarity_threshold is not None else self.settings.vector_similarity_threshold
+            return await self.search_with_rpc(embedding, top_k, threshold, filter)
+
+    def _lexical_score(self, doc: Dict[str, Any], terms: List[str]) -> float:
+        """
+        Simple lexical scoring based on term frequency in title/content with small title boost.
+        """
+        if not terms:
+            return 0.0
+        title = (doc.get("title", "") or "").lower()
+        content = (doc.get("content", "") or "").lower()
+        if not title and not content:
+            return 0.0
+        hits = 0
+        for t in terms:
+            hits += content.count(t)
+            if t in title:
+                hits += 1  # title boost
+        # Normalize roughly by number of terms (scale denominator to keep scores in [0,1])
+        denom = max(1.0, len(terms) * 3.0)
+        score = hits / denom
+        return max(0.0, min(1.0, score))
+
     async def vector_search_direct_safe(
         self,
         embedding: List[float],
@@ -271,7 +371,6 @@ class SupabaseVectorStore:
             doc_data = {
                 'title': document.get('title', 'Untitled Document'),
                 'content': document['content'],
-                'document_type': document.get('document_type', 'unknown'),
                 'metadata': document.get('metadata', {}),
                 'embedding': embedding
             }
@@ -308,7 +407,6 @@ class SupabaseVectorStore:
                         doc_data = {
                             'title': doc.get('title', 'Untitled Document'),
                             'content': doc['content'],
-                            'document_type': doc.get('document_type', 'unknown'),
                             'metadata': doc.get('metadata', {}),
                             'embedding': embedding
                         }

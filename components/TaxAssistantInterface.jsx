@@ -14,7 +14,6 @@ const TaxAssistantInterface = () => {
   const [debugInfo, setDebugInfo] = useState('');
   const [showDebug, setShowDebug] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedDocType, setSelectedDocType] = useState('expert_analysis');
 
   const fileInputRef = useRef(null);
   const chatEndRef = useRef(null);
@@ -303,7 +302,7 @@ const TaxAssistantInterface = () => {
     }
   }
 
-  async function handleUpload(file, docType = 'expert_analysis') {
+  async function handleUpload(file) {
     addDebugInfo('🔵 handleUpload called');
     addDebugInfo(`File: ${file?.name} (${file?.size} bytes)`);
     addDebugInfo(`User ID: ${userId}`);
@@ -334,7 +333,6 @@ const TaxAssistantInterface = () => {
     try {
       const form = new FormData();
       form.append('file', file);
-      form.append('document_type', docType);
       form.append('metadata', JSON.stringify({ uploaded_via: 'ui', size: file.size }));
       form.append('conversation_id', activeConversationId);
       form.append('user_id', userId);
@@ -427,7 +425,7 @@ const TaxAssistantInterface = () => {
         return;
       }
 
-      handleUpload(file, selectedDocType);
+      handleUpload(file);
     } else {
       addDebugInfo('❌ No file in selection');
     }
@@ -444,7 +442,7 @@ const TaxAssistantInterface = () => {
     const file = e.dataTransfer?.files?.[0];
     if (file) {
       addDebugInfo(`Dropped file: ${file.name}`);
-      handleUpload(file, selectedDocType);
+      handleUpload(file);
     }
   }
 
@@ -760,21 +758,6 @@ const TaxAssistantInterface = () => {
               }}>
               {uploading ? '⏳' : '📎'}
             </Button>
-
-            <select
-              className="form-control form-control-sm mr-2"
-              value={selectedDocType}
-              onChange={e => setSelectedDocType(e.target.value)}
-              disabled={isDisabled || uploading}
-              title="Document type"
-              style={{ width: 'auto' }}>
-              <option value="expert_analysis">Expert</option>
-              <option value="regulation">Regulation</option>
-              <option value="case_law">Case Law</option>
-              <option value="precedent">Precedent</option>
-              <option value="irs_guidance">IRS Guidance</option>
-              <option value="revenue_ruling">Revenue Ruling</option>
-            </select>
 
             <Input
               type="text"

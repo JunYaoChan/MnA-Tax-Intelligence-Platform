@@ -13,6 +13,7 @@ from agents.precedent import PrecedentAgent
 from agents.expert import ExpertAgent
 from function_tools.registry import FunctionToolRegistry
 from services.llm_synthesis_service import LLMSynthesisService
+from services.query_enhancer import QueryEnhancer
 from database.supabase_client import SupabaseVectorStore
 from database.neo4j_client import Neo4jClient
 
@@ -34,6 +35,7 @@ class RAGOrchestrator:
         self.neo4j = neo4j_client
         self.function_tools = FunctionToolRegistry(settings)
         self.llm_synthesis = LLMSynthesisService(settings)
+        self.query_enhancer = QueryEnhancer(settings.openai_api_key)
         
         # Initialize agents with function tools
         self.agents = {}
@@ -152,6 +154,28 @@ class RAGOrchestrator:
             state.complexity = complexity_map.get(complexity_str, QueryComplexity.MODERATE)
         else:
             state.complexity = complexity_str
+
+        # Attach strategy from planning to pipeline metadata
+        strategy = planning_result.metadata.get('strategy', {})
+        state.pipeline_metadata = {'strategy': strategy}
+
+        # LLM query enhancement BEFORE vector search (replace heuristic refined queries)
+        try:
+            rec_agents = strategy.get('recommended_agents', [])
+            seed_refined = strategy.get('refined_queries', {}) or {}
+            enhanced: Dict[str, str] = {}
+            for agent_name in rec_agents:
+                enhanced_query = await self.query_enhancer.enhance(
+                    original_query=state.query,
+                    intent=state.intent or {},
+                    agent_name=agent_name,
+                    seed_refined_query=seed_refined.get(agent_name)
+                )
+                enhanced[agent_name] = enhanced_query
+            state.pipeline_metadata['strategy']['refined_queries'] = enhanced
+            logger.info(f"Query enhancement produced refined queries for agents: {list(enhanced.keys())}")
+        except Exception as e:
+            logger.warning(f"Query enhancement skipped due to error: {e}")
         
         return state
     

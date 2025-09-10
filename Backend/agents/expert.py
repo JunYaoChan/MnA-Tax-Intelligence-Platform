@@ -99,8 +99,7 @@ class ExpertAgent(BaseAgent):
         try:
             results = await self.vector_store.search(
                 query=query,
-                top_k=self.settings.top_k_results,
-                filter=self._get_vector_filter()
+                top_k=self.settings.top_k_results
             )
             return results
         except Exception as e:

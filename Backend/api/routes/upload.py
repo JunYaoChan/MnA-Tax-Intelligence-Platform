@@ -27,7 +27,7 @@ chat_repo = ChatRepository(settings)
 @router.post("/document")
 async def upload_document(
     file: UploadFile = File(...),
-    document_type: str = Form(...),
+    document_type: Optional[str] = Form(None),
     metadata: Optional[str] = Form(None),
     conversation_id: Optional[str] = Form(None),
     user_id: Optional[str] = Form(None)
@@ -41,13 +41,16 @@ async def upload_document(
         metadata: Optional JSON string with additional metadata
     """
     try:
-        # Validate document type
+        # Validate/normalize document type
         valid_types = ["regulation", "case_law", "precedent", "expert_analysis", "irs_guidance", "revenue_ruling"]
-        if document_type not in valid_types:
-            raise HTTPException(
-                status_code=400,
-                detail=f"Invalid document_type. Must be one of: {', '.join(valid_types)}"
-            )
+        if document_type:
+            if document_type not in valid_types:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Invalid document_type. Must be one of: {', '.join(valid_types)}"
+                )
+        else:
+            document_type = "unknown"
         
         # Parse metadata if provided
         doc_metadata = {}
@@ -95,7 +98,6 @@ async def upload_document(
                         "id": doc_record_id,
                         "user_id": user_id,
                         "filename": file.filename,
-                        "document_type": document_type,
                         "metadata": doc_meta
                     }).execute()
                     response_content["document_record_id"] = doc_record_id
@@ -196,7 +198,7 @@ async def upload_documents_batch(
 async def upload_text_content(
     title: str = Form(...),
     content: str = Form(...),
-    document_type: str = Form(...),
+    document_type: Optional[str] = Form(None),
     metadata: Optional[str] = Form(None),
     conversation_id: Optional[str] = Form(None),
     user_id: Optional[str] = Form(None)
@@ -211,13 +213,16 @@ async def upload_text_content(
         metadata: Optional JSON metadata
     """
     try:
-        # Validate document type
+        # Validate/normalize document type
         valid_types = ["regulation", "case_law", "precedent", "expert_analysis", "irs_guidance", "revenue_ruling"]
-        if document_type not in valid_types:
-            raise HTTPException(
-                status_code=400,
-                detail=f"Invalid document_type. Must be one of: {', '.join(valid_types)}"
-            )
+        if document_type:
+            if document_type not in valid_types:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Invalid document_type. Must be one of: {', '.join(valid_types)}"
+                )
+        else:
+            document_type = "unknown"
         
         # Parse metadata
         doc_metadata = {}
@@ -261,7 +266,6 @@ async def upload_text_content(
                         "id": doc_record_id,
                         "user_id": user_id,
                         "filename": title,
-                        "document_type": document_type,
                         "metadata": doc_meta
                     }).execute()
                     response_content["document_record_id"] = doc_record_id

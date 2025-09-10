@@ -41,6 +41,10 @@ class Settings:
     # Vector Search Configuration
     embedding_model: str = os.getenv("EMBEDDING_MODEL", "text-embedding-ada-002")
     vector_similarity_threshold: float = float(os.getenv("VECTOR_SIMILARITY_THRESHOLD", "0.7"))
+    # Hybrid Search Configuration
+    enable_hybrid_search: bool = os.getenv("ENABLE_HYBRID_SEARCH", "false").lower() == "true"
+    hybrid_alpha: float = float(os.getenv("HYBRID_ALPHA", "0.5"))  # weight for vector vs lexical
+    hybrid_lexical_top_k: int = int(os.getenv("HYBRID_LEXICAL_TOP_K", "20"))
     
     # Enhanced Brave Search Configuration
     brave_search_count: int = int(os.getenv("BRAVE_SEARCH_COUNT", "10"))
@@ -118,6 +122,11 @@ class Settings:
         
         if not (0.0 <= self.vector_similarity_threshold <= 1.0):
             errors.append("VECTOR_SIMILARITY_THRESHOLD must be between 0.0 and 1.0")
+        # Hybrid search validation
+        if not (0.0 <= self.hybrid_alpha <= 1.0):
+            errors.append("HYBRID_ALPHA must be between 0.0 and 1.0")
+        if self.hybrid_lexical_top_k <= 0:
+            errors.append("HYBRID_LEXICAL_TOP_K must be positive")
         
         if self.agent_timeout <= 0:
             errors.append("AGENT_TIMEOUT must be positive")

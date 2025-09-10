@@ -123,8 +123,7 @@ class RegulationAgent(BaseAgent):
             for ref in reg_refs[:3]:  # Limit to top 3 to avoid too many searches
                 docs = await self.vector_store.search(
                     query=f"26 USC section {ref} IRC tax regulation",
-                    top_k=3,
-                    filter={"document_type": ["regulation", "internal_revenue_code", "federal_register", "irs_guidance", "revenue_ruling"]}
+                    top_k=3
                 )
                 documents.extend(docs)
 
@@ -132,16 +131,14 @@ class RegulationAgent(BaseAgent):
             if documents:
                 general_docs = await self.vector_store.search(
                     query=query,
-                    top_k=5,
-                    filter={"document_type": ["regulation", "internal_revenue_code", "federal_register", "irs_guidance", "revenue_ruling"]}
+                    top_k=5
                 )
                 documents.extend(general_docs)
         else:
             # General regulation search
             documents = await self.vector_store.search(
                 query=query,
-                top_k=self.settings.top_k_results,
-                filter={"document_type": ["regulation", "internal_revenue_code", "federal_register", "irs_guidance", "revenue_ruling"]}
+                top_k=self.settings.top_k_results
             )
 
         return documents

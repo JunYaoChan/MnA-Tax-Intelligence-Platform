@@ -97,8 +97,7 @@ class CaseLawAgent(BaseAgent):
 
         results = await self.vector_store.search(
             query=query,
-            top_k=self.settings.top_k_results,
-            filter={"document_type": ["revenue_ruling", "private_letter_ruling", "case_law", "case"]}
+            top_k=self.settings.top_k_results
         )
         return results
 
