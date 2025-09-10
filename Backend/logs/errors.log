@@ -56,3 +56,5 @@ client_session: <aiohttp.client.ClientSession object at 0x11cd0b690>
 client_session: <aiohttp.client.ClientSession object at 0x10b424d50>
 2025-09-09 21:48:31,464 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
 client_session: <aiohttp.client.ClientSession object at 0x117c15a90>
+2025-09-10 20:51:18,006 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x10a4f1890>

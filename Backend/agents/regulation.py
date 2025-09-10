@@ -124,7 +124,7 @@ class RegulationAgent(BaseAgent):
                 docs = await self.vector_store.search(
                     query=f"26 USC section {ref} IRC tax regulation",
                     top_k=3,
-                    filter={"document_type": ["regulation", "internal_revenue_code", "federal_register"]}
+                    filter={"document_type": ["regulation", "internal_revenue_code", "federal_register", "irs_guidance", "revenue_ruling"]}
                 )
                 documents.extend(docs)
 
@@ -133,7 +133,7 @@ class RegulationAgent(BaseAgent):
                 general_docs = await self.vector_store.search(
                     query=query,
                     top_k=5,
-                    filter={"document_type": ["regulation", "internal_revenue_code", "federal_register"]}
+                    filter={"document_type": ["regulation", "internal_revenue_code", "federal_register", "irs_guidance", "revenue_ruling"]}
                 )
                 documents.extend(general_docs)
         else:
@@ -141,7 +141,7 @@ class RegulationAgent(BaseAgent):
             documents = await self.vector_store.search(
                 query=query,
                 top_k=self.settings.top_k_results,
-                filter={"document_type": ["regulation", "internal_revenue_code", "federal_register"]}
+                filter={"document_type": ["regulation", "internal_revenue_code", "federal_register", "irs_guidance", "revenue_ruling"]}
             )
 
         return documents

@@ -1,187 +1,274 @@
-'use client';
-
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Row, Col, Card, CardBody, ListGroup, ListGroupItem, Button, Input } from 'reactstrap';
-import useAuthUser from '../lib/useAuthUser';
-import { BACKEND_URL, getJSON, postJSON, postStream } from '../lib/apiClient';
-
-const defaultRecent = ['IRC Section 368 Analysis', 'Cross-border Merger Struct...', 'Tax-free Reorganization Rules'];
+import React, { useState, useRef, useEffect } from 'react';
+import { Card, CardBody, Button, Input, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 
 const TaxAssistantInterface = () => {
-  const { user, isLoading } = useAuthUser();
-  const userId = useMemo(() => user?.sub || user?.user_id || 'demo-user', [user]);
-
-  const [conversations, setConversations] = useState([]);
-  const [activeConversationId, setActiveConversationId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [conversations, setConversations] = useState([]);
+  const [activeConversationId, setActiveConversationId] = useState(null);
   const [uploadedDocs, setUploadedDocs] = useState([]);
+  const [removingDocId, setRemovingDocId] = useState(null);
   const [debugInfo, setDebugInfo] = useState('');
+  const [showDebug, setShowDebug] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedDocType, setSelectedDocType] = useState('expert_analysis');
 
   const fileInputRef = useRef(null);
   const chatEndRef = useRef(null);
 
-  // Debug helper
-  const addDebugInfo = message => {
-    console.log(message);
-    setDebugInfo(prev => prev + '\n' + new Date().toLocaleTimeString() + ': ' + message);
-  };
+  const userId = 'test-user-123';
+  const BACKEND_URL =
+    process.env.NEXT_PUBLIC_BACKEND_URL || process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
-  // Auto-scroll to bottom on new messages
+  const defaultRecent = [
+    'Recent conversations will appear here',
+    'Click + to start a new chat',
+    'Upload documents for analysis'
+  ];
+
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, streaming]);
+  }, [messages]);
 
-  // Load or create conversation on user ready
   useEffect(() => {
-    if (!userId || isLoading) return;
-    (async () => {
-      try {
-        addDebugInfo('🔵 Loading conversations...');
-        // Fetch list
-        const res = await getJSON(`/api/chat/list?user_id=${encodeURIComponent(userId)}`);
-        const convs = res?.conversations || [];
-        setConversations(convs);
-        addDebugInfo(`🔵 Found ${convs.length} conversations`);
+    loadInitialConversations();
+  }, []);
 
-        if (convs.length > 0) {
-          setActiveConversationId(convs[0].id);
-          addDebugInfo(`🔵 Set active conversation: ${convs[0].id}`);
-        } else {
-          // Create if none
-          addDebugInfo('🔵 No conversations found, creating new one...');
-          const created = await postJSON('/api/chat/new', {
-            user_id: userId,
-            title: 'New Conversation'
-          });
-          const convId = created?.conversation_id;
-          if (convId) {
-            setConversations([{ id: convId, title: created?.title || 'New Conversation' }]);
-            setActiveConversationId(convId);
-            addDebugInfo(`🔵 Created new conversation: ${convId}`);
-          }
-        }
-      } catch (e) {
-        console.error('Failed to load conversations', e);
-        addDebugInfo(`❌ Failed to load conversations: ${e.message}`);
-      }
-    })();
-  }, [userId, isLoading]);
-
-  // Load history whenever active conversation changes
   useEffect(() => {
     if (!activeConversationId) return;
-    (async () => {
-      try {
-        addDebugInfo(`🔵 Loading history for conversation: ${activeConversationId}`);
-        const hist = await getJSON(`/api/chat/history/${activeConversationId}`);
-        setMessages(hist?.messages || []);
-        addDebugInfo(`🔵 Loaded ${hist?.messages?.length || 0} messages`);
-      } catch (e) {
-        console.error('Failed to load history', e);
-        addDebugInfo(`❌ Failed to load history: ${e.message}`);
-        setMessages([]);
-      }
-    })();
+    fetchConversationHistory(activeConversationId);
+    fetchConversationDocuments(activeConversationId);
   }, [activeConversationId]);
 
-  async function handleNewConversation() {
+  function addDebugInfo(message) {
+    const timestamp = new Date().toLocaleTimeString();
+    setDebugInfo(prev => `[${timestamp}] ${message}\n${prev}`);
+  }
+
+  // Load existing conversations, then select latest or create a new one
+  async function loadInitialConversations() {
+    addDebugInfo('🔵 Loading conversations');
+    setIsLoading(true);
     try {
-      addDebugInfo('🔵 Creating new conversation...');
-      const created = await postJSON('/api/chat/new', {
-        user_id: userId,
-        title: 'New Conversation'
-      });
-      const convId = created?.conversation_id;
-      if (convId) {
-        const next = [{ id: convId, title: created?.title || 'New Conversation' }, ...conversations];
-        setConversations(next);
-        setActiveConversationId(convId);
-        setMessages([]);
-        setUploadedDocs([]);
-        addDebugInfo(`✅ Created conversation: ${convId}`);
+      const res = await fetch(`${BACKEND_URL}/conversation/list?user_id=${userId}`);
+      if (res.ok) {
+        const data = await res.json();
+        const items = (data?.conversations || []).slice().reverse(); // newest first
+        setConversations(
+          items.map(item => ({
+            id: item.id,
+            title: String(item.id) // Show chat ID instead of "New Conversation"
+          }))
+        );
+        if (items.length > 0) {
+          setActiveConversationId(items[0].id);
+        } else {
+          await handleNewConversation();
+        }
+      } else {
+        addDebugInfo(`❌ list conversations failed: HTTP ${res.status}`);
+        await handleNewConversation();
       }
     } catch (e) {
-      console.error('Failed to create conversation', e);
+      addDebugInfo(`❌ list conversations error: ${e.message}`);
+      await handleNewConversation();
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function fetchConversationHistory(conversationId) {
+    try {
+      addDebugInfo(`🔵 Loading history for ${conversationId}`);
+      const res = await fetch(`${BACKEND_URL}/conversation/history/${conversationId}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      setMessages(data?.messages || []);
+    } catch (e) {
+      addDebugInfo(`❌ Failed to load history: ${e.message}`);
+      setMessages([]);
+    }
+  }
+
+  async function fetchConversationDocuments(conversationId) {
+    try {
+      addDebugInfo(`🔵 Loading documents for ${conversationId}`);
+      const res = await fetch(`${BACKEND_URL}/conversation/${conversationId}/documents`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const docs = data?.documents || [];
+      setUploadedDocs(
+        docs.map(d => ({
+          id: d.id,
+          filename: d.filename || (d.metadata && d.metadata.title) || 'Untitled',
+          document_type: d.document_type,
+          linked_to_conversation: true
+        }))
+      );
+    } catch (e) {
+      addDebugInfo(`❌ Failed to load documents: ${e.message}`);
+      setUploadedDocs([]);
+    }
+  }
+
+  async function handleNewConversation() {
+    addDebugInfo('🔵 Creating new conversation');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/conversation/new`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData?.detail || `HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      const newConvId = data.conversation_id;
+
+      addDebugInfo(`✅ New conversation created: ${newConvId}`);
+
+      setActiveConversationId(newConvId);
+      setMessages([]);
+      setInput('');
+
+      setConversations(prev => {
+        const updated = [{ id: newConvId, title: String(newConvId), messages: [] }, ...prev];
+        return updated.slice(0, 10);
+      });
+    } catch (e) {
+      console.error('Failed to create conversation:', e);
       addDebugInfo(`❌ Failed to create conversation: ${e.message}`);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   async function handleDeleteConversation(convId) {
     try {
-      addDebugInfo(`🔵 Deleting conversation: ${convId}`);
-      await fetch(`${BACKEND_URL}/api/chat/${convId}`, { method: 'DELETE' });
-      const next = conversations.filter(c => c.id !== convId);
-      setConversations(next);
+      addDebugInfo(`🔵 Deleting conversation ${convId}`);
+      const res = await fetch(`${BACKEND_URL}/conversation/${convId}`, {
+        method: 'DELETE'
+      });
+      let data = {};
+      try {
+        data = await res.json();
+      } catch {
+        // ignore non-json
+      }
+      if (!res.ok) {
+        throw new Error(data?.detail || `HTTP ${res.status}`);
+      }
+      addDebugInfo(`✅ Conversation ${convId} deleted`);
+    } catch (e) {
+      addDebugInfo(`❌ Failed to delete conversation: ${e.message} (removing locally)`);
+    } finally {
+      setConversations(prev => prev.filter(c => c.id !== convId));
       if (activeConversationId === convId) {
-        setActiveConversationId(next[0]?.id || null);
+        const remaining = conversations.filter(c => c.id !== convId);
+        if (remaining.length > 0) {
+          setActiveConversationId(remaining[0].id);
+        } else {
+          await handleNewConversation();
+        }
         setMessages([]);
       }
-      addDebugInfo(`✅ Deleted conversation: ${convId}`);
-    } catch (e) {
-      console.error('Failed to delete conversation', e);
-      addDebugInfo(`❌ Failed to delete conversation: ${e.message}`);
     }
   }
 
   async function handleSend() {
-    const text = input.trim();
-    if (!text || !activeConversationId || sending || streaming) return;
+    if (!input.trim() || sending || streaming || !activeConversationId) return;
 
-    addDebugInfo(`🔵 Sending message: "${text.substring(0, 50)}..."`);
+    const userMsg = {
+      id: `user-${Date.now()}`,
+      conversation_id: activeConversationId,
+      role: 'user',
+      content: input.trim(),
+      created_at: new Date().toISOString()
+    };
+
+    setMessages(prev => [...prev, userMsg]);
+    setInput('');
     setSending(true);
     setStreaming(true);
 
-    // Append user message
-    const userMsg = {
-      id: `temp-${Date.now()}`,
-      conversation_id: activeConversationId,
-      role: 'user',
-      content: text,
-      created_at: new Date().toISOString()
-    };
-    setMessages(prev => [...prev, userMsg]);
+    let currentText = '';
 
-    // Placeholder assistant message to stream into
-    const assistantTempId = `assistant-${Date.now()}`;
-    setMessages(prev => [
-      ...prev,
-      {
-        id: assistantTempId,
-        conversation_id: activeConversationId,
-        role: 'assistant',
-        content: '',
-        created_at: new Date().toISOString()
-      }
-    ]);
+    function ensureAssistantIndex() {
+      setMessages(prev => {
+        const lastMsg = prev[prev.length - 1];
+        if (!lastMsg || lastMsg.role !== 'assistant') {
+          const assistantMsg = {
+            id: `assistant-${Date.now()}`,
+            conversation_id: activeConversationId,
+            role: 'assistant',
+            content: '',
+            created_at: new Date().toISOString()
+          };
+          return [...prev, assistantMsg];
+        }
+        return prev;
+      });
+      return messages.length;
+    }
 
-    setInput('');
+    addDebugInfo('🔵 Sending message...');
 
     try {
-      const body = {
-        user_id: userId,
-        conversation_id: activeConversationId,
-        message: text,
-        stream: true,
-        include_sources: true
-      };
+      const response = await fetch(`${BACKEND_URL}/chat/stream`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: input.trim(),
+          conversation_id: activeConversationId,
+          user_id: userId
+        })
+      });
 
-      let currentText = '';
-      let assistantIndexRef = null;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData?.detail || `HTTP ${response.status}`);
+      }
 
-      // Find the placeholder index lazily
-      const ensureAssistantIndex = () => {
-        if (assistantIndexRef !== null) return assistantIndexRef;
-        assistantIndexRef = messages.length + 1; // user appended + this assistant
-        return assistantIndexRef;
-      };
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
 
-      for await (const evt of postStream('/api/chat/send', body)) {
-        if (evt?.type === 'delta') {
-          currentText += (currentText ? '' : '') + (evt.text || '');
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n').filter(Boolean);
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          if (!line.startsWith('data: ')) continue;
+
+          const jsonStr = line.slice(6);
+          if (jsonStr === '[DONE]') {
+            setStreaming(false);
+            continue;
+          }
+
+          try {
+            const evt = JSON.parse(jsonStr);
+            handleStreamEvent(evt);
+          } catch (parseErr) {
+            console.warn('Failed to parse SSE JSON:', parseErr);
+          }
+        }
+      }
+
+      function handleStreamEvent(evt) {
+        if (evt?.type === 'content') {
+          currentText = (currentText || '') + (evt.text || '');
           const idx = ensureAssistantIndex();
           setMessages(prev => {
             const copy = [...prev];
@@ -270,16 +357,8 @@ const TaxAssistantInterface = () => {
 
       addDebugInfo('✅ Upload successful!');
 
-      // Track uploaded doc locally
-      setUploadedDocs(prev => [
-        {
-          id: data.document_record_id || data.document_id,
-          filename: file.name,
-          document_type: docType,
-          linked_to_conversation: data.linked_to_conversation
-        },
-        ...prev
-      ]);
+      // Refresh documents from backend to show all linked documents
+      await fetchConversationDocuments(activeConversationId);
 
       // Add success message to chat
       const ack = {
@@ -312,7 +391,7 @@ const TaxAssistantInterface = () => {
   function onDropZoneClick(e) {
     e.preventDefault();
     e.stopPropagation();
-    addDebugInfo('🔵 Dropzone clicked');
+    addDebugInfo('🔵 Upload button clicked');
     addDebugInfo(`🔵 fileInputRef.current: ${fileInputRef.current}`);
 
     if (!fileInputRef.current) {
@@ -348,7 +427,7 @@ const TaxAssistantInterface = () => {
         return;
       }
 
-      handleUpload(file);
+      handleUpload(file, selectedDocType);
     } else {
       addDebugInfo('❌ No file in selection');
     }
@@ -365,13 +444,85 @@ const TaxAssistantInterface = () => {
     const file = e.dataTransfer?.files?.[0];
     if (file) {
       addDebugInfo(`Dropped file: ${file.name}`);
-      handleUpload(file);
+      handleUpload(file, selectedDocType);
     }
   }
 
   function onDragOver(e) {
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  async function handleRemoveDoc(doc) {
+    if (!doc?.id || !activeConversationId) return;
+    setRemovingDocId(doc.id);
+    try {
+      // Use legacy-compatible endpoint; backend also supports /api/chat/{id}/documents/{docId}
+      const res = await fetch(`${BACKEND_URL}/conversation/${activeConversationId}/document/${doc.id}`, {
+        method: 'DELETE'
+      });
+      let data = {};
+      try {
+        data = await res.json();
+      } catch {
+        // ignore non-json
+      }
+      if (!res.ok) {
+        throw new Error(data?.detail || `HTTP ${res.status}`);
+      }
+
+      // Update local state
+      setUploadedDocs(prev => prev.filter(d => d.id !== doc.id));
+
+      // Acknowledge in chat
+      const ack = {
+        id: `sys-${Date.now()}`,
+        conversation_id: activeConversationId,
+        role: 'assistant',
+        content: `🗑️ Removed document "${doc.filename}" from this conversation.`,
+        created_at: new Date().toISOString()
+      };
+      setMessages(prev => [...prev, ack]);
+      addDebugInfo(`✅ Unlinked document ${doc.id} (${doc.filename})`);
+    } catch (e) {
+      console.error('Remove document failed:', e);
+      addDebugInfo(`❌ Remove document failed: ${e.message}`);
+      const err = {
+        id: `err-${Date.now()}`,
+        conversation_id: activeConversationId,
+        role: 'assistant',
+        content: `❌ Failed to remove document: ${e.message}`,
+        created_at: new Date().toISOString()
+      };
+      setMessages(prev => [...prev, err]);
+    } finally {
+      setRemovingDocId(null);
+    }
+  }
+
+  async function handleClearHistory() {
+    if (!activeConversationId) return;
+    try {
+      if (typeof window !== 'undefined') {
+        const ok = window.confirm('Clear all messages in this conversation? This cannot be undone.');
+        if (!ok) return;
+      }
+      addDebugInfo(`🔵 Clearing history for ${activeConversationId}`);
+      const res = await fetch(`${BACKEND_URL}/conversation/${activeConversationId}/history`, { method: 'DELETE' });
+      let data = {};
+      try {
+        data = await res.json();
+      } catch {
+        // ignore non-json
+      }
+      if (!res.ok) {
+        throw new Error(data?.detail || `HTTP ${res.status}`);
+      }
+      setMessages([]);
+      addDebugInfo(`✅ History cleared for ${activeConversationId}`);
+    } catch (e) {
+      addDebugInfo(`❌ Failed to clear history: ${e.message}`);
+    }
   }
 
   const isDisabled = sending || streaming || isLoading;
@@ -429,11 +580,20 @@ const TaxAssistantInterface = () => {
             <h6 className="mb-2">Documents ({uploadedDocs.length})</h6>
             <ul className="list-unstyled small">
               {uploadedDocs.length === 0 ? (
-                <li className="text-muted">No documents uploaded in this session.</li>
+                <li className="text-muted">No documents uploaded yet</li>
               ) : (
-                uploadedDocs.map(d => (
-                  <li key={d.id} className="mb-1">
-                    📄 {d.filename} <span className="text-muted">({d.document_type})</span>
+                uploadedDocs.map(doc => (
+                  <li key={doc.id} className="mb-1">
+                    📄 {doc.filename}
+                    <Button
+                      size="sm"
+                      color="link"
+                      className="p-0 ml-2 text-danger"
+                      title="Remove document from this conversation"
+                      onClick={() => handleRemoveDoc(doc)}
+                      disabled={removingDocId === doc.id || isDisabled}>
+                      {removingDocId === doc.id ? '…' : '×'}
+                    </Button>
                   </li>
                 ))
               )}
@@ -441,46 +601,31 @@ const TaxAssistantInterface = () => {
           </div>
         </Col>
 
-        {/* Main */}
-        <Col md="9" lg="9" className="tax-main">
-          <div className="d-flex justify-content-between align-items-center tax-header">
-            <div>
-              <h5 className="mb-1">AI Tax Assistant</h5>
-              <small className="text-muted">Powered by multi-agent intelligence system</small>
+        {/* Main Chat Area */}
+        <Col md="9" lg="9" className="tax-chat">
+          {/* Debug Panel - Toggle */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="mb-2">
+              <Button size="sm" color="secondary" onClick={() => setShowDebug(!showDebug)}>
+                {showDebug ? 'Hide' : 'Show'} Debug Info
+              </Button>
             </div>
-            <div className="tax-header-actions">
-              <Button color="link" className="p-2 text-muted" aria-label="Search" disabled>
-                🔍
-              </Button>
-              <Button color="link" className="p-2 text-muted" aria-label="Help" disabled>
-                ❓
-              </Button>
-              <Button color="link" className="p-2 text-muted" aria-label="Settings" disabled>
-                ⚙️
-              </Button>
-              <div
-                className="d-inline-block rounded-circle bg-light border text-center align-middle ml-2"
-                style={{ width: 32, height: 32, lineHeight: '32px' }}
-                aria-label="Profile">
-                👤
-              </div>
-            </div>
-          </div>
+          )}
 
           {/* Debug Panel */}
-          {process.env.NODE_ENV === 'development' && (
-            <Card className="mb-3 bg-light">
+          {showDebug && process.env.NODE_ENV === 'development' && (
+            <Card className="mb-3" style={{ backgroundColor: '#f8f9fa' }}>
               <CardBody>
-                <h6>🐛 Debug Panel</h6>
-                <div style={{ fontSize: '12px', fontFamily: 'monospace' }}>
+                <h6>Debug Information</h6>
+                <div className="small">
                   <div>
-                    User ID: <strong>{userId || 'undefined'}</strong>
+                    Backend URL: <strong>{BACKEND_URL}</strong>
                   </div>
                   <div>
-                    Active Conversation: <strong>{activeConversationId || 'undefined'}</strong>
+                    Active Conversation: <strong>{activeConversationId || 'None'}</strong>
                   </div>
                   <div>
-                    Backend URL: <strong>{BACKEND_URL || 'undefined'}</strong>
+                    User ID: <strong>{userId}</strong>
                   </div>
                   <div>
                     Uploading: <strong>{uploading ? 'Yes' : 'No'}</strong>
@@ -531,62 +676,53 @@ const TaxAssistantInterface = () => {
                 <p className="mb-0">
                   Hello! I'm your M&A Tax Intelligence Assistant. I can help you with complex tax queries by analyzing
                   regulations, case law, precedents, and expert knowledge. Feel free to ask questions or upload relevant
-                  documents.
+                  documents using the 📎 button.
                 </p>
               </CardBody>
             </Card>
           )}
 
-          {/* Dropzone */}
-          <Card className="mb-3 tax-dropzone" data-testid="dropzone">
-            <CardBody className="text-center">
-              <div
-                onClick={onDropZoneClick}
-                onDrop={onDrop}
-                onDragOver={onDragOver}
-                style={{
-                  cursor: 'pointer',
-                  padding: '20px',
-                  border: uploading ? '2px dashed #007bff' : '2px dashed #dee2e6',
-                  borderRadius: '8px',
-                  backgroundColor: uploading ? '#f8f9fa' : 'transparent'
-                }}>
-                <div className="display-6 mb-2">{uploading ? '⏳' : '☁️'}</div>
-                <div>
-                  {uploading ? (
-                    <span className="text-primary">Uploading...</span>
-                  ) : (
-                    <>
-                      Drop documents here or{' '}
-                      <strong style={{ color: '#007bff', textDecoration: 'underline' }} onClick={onDropZoneClick}>
-                        click to upload
-                      </strong>
-                    </>
-                  )}
-                </div>
-                <small className="text-muted d-block mt-2">
-                  PDF, DOC, DOCX, TXT • Tax codes, contracts, regulations, case law
-                </small>
-              </div>
+          {/* Hidden file input */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,.doc,.docx,.txt"
+            onChange={onFileChange}
+            style={{ display: 'none' }}
+          />
 
-              {/* Backup upload button */}
-              <Button color="outline-primary" size="sm" className="mt-3" onClick={onDropZoneClick} disabled={uploading}>
-                📎 {uploading ? 'Uploading...' : 'Choose File'}
+          {/* Conversation toolbar */}
+          <div className="d-flex justify-content-between align-items-center mb-2">
+            <div className="small text-muted">
+              Conversation ID: <code>{activeConversationId || 'None'}</code>
+            </div>
+            <div>
+              <Button
+                size="sm"
+                color="warning"
+                className="mr-2"
+                onClick={handleClearHistory}
+                disabled={isDisabled || !activeConversationId}>
+                Clear History
               </Button>
-
-              {/* Hidden file input */}
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept=".pdf,.doc,.docx,.txt"
-                onChange={onFileChange}
-                style={{ display: 'none' }}
-              />
-            </CardBody>
-          </Card>
+              <Button
+                size="sm"
+                color="danger"
+                onClick={() => handleDeleteConversation(activeConversationId)}
+                disabled={isDisabled || !activeConversationId}>
+                Delete Chat
+              </Button>
+            </div>
+          </div>
 
           {/* Messages */}
-          <div className="mb-3" style={{ minHeight: 240, maxHeight: 420, overflowY: 'auto', padding: '0 6px' }}>
+          <div
+            className="mb-3"
+            style={{ minHeight: 240, maxHeight: 420, overflowY: 'auto', padding: '0 6px' }}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            onDragEnter={e => e.preventDefault()}
+            onDragLeave={e => e.preventDefault()}>
             {messages.map(m => (
               <div
                 key={m.id}
@@ -607,6 +743,39 @@ const TaxAssistantInterface = () => {
 
           {/* Input */}
           <div className="tax-input d-flex align-items-center">
+            {/* Small upload icon button */}
+            <Button
+              color="outline-secondary"
+              size="sm"
+              className="mr-2"
+              onClick={onDropZoneClick}
+              disabled={uploading || isDisabled}
+              title="Upload document (PDF, DOC, DOCX, TXT)"
+              style={{
+                padding: '0.375rem 0.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: '38px'
+              }}>
+              {uploading ? '⏳' : '📎'}
+            </Button>
+
+            <select
+              className="form-control form-control-sm mr-2"
+              value={selectedDocType}
+              onChange={e => setSelectedDocType(e.target.value)}
+              disabled={isDisabled || uploading}
+              title="Document type"
+              style={{ width: 'auto' }}>
+              <option value="expert_analysis">Expert</option>
+              <option value="regulation">Regulation</option>
+              <option value="case_law">Case Law</option>
+              <option value="precedent">Precedent</option>
+              <option value="irs_guidance">IRS Guidance</option>
+              <option value="revenue_ruling">Revenue Ruling</option>
+            </select>
+
             <Input
               type="text"
               placeholder="Ask about M&A tax matters, upload documents for analysis, or start a new topic..."

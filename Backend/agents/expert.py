@@ -135,8 +135,7 @@ class ExpertAgent(BaseAgent):
     def _get_vector_filter(self) -> Dict:
         """Get expert specific vector search filter"""
         return {
-            "type": "expert_analysis", 
-            "document_category": ["analysis", "commentary", "guidance", "opinion"]
+            "document_type": ["expert_analysis"]
         }
     
     def _get_domain_terms(self) -> List[str]:

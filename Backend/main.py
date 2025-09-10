@@ -10,7 +10,7 @@ from database.neo4j_client import Neo4jClient
 from models.requests import QueryRequest
 from models.responses import QueryResponse
 from api.routes.upload import router as upload_router
-from api.routes.chat import router as chat_router
+from api.routes.chat import router as chat_router, legacy_router as legacy_chat_router
 import api.app_state as app_state
 
 # Configure logging
@@ -90,6 +90,8 @@ app.add_middleware(
 # Include upload and chat routers
 app.include_router(upload_router)
 app.include_router(chat_router)
+# Include legacy compatibility routes (for older frontend endpoints like /conversation/new)
+app.include_router(legacy_chat_router)
 
 @app.post("/query", response_model=QueryResponse)
 async def process_query(request: QueryRequest):

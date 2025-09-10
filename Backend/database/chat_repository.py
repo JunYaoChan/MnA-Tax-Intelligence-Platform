@@ -181,6 +181,17 @@ class ChatRepository:
             logger.error(f"get_history failed: {e}")
             return []
 
+    def clear_history(self, conversation_id: str) -> bool:
+        """
+        Delete all messages for a conversation while keeping the conversation and document links.
+        """
+        try:
+            self.client.table(self.t_messages).delete().eq("conversation_id", conversation_id).execute()
+            return True
+        except Exception as e:
+            logger.error(f"clear_history failed: {e}")
+            return False
+
     # Documents linkage
 
     def link_document(self, conversation_id: str, document_id: str) -> bool:
@@ -223,6 +234,47 @@ class ChatRepository:
         except Exception as e:
             logger.error(f"list_conversation_documents failed: {e}")
             return []
+
+    # Document unlink/delete
+
+    def unlink_document(self, conversation_id: str, document_id: str) -> bool:
+        """
+        Remove a link between a conversation and a document.
+        """
+        try:
+            self.client.table(self.t_conversation_docs) \
+                .delete() \
+                .eq("conversation_id", conversation_id) \
+                .eq("document_id", document_id) \
+                .execute()
+            return True
+        except Exception as e:
+            logger.error(f"unlink_document failed: {e}")
+            return False
+
+    def delete_document_record(self, document_id: str) -> bool:
+        """
+        Delete a document record and any links to conversations.
+        Does NOT delete vector chunks or graph data (not directly tracked here).
+        """
+        try:
+            # Delete links first
+            try:
+                self.client.table(self.t_conversation_docs) \
+                    .delete() \
+                    .eq("document_id", document_id) \
+                    .execute()
+            except Exception as link_err:
+                logger.warning(f"delete_document_record: failed to delete links for {document_id}: {link_err}")
+            # Delete document record
+            self.client.table(self.t_documents) \
+                .delete() \
+                .eq("id", document_id) \
+                .execute()
+            return True
+        except Exception as e:
+            logger.error(f"delete_document_record failed: {e}")
+            return False
 
     # Utility
 

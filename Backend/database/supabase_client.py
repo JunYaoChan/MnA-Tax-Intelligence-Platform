@@ -85,7 +85,7 @@ class SupabaseVectorStore:
         query: str,
         top_k: int = 10,
         filter: Optional[Dict[str, Any]] = None,
-        similarity_threshold: float = 0.7
+        similarity_threshold: Optional[float] = None
     ) -> List[Dict]:
         """
         Perform vector similarity search using RPC function to avoid URI length issues
@@ -100,8 +100,10 @@ class SupabaseVectorStore:
             # Generate embedding for query
             embedding = await self.generate_embedding(query)
             
+            # Decide threshold (project setting by default)
+            threshold = similarity_threshold if similarity_threshold is not None else self.settings.vector_similarity_threshold
             # Use RPC function to avoid URI length issues
-            return await self.search_with_rpc(embedding, top_k, similarity_threshold, filter)
+            return await self.search_with_rpc(embedding, top_k, threshold, filter)
             
         except Exception as e:
             logger.error(f"Error in vector search: {e}")
@@ -112,17 +114,18 @@ class SupabaseVectorStore:
         self,
         query_embedding: List[float],
         top_k: int = 10,
-        similarity_threshold: float = 0.7,
+        similarity_threshold: Optional[float] = None,
         filter_dict: Optional[Dict[str, Any]] = None
     ) -> List[Dict[str, Any]]:
         """Use RPC function for vector search to avoid URI length issues"""
         try:
             # Use the match_documents RPC function
+            thr = similarity_threshold if similarity_threshold is not None else self.settings.vector_similarity_threshold
             response = self.client.rpc(
                 'match_documents',
                 {
                     'query_embedding': query_embedding,
-                    'match_threshold': similarity_threshold,
+                    'match_threshold': thr,
                     'match_count': top_k
                 }
             ).execute()
@@ -233,7 +236,8 @@ class SupabaseVectorStore:
                 'id': item.get('id'),
                 'title': item.get('title', 'Unknown Document'),
                 'content': item.get('content', ''),
-                'type': item.get('document_type', 'unknown'),
+                'document_type': item.get('document_type', 'unknown'),
+                'type': item.get('document_type', 'unknown'),  # backward compatibility
                 'relevance_score': item.get('similarity', 0.8),  # Default relevance
                 'metadata': item.get('metadata', {}),
                 'date': item.get('created_at'),
