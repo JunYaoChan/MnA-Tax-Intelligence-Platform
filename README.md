@@ -10,15 +10,14 @@ AI-powered tax research and analysis for complex M&A transactions. This project 
 - Tech Stack
 - Prerequisites
 - Setup
-  - 1. Frontend (Next.js + Auth0)
-  - 2. Backend (FastAPI)
-  - 3. Datastores
+  - Frontend (Next.js + Auth0)
+  - Backend (FastAPI)
+  - Datastores
     - Supabase + pgvector
     - Neo4j Graph
 - Run Locally
 - Usage Guide
 - Synthesis Strategies
-- Troubleshooting
 - Testing
 - License
 
@@ -267,22 +266,6 @@ The backend selects a synthesis strategy based on `QueryComplexity`:
 - `fallback`: Minimal, used when the LLM is unavailable
 
 The UI logs the strategy in the debug panel and appends `[Strategy: ...]` to the final message.
-
----
-
-## Troubleshooting
-
-- RPC error “column tax_documents.document_type does not exist”:
-
-  - The project removed the `document_type` column. Update the `match_documents` function to the version in this README, and ensure any old `document_type` indexes are dropped.
-  - In the backend `.env`, keep `USE_SUPABASE_RPC=false` until you update the Supabase function; the code will use a REST fallback and derive `document_type` from `metadata`.
-
-- Build errors with Babel unicode regex / remark-gfm / highlight.js:
-
-  - We removed `.babelrc` to use SWC (Next’s default), which resolves those issues. If you reintroduce custom Babel config, you may see unicode property errors again.
-
-- Port already in use (3001) when running `npm run dev`:
-  - The sample API server (node) uses 3001. Stop any process occupying that port or modify the scripts if you don’t need the sample API server.
 
 ---
 
