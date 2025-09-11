@@ -149,3 +149,7 @@ client_session: <aiohttp.client.ClientSession object at 0x115955110>
 client_session: <aiohttp.client.ClientSession object at 0x10d633e90>
 2025-09-11 14:10:06,251 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
 client_session: <aiohttp.client.ClientSession object at 0x10ca21390>
+2025-09-11 14:50:41,879 [ERROR] neo4j.io [_bolt.py:915]: [#D06C]  _: <CONNECTION> error: Failed to write data to connection IPv4Address(('si-21729c74-319f.production-orch-0054.neo4j.io', 7687)) (ResolvedIPv4Address(('34.76.245.87', 7687))): ConnectionResetError('Connection lost')
+2025-09-11 14:50:41,882 [ERROR] agents.base.PrecedentAgent [precedent.py:271]: Internal precedent search failed: Failed to write data to connection IPv4Address(('si-21729c74-319f.production-orch-0054.neo4j.io', 7687)) (ResolvedIPv4Address(('34.76.245.87', 7687)))
+2025-09-11 14:55:03,807 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x11776da10>
