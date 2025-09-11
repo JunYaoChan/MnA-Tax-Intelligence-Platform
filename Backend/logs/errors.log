@@ -133,3 +133,17 @@ client_session: <aiohttp.client.ClientSession object at 0x10a4f1890>
 2025-09-10 21:52:32,681 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
 2025-09-10 21:52:33,358 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
 2025-09-10 21:52:34,055 [ERROR] database.supabase_client [supabase_client.py:290]: Error inserting document: {'message': "Could not find the 'document_type' column of 'tax_documents' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-09-11 11:27:13,859 [ERROR] database.supabase_client [supabase_client.py:167]: RPC vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 11:27:14,015 [ERROR] database.supabase_client [supabase_client.py:297]: Direct safe vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 11:27:14,225 [ERROR] database.supabase_client [supabase_client.py:167]: RPC vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 11:27:14,273 [ERROR] database.supabase_client [supabase_client.py:297]: Direct safe vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 13:23:58,004 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x10f462190>
+2025-09-11 13:25:18,510 [ERROR] database.supabase_client [supabase_client.py:167]: RPC vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 13:25:19,115 [ERROR] database.supabase_client [supabase_client.py:167]: RPC vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 13:26:12,454 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x115955110>
+2025-09-11 13:27:54,730 [ERROR] database.supabase_client [supabase_client.py:167]: RPC vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 13:27:54,842 [ERROR] database.supabase_client [supabase_client.py:167]: RPC vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-09-11 13:37:50,598 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x10d633e90>

@@ -200,22 +200,22 @@ const TaxAssistantInterface = () => {
 
     let currentText = '';
 
-    function ensureAssistantIndex() {
+    function upsertAssistantContent(newContent) {
       setMessages(prev => {
-        const lastMsg = prev[prev.length - 1];
-        if (!lastMsg || lastMsg.role !== 'assistant') {
-          const assistantMsg = {
+        const copy = [...prev];
+        if (copy.length === 0 || copy[copy.length - 1].role !== 'assistant') {
+          copy.push({
             id: `assistant-${Date.now()}`,
             conversation_id: activeConversationId,
             role: 'assistant',
             content: '',
             created_at: new Date().toISOString()
-          };
-          return [...prev, assistantMsg];
+          });
         }
-        return prev;
+        const idx = copy.length - 1;
+        copy[idx] = { ...copy[idx], content: newContent };
+        return copy;
       });
-      return messages.length;
     }
 
     addDebugInfo('🔵 Sending message...');
@@ -268,25 +268,9 @@ const TaxAssistantInterface = () => {
       function handleStreamEvent(evt) {
         if (evt?.type === 'content') {
           currentText = (currentText || '') + (evt.text || '');
-          const idx = ensureAssistantIndex();
-          setMessages(prev => {
-            const copy = [...prev];
-            const aIdx = Math.min(idx, copy.length - 1);
-            if (copy[aIdx] && copy[aIdx].role === 'assistant') {
-              copy[aIdx] = { ...copy[aIdx], content: currentText };
-            }
-            return copy;
-          });
+          upsertAssistantContent(currentText);
         } else if (evt?.type === 'final') {
-          const idx = ensureAssistantIndex();
-          setMessages(prev => {
-            const copy = [...prev];
-            const aIdx = Math.min(idx, copy.length - 1);
-            if (copy[aIdx] && copy[aIdx].role === 'assistant') {
-              copy[aIdx] = { ...copy[aIdx], content: evt.answer || currentText || '' };
-            }
-            return copy;
-          });
+          upsertAssistantContent(evt.answer || currentText || '');
         } else if (evt?.type === 'error') {
           console.error('Stream error:', evt.message);
           addDebugInfo(`❌ Stream error: ${evt.message}`);

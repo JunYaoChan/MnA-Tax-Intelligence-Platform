@@ -41,6 +41,7 @@ class Settings:
     # Vector Search Configuration
     embedding_model: str = os.getenv("EMBEDDING_MODEL", "text-embedding-ada-002")
     vector_similarity_threshold: float = float(os.getenv("VECTOR_SIMILARITY_THRESHOLD", "0.7"))
+    use_supabase_rpc: bool = os.getenv("USE_SUPABASE_RPC", "false").lower() == "true"
     # Hybrid Search Configuration
     enable_hybrid_search: bool = os.getenv("ENABLE_HYBRID_SEARCH", "false").lower() == "true"
     hybrid_alpha: float = float(os.getenv("HYBRID_ALPHA", "0.5"))  # weight for vector vs lexical

@@ -80,6 +80,8 @@ class SupabaseVectorStore:
         
         # Initialize OpenAI client with new API
         self.openai_client = AsyncOpenAI(api_key=settings.openai_api_key)
+        # Runtime flag to prevent repeated RPC errors if backend function/schema incompatible
+        self.rpc_available = False
         
     async def search(
         self,
@@ -120,6 +122,9 @@ class SupabaseVectorStore:
     ) -> List[Dict[str, Any]]:
         """Use RPC function for vector search to avoid URI length issues"""
         try:
+            # If RPC is disabled by settings, use direct safe search to avoid DB RPC errors
+            if (hasattr(self.settings, "use_supabase_rpc") and not getattr(self.settings, "use_supabase_rpc")) or not getattr(self, "rpc_available", True):
+                return await self.vector_search_direct_safe(query_embedding, top_k, filter_dict)
             # Use the match_documents RPC function
             thr = similarity_threshold if similarity_threshold is not None else self.settings.vector_similarity_threshold
             response = self.client.rpc(
@@ -164,8 +169,12 @@ class SupabaseVectorStore:
             return self.format_results(results)
             
         except Exception as e:
-            logger.error(f"RPC vector search failed: {e}")
-            # Fallback to direct vector search (smaller embeddings)
+            # Disable RPC for subsequent calls to avoid repeated errors
+            try:
+                self.rpc_available = False
+            except Exception:
+                pass
+            logger.warning(f"RPC vector search failed; disabling RPC and using direct search: {e}")
             return await self.vector_search_direct_safe(query_embedding, top_k, filter_dict)
     
     async def hybrid_search(self, query: str, top_k: int = 10, filter: Optional[Dict[str, Any]] = None, similarity_threshold: Optional[float] = None) -> List[Dict]:
@@ -273,7 +282,7 @@ class SupabaseVectorStore:
             
             # Build basic query without embedding in URL
             query_builder = self.client.table(self.table_name).select(
-                "id, title, content, document_type, metadata, created_at"
+                "id, title, content, metadata, created_at"
             )
             
             # Apply filters if provided
@@ -336,8 +345,8 @@ class SupabaseVectorStore:
                 'id': item.get('id'),
                 'title': item.get('title', 'Unknown Document'),
                 'content': item.get('content', ''),
-                'document_type': item.get('document_type', 'unknown'),
-                'type': item.get('document_type', 'unknown'),  # backward compatibility
+                'document_type': (item.get('metadata', {}) or {}).get('document_type', item.get('document_type', 'unknown')),
+                'type': (item.get('metadata', {}) or {}).get('document_type', item.get('document_type', 'unknown')),  # backward compatibility
                 'relevance_score': item.get('similarity', 0.8),  # Default relevance
                 'metadata': item.get('metadata', {}),
                 'date': item.get('created_at'),
@@ -547,7 +556,9 @@ class SupabaseVectorStore:
             query = self.client.table(self.table_name).select("*")
             
             if document_type:
-                query = query.eq('document_type', document_type)
+                # document_type column removed from tax_documents; retaining parameter for backward compatibility.
+                # Note: DB-level filtering by metadata.document_type is not implemented here.
+                pass
             
             response = query.order('created_at', desc=True).range(offset, offset + limit - 1).execute()
             
@@ -564,12 +575,13 @@ class SupabaseVectorStore:
             total_response = self.client.table(self.table_name).select("id", count="exact").execute()
             total_count = total_response.count if hasattr(total_response, 'count') else 0
             
-            # Count by document type
-            type_response = self.client.table(self.table_name).select("document_type").execute()
+            # Count by document type (derived from metadata since column was removed)
+            type_response = self.client.table(self.table_name).select("metadata").execute()
             types = {}
             if type_response.data:
                 for doc in type_response.data:
-                    doc_type = doc.get('document_type', 'unknown')
+                    md = doc.get('metadata') or {}
+                    doc_type = md.get('document_type', 'unknown')
                     types[doc_type] = types.get(doc_type, 0) + 1
             
             return {
@@ -593,7 +605,6 @@ class SupabaseVectorStore:
             id BIGSERIAL PRIMARY KEY,
             title TEXT,
             content TEXT NOT NULL,
-            document_type TEXT,
             metadata JSONB DEFAULT '{}',
             embedding vector(1536),
             created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -601,7 +612,6 @@ class SupabaseVectorStore:
 
         -- Create indexes for better performance
         CREATE INDEX IF NOT EXISTS tax_docs_content_idx ON tax_documents USING gin(to_tsvector('english', content));
-        CREATE INDEX IF NOT EXISTS tax_docs_type_idx ON tax_documents(document_type);
         CREATE INDEX IF NOT EXISTS tax_docs_metadata_idx ON tax_documents USING gin(metadata);
         CREATE INDEX IF NOT EXISTS tax_docs_created_at_idx ON tax_documents(created_at DESC);
         CREATE INDEX IF NOT EXISTS tax_docs_embedding_idx ON tax_documents USING ivfflat(embedding vector_cosine_ops) WITH (lists = 100);
@@ -616,7 +626,6 @@ class SupabaseVectorStore:
             id bigint,
             title text,
             content text,
-            document_type text,
             metadata jsonb,
             similarity float
         )
@@ -628,7 +637,6 @@ class SupabaseVectorStore:
                 tax_documents.id,
                 tax_documents.title,
                 tax_documents.content,
-                tax_documents.document_type,
                 tax_documents.metadata,
                 1 - (tax_documents.embedding <=> query_embedding) AS similarity
             FROM tax_documents
