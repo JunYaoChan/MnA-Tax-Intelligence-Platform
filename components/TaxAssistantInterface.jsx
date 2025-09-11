@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardBody, Button, Input, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import 'highlight.js/styles/github.css';
 
 const TaxAssistantInterface = () => {
   const [messages, setMessages] = useState([]);
@@ -45,6 +49,104 @@ const TaxAssistantInterface = () => {
   function addDebugInfo(message) {
     const timestamp = new Date().toLocaleTimeString();
     setDebugInfo(prev => `[${timestamp}] ${message}\n${prev}`);
+  }
+
+  // Interactive markdown helpers (hoisted so they are available during render)
+  const slugify = txt =>
+    String(txt || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+
+  const HeadingTag =
+    level =>
+    ({ children }) => {
+      const text = Array.isArray(children)
+        ? children.map(c => (typeof c === 'string' ? c : '')).join('')
+        : String(children || '');
+      const id = slugify(text);
+      const Tag = `h${level}`;
+      return (
+        <Tag id={id} style={{ scrollMarginTop: '72px' }}>
+          <a href={`#${id}`} aria-label="Anchor link" style={{ textDecoration: 'none', color: 'inherit' }}>
+            🔗
+          </a>{' '}
+          {children}
+        </Tag>
+      );
+    };
+
+  const HeadingH2 = HeadingTag(2);
+  const HeadingH3 = HeadingTag(3);
+
+  const CodeBlock = ({ inline, className, children, ...props }) => {
+    const [copied, setCopied] = React.useState(false);
+    const code = String(children || '').replace(/\n$/, '');
+    if (inline) {
+      return (
+        <code className={className} {...props}>
+          {code}
+        </code>
+      );
+    }
+    const onCopy = async () => {
+      try {
+        await navigator.clipboard.writeText(code);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1200);
+      } catch (e) {
+        // ignore
+      }
+    };
+    return (
+      <div className="code-block" style={{ position: 'relative' }}>
+        <button
+          type="button"
+          className="copy-btn"
+          onClick={onCopy}
+          aria-label="Copy code"
+          style={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            padding: '4px 8px',
+            fontSize: 12,
+            border: '1px solid #d0d7de',
+            borderRadius: 6,
+            background: copied ? '#e6ffed' : '#f6f8fa',
+            cursor: 'pointer'
+          }}>
+          {copied ? 'Copied' : 'Copy'}
+        </button>
+        <pre className={className} {...props}>
+          <code>{code}</code>
+        </pre>
+      </div>
+    );
+  };
+
+  function renderAssistantContent(content) {
+    return (
+      <div className="assistant-markdown">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeHighlight]}
+          components={{
+            a: ({ node, ...props }) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+            table: ({ node, ...props }) => (
+              <div style={{ overflowX: 'auto' }}>
+                <table {...props} />
+              </div>
+            ),
+            code: CodeBlock,
+            h2: HeadingH2,
+            h3: HeadingH3
+          }}>
+          {content || ''}
+        </ReactMarkdown>
+      </div>
+    );
   }
 
   // Load existing conversations, then select latest or create a new one
@@ -217,6 +319,8 @@ const TaxAssistantInterface = () => {
         return copy;
       });
     }
+
+    /* moved markdown helpers and renderAssistantContent above so they're in scope during render */
 
     addDebugInfo('🔵 Sending message...');
 
@@ -717,7 +821,11 @@ const TaxAssistantInterface = () => {
                 className={`mb-2 p-2 rounded ${m.role === 'user' ? 'bg-primary text-white' : 'bg-light'}`}
                 style={{ maxWidth: '85%', marginLeft: m.role === 'user' ? 'auto' : '0' }}>
                 <div className="small text-muted mb-1">{m.role === 'user' ? 'You' : 'Assistant'}</div>
-                <div style={{ whiteSpace: 'pre-wrap' }}>{m.content}</div>
+                {m.role === 'assistant' ? (
+                  renderAssistantContent(m.content)
+                ) : (
+                  <div style={{ whiteSpace: 'pre-wrap' }}>{m.content}</div>
+                )}
               </div>
             ))}
             {streaming && (
