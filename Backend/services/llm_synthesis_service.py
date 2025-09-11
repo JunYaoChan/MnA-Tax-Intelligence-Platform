@@ -82,6 +82,7 @@ Please provide a clear response with:
                 'key_findings': parsed_response.get('key_findings', []),
                 'recommendations': parsed_response.get('recommendations', []),
                 'citations': self._extract_document_citations(state.retrieved_documents),
+                'synthesis_method': 'simple',
                 'llm_confidence': self._estimate_llm_confidence(response)
             }
             
@@ -143,6 +144,7 @@ Please provide a comprehensive analysis with:
                 'recommendations': parsed_response.get('recommendations', []),
                 'citations': self._organize_citations_by_type(grouped_docs),
                 'confidence_assessment': parsed_response.get('confidence_assessment', ''),
+                'synthesis_method': 'moderate',
                 'llm_confidence': self._estimate_llm_confidence(response)
             }
             
@@ -271,7 +273,9 @@ Use your expert judgment to provide comprehensive analysis including regulatory 
             else:
                 # Fallback to regular response parsing
                 content = response.choices[0].message.content
-                return self._parse_llm_response(content, 'expert')
+                parsed = self._parse_llm_response(content, 'expert')
+                parsed['synthesis_method'] = 'expert'
+                return parsed
                 
         except Exception as e:
             logger.error(f"Expert LLM synthesis failed: {e}")
@@ -405,6 +409,7 @@ Create a comprehensive response with executive summary, detailed analysis, strat
                 'comprehensive_analysis': synthesized_content,
                 'component_analysis': analysis_results,
                 'citations': self._extract_document_citations(state.retrieved_documents),
+                'synthesis_method': 'complex',
                 'llm_confidence': self._estimate_llm_confidence(response)
             }
             
@@ -414,6 +419,7 @@ Create a comprehensive response with executive summary, detailed analysis, strat
                 'comprehensive_analysis': "Synthesis temporarily unavailable",
                 'component_analysis': analysis_results,
                 'citations': [],
+                'synthesis_method': 'complex',
                 'llm_confidence': 0.5
             }
     
@@ -546,17 +552,19 @@ Create a comprehensive response with executive summary, detailed analysis, strat
                 'key_findings': [],
                 'recommendations': ['Please try rephrasing your query', 'Contact a tax professional'],
                 'citations': [],
+                'synthesis_method': 'fallback',
                 'llm_confidence': 0.0
             }
-        
+
         # Simple rule-based fallback
         top_doc = max(state.retrieved_documents, key=lambda x: x.get('relevance_score', 0))
-        
+
         return {
-            'summary': f"Based on available documents, particularly '{top_doc.get('title', 'primary source')}', " +
-                      f"the query relates to {state.query}. LLM synthesis temporarily unavailable.",
+            'summary': f"Based on available documents, particularly '{top_doc.get('title', 'primary source')}', "
+                       f"the query relates to {state.query}. LLM synthesis temporarily unavailable.",
             'key_findings': [f"Document found: {top_doc.get('title', 'Unknown')}"],
             'recommendations': ['Review primary documents', 'Consult with tax advisor'],
             'citations': [doc.get('title', 'Unknown') for doc in state.retrieved_documents[:5]],
+            'synthesis_method': 'fallback',
             'llm_confidence': 0.3
         }

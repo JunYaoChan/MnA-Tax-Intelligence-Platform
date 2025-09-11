@@ -270,7 +270,13 @@ const TaxAssistantInterface = () => {
           currentText = (currentText || '') + (evt.text || '');
           upsertAssistantContent(currentText);
         } else if (evt?.type === 'final') {
-          upsertAssistantContent(evt.answer || currentText || '');
+          const strategy = (evt?.metadata && evt.metadata.synthesis_method) || evt.synthesis_method || null;
+          if (strategy) {
+            addDebugInfo(`🧠 Synthesis strategy: ${strategy}`);
+          }
+          const finalText = evt.answer || currentText || '';
+          const displayText = strategy ? `${finalText}\n\n[Strategy: ${strategy}]` : finalText;
+          upsertAssistantContent(displayText);
         } else if (evt?.type === 'error') {
           console.error('Stream error:', evt.message);
           addDebugInfo(`❌ Stream error: ${evt.message}`);

@@ -147,3 +147,5 @@ client_session: <aiohttp.client.ClientSession object at 0x115955110>
 2025-09-11 13:27:54,842 [ERROR] database.supabase_client [supabase_client.py:167]: RPC vector search failed: {'message': 'column tax_documents.document_type does not exist', 'code': '42703', 'hint': None, 'details': None}
 2025-09-11 13:37:50,598 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
 client_session: <aiohttp.client.ClientSession object at 0x10d633e90>
+2025-09-11 14:10:06,251 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x10ca21390>

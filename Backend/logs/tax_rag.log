@@ -2331,3 +2331,86 @@ client_session: <aiohttp.client.ClientSession object at 0x10d633e90>
 2025-09-11 13:47:44,700 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911&order=created_at.asc&limit=500 "HTTP/2 200 OK"
 2025-09-11 13:47:44,874 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911 "HTTP/2 200 OK"
 2025-09-11 13:47:45,046 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28d9e69fb3-00b7-490b-a907-88df5ceea885%2C0bf23c64-1f24-44e2-86cb-01daad7768e5%29 "HTTP/2 200 OK"
+2025-09-11 14:10:05,902 [INFO] root [main.py:70]: Application shutdown complete
+2025-09-11 14:10:06,251 [ERROR] asyncio [base_events.py:1771]: Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x10ca21390>
+2025-09-11 14:10:10,012 [INFO] config.logging_config [logging_config.py:87]: Logging configuration initialized successfully
+2025-09-11 14:10:10,043 [INFO] root [main.py:41]: Initializing RAG Pipeline API...
+2025-09-11 14:10:10,043 [INFO] root [main.py:45]: Settings loaded and validated successfully
+2025-09-11 14:10:11,711 [INFO] database.neo4j_client [neo4j_client.py:23]: Neo4j connection established
+2025-09-11 14:10:11,734 [INFO] function_tools.registry [registry.py:36]: Initialized Brave Search tool
+2025-09-11 14:10:11,742 [INFO] function_tools.registry [registry.py:46]: Initialized LLM Enhancer tool
+2025-09-11 14:10:11,743 [INFO] function_tools.registry [registry.py:52]: IRS API tool disabled
+2025-09-11 14:10:11,743 [INFO] function_tools.registry [registry.py:58]: Initialized 4 function tools
+2025-09-11 14:10:11,743 [INFO] orchestration.orchestrator [orchestrator.py:52]: RAG Orchestrator initialized successfully
+2025-09-11 14:10:11,743 [INFO] root [main.py:61]: RAG Pipeline API initialized successfully
+2025-09-11 14:10:18,203 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:10:18,578 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-11 14:10:18,754 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911 "HTTP/2 200 OK"
+2025-09-11 14:10:18,989 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28d9e69fb3-00b7-490b-a907-88df5ceea885%2C0bf23c64-1f24-44e2-86cb-01daad7768e5%29 "HTTP/2 200 OK"
+2025-09-11 14:10:32,675 [INFO] httpx [_client.py:1025]: HTTP Request: DELETE https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911 "HTTP/2 200 OK"
+2025-09-11 14:10:36,177 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages "HTTP/2 201 Created"
+2025-09-11 14:10:36,345 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911 "HTTP/2 200 OK"
+2025-09-11 14:10:36,509 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28d9e69fb3-00b7-490b-a907-88df5ceea885%2C0bf23c64-1f24-44e2-86cb-01daad7768e5%29 "HTTP/2 200 OK"
+2025-09-11 14:10:36,689 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:10:36,696 [INFO] orchestration.orchestrator [orchestrator.py:90]: Step 1: Processing query - "What is the Zim Properties case and how does it impact tax covenant structuring in UK M&A deals? In...
+2025-09-11 14:10:38,429 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:10:40,522 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:10:43,035 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:10:43,147 [INFO] orchestration.orchestrator [orchestrator.py:176]: Query enhancement produced refined queries for agents: ['PrecedentAgent', 'CaseLawAgent', 'ExpertAgent']
+2025-09-11 14:10:43,148 [INFO] orchestration.orchestrator [orchestrator.py:94]: Step 2: Vector database retrieval across agents
+2025-09-11 14:10:43,148 [INFO] orchestration.orchestrator [orchestrator.py:232]: Agent PrecedentAgent using query: 'Zim Properties case impact on tax covenant structuring UK M&A deals, citation, practical implications, purchase price adjustments' (len=129)
+2025-09-11 14:10:43,148 [INFO] orchestration.orchestrator [orchestrator.py:232]: Agent CaseLawAgent using query: 'Zim Properties case impact on tax covenant structuring in UK M&A, citation, practical implications for purchase price adjustments' (len=129)
+2025-09-11 14:10:43,148 [INFO] orchestration.orchestrator [orchestrator.py:232]: Agent ExpertAgent using query: 'Zim Properties case impact on tax covenant structuring in UK M&A, citation, practical implications for purchase price adjustments' (len=129)
+2025-09-11 14:10:43,458 [INFO] agents.base.PrecedentAgent [base.py:49]: No internal results found, using function tools
+2025-09-11 14:10:43,458 [INFO] agents.base.PrecedentAgent [precedent.py:33]: Using function tools to enhance precedent search
+2025-09-11 14:10:43,458 [INFO] agents.base.PrecedentAgent [base.py:107]: Calling function tool: brave_search
+2025-09-11 14:10:43,784 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-11 14:10:44,208 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents?select=id%2Ctitle%2Ccontent%2Cmetadata%2Ccreated_at&limit=20 "HTTP/2 200 OK"
+2025-09-11 14:10:44,214 [INFO] agents.base.ExpertAgent [base.py:49]: No internal results found, using function tools
+2025-09-11 14:10:44,214 [INFO] agents.base.ExpertAgent [expert.py:39]: Using function tools to enhance expert analysis
+2025-09-11 14:10:44,214 [INFO] agents.base.ExpertAgent [base.py:107]: Calling function tool: brave_search
+2025-09-11 14:10:44,217 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-11 14:10:44,325 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/tax_documents?select=id%2Ctitle%2Ccontent%2Cmetadata%2Ccreated_at&limit=20 "HTTP/2 200 OK"
+2025-09-11 14:10:44,327 [INFO] agents.base.CaseLawAgent [base.py:75]: Using internal results, function tools not needed
+2025-09-11 14:10:44,328 [INFO] agents.base.CaseLawAgent [base.py:26]: Agent CaseLawAgent completed in 1.18s with confidence 26.67%
+2025-09-11 14:10:44,906 [WARNING] function_tools.brave_search [brave_search.py:221]: Rate limited, waiting 1 seconds...
+2025-09-11 14:10:45,222 [INFO] function_tools.brave_search [brave_search.py:201]: Brave search successful: 10 results
+2025-09-11 14:10:45,222 [INFO] agents.base.PrecedentAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-11 14:10:45,222 [INFO] agents.base.PrecedentAgent [base.py:26]: Agent PrecedentAgent completed in 2.07s with confidence 30.00%
+2025-09-11 14:10:45,222 [INFO] orchestration.orchestrator [orchestrator.py:209]: Agent PrecedentAgent completed with 0 documents
+2025-09-11 14:10:45,222 [INFO] orchestration.orchestrator [orchestrator.py:209]: Agent CaseLawAgent completed with 10 documents
+2025-09-11 14:10:46,767 [INFO] function_tools.brave_search [brave_search.py:201]: Brave search successful: 10 results
+2025-09-11 14:10:46,767 [INFO] agents.base.ExpertAgent [base.py:107]: Calling function tool: llm_enhancer
+2025-09-11 14:10:46,767 [INFO] agents.base.ExpertAgent [base.py:26]: Agent ExpertAgent completed in 3.62s with confidence 0.00%
+2025-09-11 14:10:46,767 [INFO] orchestration.orchestrator [orchestrator.py:209]: Agent ExpertAgent completed with 0 documents
+2025-09-11 14:10:46,767 [INFO] orchestration.orchestrator [orchestrator.py:98]: Step 3: External data sourcing evaluation
+2025-09-11 14:10:46,767 [INFO] orchestration.orchestrator [orchestrator.py:260]: Vector retrieval summary: 10 docs, 0.19 confidence
+2025-09-11 14:10:46,767 [INFO] orchestration.orchestrator [orchestrator.py:266]: Initiating external data sourcing
+2025-09-11 14:10:46,767 [INFO] orchestration.orchestrator [orchestrator.py:277]: External sourcing added 10 additional documents
+2025-09-11 14:10:46,767 [INFO] orchestration.orchestrator [orchestrator.py:102]: Step 4: LLM response generation and enhancement
+2025-09-11 14:10:46,768 [INFO] orchestration.orchestrator [orchestrator.py:294]: LLM enhancement completed for 10 total documents
+2025-09-11 14:10:46,768 [INFO] orchestration.orchestrator [orchestrator.py:106]: Step 5: Agent-driven refinement and synthesis
+2025-09-11 14:10:46,768 [INFO] orchestration.orchestrator [orchestrator.py:454]: Final refinement: 10 documents selected
+2025-09-11 14:11:03,208 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:11:22,149 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:11:35,618 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:11:55,013 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:12:20,976 [INFO] httpx [_client.py:1740]: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-11 14:12:20,981 [INFO] orchestration.orchestrator [orchestrator.py:111]: RAG pipeline completed in 104.29s
+2025-09-11 14:12:22,877 [INFO] httpx [_client.py:1025]: HTTP Request: POST https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages "HTTP/2 201 Created"
+2025-09-11 14:12:48,844 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:12:48,995 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:12:49,164 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-11 14:12:49,352 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911 "HTTP/2 200 OK"
+2025-09-11 14:12:49,560 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28d9e69fb3-00b7-490b-a907-88df5ceea885%2C0bf23c64-1f24-44e2-86cb-01daad7768e5%29 "HTTP/2 200 OK"
+2025-09-11 14:12:56,207 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:12:56,359 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:12:56,522 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-11 14:12:56,682 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911 "HTTP/2 200 OK"
+2025-09-11 14:12:56,836 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28d9e69fb3-00b7-490b-a907-88df5ceea885%2C0bf23c64-1f24-44e2-86cb-01daad7768e5%29 "HTTP/2 200 OK"
+2025-09-11 14:13:32,127 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:13:32,365 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversations?select=%2A&user_id=eq.test-user-123&order=created_at.asc&limit=100 "HTTP/2 200 OK"
+2025-09-11 14:13:32,541 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/messages?select=%2A&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911&order=created_at.asc&limit=500 "HTTP/2 200 OK"
+2025-09-11 14:13:32,688 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/conversation_documents?select=document_id&conversation_id=eq.73b5748b-61ec-4e20-9dd4-2191dee28911 "HTTP/2 200 OK"
+2025-09-11 14:13:32,837 [INFO] httpx [_client.py:1025]: HTTP Request: GET https://hiylvfwlwclpdediijgx.supabase.co/rest/v1/documents?select=%2A&id=in.%28d9e69fb3-00b7-490b-a907-88df5ceea885%2C0bf23c64-1f24-44e2-86cb-01daad7768e5%29 "HTTP/2 200 OK"
